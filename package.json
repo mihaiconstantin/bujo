@@ -1,0 +1,25 @@
+{
+    "name": "bujo",
+    "displayName": "BuJo",
+    "description": "Bullet Journal Highlighting",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.56.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "bujo",
+            "aliases": ["BuJo", "bujo"],
+            "extensions": [".bj",".bujo"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "bujo",
+            "scopeName": "source.bj",
+            "path": "./syntaxes/bujo.tmLanguage.json"
+        }]
+    }
+}
