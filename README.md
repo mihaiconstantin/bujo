@@ -128,6 +128,7 @@ You can adjust any colors however you see fit.
 {
     // Other VS Code settings.
 
+    // Copy this one.
     "editor.tokenColorCustomizations": {
         "textMateRules": [
             // BuJo highlights for notes.
