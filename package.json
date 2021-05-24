@@ -1,8 +1,9 @@
 {
     "name": "bujo",
+    "publisher": "MihaiConstantin",
     "displayName": "BuJo",
     "description": "Bullet Journal Syntax Highlighting",
-    "version": "0.0.1",
+    "version": "1.0.0",
     "engines": {
         "vscode": "^1.56.0"
     },
