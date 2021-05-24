@@ -1,7 +1,7 @@
 {
     "name": "bujo",
     "displayName": "BuJo",
-    "description": "Bullet Journal Highlighting",
+    "description": "Bullet Journal Syntax Highlighting",
     "version": "0.0.1",
     "engines": {
         "vscode": "^1.56.0"
@@ -10,16 +10,12 @@
         "Programming Languages"
     ],
     "contributes": {
-        "languages": [{
-            "id": "bujo",
-            "aliases": ["BuJo", "bujo"],
-            "extensions": [".bj",".bujo"],
-            "configuration": "./language-configuration.json"
-        }],
-        "grammars": [{
-            "language": "bujo",
-            "scopeName": "source.bj",
-            "path": "./syntaxes/bujo.tmLanguage.json"
-        }]
+        "grammars": [
+            {
+                "scopeName": "markdown.bujo",
+                "path": "./syntaxes/bujo.markdown.json",
+                "injectTo": ["text.html.markdown"]
+            }
+        ]
     }
 }
