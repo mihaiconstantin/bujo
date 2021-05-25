@@ -78,7 +78,7 @@ The same pattern holds for the other symbols as well. You only need to replace t
 
 The TextMate scopes expose by **BuJo** can be colorized via the `editor.tokenColorCustomizations` setting in VS Code.
 
-```json
+```jsonc
 {
     // Other VS Code settings.
 
@@ -92,7 +92,7 @@ The TextMate scopes expose by **BuJo** can be colorized via the `editor.tokenCol
 
 For example, to colorize the notation brackets `[` and `]` for a task `[x]`, you can use:
 
-```json
+```jsonc
 {
     // Other VS Code settings.
 
@@ -124,7 +124,7 @@ You can copy and paste the configuration below to your `settings.json` file.
 
 You can adjust any colors however you see fit.
 
-```json
+```jsonc
 {
     // Other VS Code settings.
 
