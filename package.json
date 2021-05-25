@@ -3,6 +3,7 @@
     "publisher": "MihaiConstantin",
     "displayName": "BuJo Syntax Highlighting",
     "description": "Bullet Journal Syntax Highlighting for VS Code Markdown files",
+    "icon": "images/bujo.png",
     "version": "1.0.0",
     "engines": {
         "vscode": "^1.56.0"
