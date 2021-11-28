@@ -189,6 +189,31 @@ You can adjust any colors however you see fit.
 }
 ```
 
+You can also select the vertical and horizontal lines of a markdown table using
+the tokens `bujo.horizontal.grid` and `bujo.vertical.grid`. This may prove handy
+if you want to adjust the color of the table such that it fades in the
+background.
+
+```jsonc
+{
+    // Other VS Code settings.
+
+    // Copy this one.
+    "editor.tokenColorCustomizations": {
+        "textMateRules": [
+            // Highlights for horizontal table grids.
+            { "scope": "bujo.horizontal.grid", "settings": { "foreground": "#be53a1" } },
+
+            // Highlights for vertical table grids.
+            { "scope": "bujo.vertical.grid", "settings": { "foreground": "#be53a1" } }
+        ]
+    }
+}
+```
+
+Which will result in the following pink table lines:
+
+![custom highlighting for markdown table lines](./images/table_lines.png)
 
 ## Release Notes
 
