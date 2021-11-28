@@ -217,6 +217,12 @@ Which will result in the following pink table lines:
 
 ## Release Notes
 
+### 1.1.0
+
+- Add two new tokens `bujo.horizontal.grid` and `bujo.vertical.grid` for
+  selecting grids in markdown tables (i.e., the `:---:`, `:---`, or `---:` for
+  horizontal grid, and the `|` for vertical grid).  
+
 ### 1.0.0
 
 Initial release of **BuJo** with standard Bullet Journal symbols and two modifiers.
