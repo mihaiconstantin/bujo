@@ -6,7 +6,7 @@ At its core, **BuJo** uses the VS Code API for injecting language grammars (i.e.
 
 ## Features
 
-**BuJo** provides highlighting for the standard Bullet Journal symbols (i.e., see [Carroll, 2018](https://bulletjournal.com/pages/book)). 
+**BuJo** provides highlighting for the standard Bullet Journal symbols (i.e., see [Carroll, 2018](https://bulletjournal.com/pages/book)). It also provides an way to select and colorize markdown table lines (i.e., see below).
 
 For each Bullet Journal entry, you can highlight four different tokens. Take, for example, the Bullet Journal entry below: 
 
