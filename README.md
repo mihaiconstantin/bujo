@@ -6,7 +6,7 @@ At its core, **BuJo** uses the VS Code API for injecting language grammars (i.e.
 
 ## Features
 
-**BuJo** provides highlighting for the standard Bullet Journal symbols (i.e., see [Carroll, 2018](https://bulletjournal.com/pages/book)). 
+**BuJo** provides highlighting for the standard Bullet Journal symbols (i.e., see [Carroll, 2018](https://bulletjournal.com/pages/book)). It also provides an way to select and colorize markdown table lines (i.e., see below).
 
 For each Bullet Journal entry, you can highlight four different tokens. Take, for example, the Bullet Journal entry below: 
 
@@ -189,8 +189,39 @@ You can adjust any colors however you see fit.
 }
 ```
 
+You can also select the vertical and horizontal lines of a markdown table using
+the tokens `bujo.horizontal.grid` and `bujo.vertical.grid`. This may prove handy
+if you want to adjust the color of the table such that it fades in the
+background.
+
+```jsonc
+{
+    // Other VS Code settings.
+
+    // Copy this one.
+    "editor.tokenColorCustomizations": {
+        "textMateRules": [
+            // Highlights for horizontal table grids.
+            { "scope": "bujo.horizontal.grid", "settings": { "foreground": "#be53a1" } },
+
+            // Highlights for vertical table grids.
+            { "scope": "bujo.vertical.grid", "settings": { "foreground": "#be53a1" } }
+        ]
+    }
+}
+```
+
+Which will result in the following pink table lines:
+
+![custom highlighting for markdown table lines](./images/table_lines.png)
 
 ## Release Notes
+
+### 1.1.0
+
+- Add two new tokens `bujo.horizontal.grid` and `bujo.vertical.grid` for
+  selecting grids in markdown tables (i.e., the `:---:`, `:---`, or `---:` for
+  horizontal grid, and the `|` for vertical grid).  
 
 ### 1.0.0
 

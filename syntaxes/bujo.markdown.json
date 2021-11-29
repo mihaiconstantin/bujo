@@ -90,7 +90,7 @@
         },
 
         "bujo-grid": {
-            "match": "((?<=-|\\|)-)|(\\|(?=-|\\s))",
+            "match": "((?<=\\|\\s):?-*:?(?=\\s\\|))|(\\|(?=\\s))",
             "captures": {
                 "1": { "name" : "bujo.horizontal.grid" },
                 "2": { "name" : "bujo.vertical.grid" }
