@@ -21,25 +21,21 @@
     "contributes": {
         "grammars": [
             {
-                "language": "markdown",
                 "scopeName": "bujo.items.injection",
                 "path": "./syntaxes/bujo.items.injection.json",
                 "injectTo": ["text.html.markdown"]
             },
             {
-                "language": "markdown",
                 "scopeName": "bujo.grid.injection",
                 "path": "./syntaxes/bujo.grid.injection.json",
                 "injectTo": ["text.html.markdown"]
             },
             {
-                "language": "markdown",
                 "scopeName": "bujo.timeblock.injection",
                 "path": "./syntaxes/bujo.timeblock.injection.json",
                 "injectTo": ["text.html.markdown"]
             },
             {
-                "language": "markdown",
                 "scopeName": "bujo.todo.injection",
                 "path": "./syntaxes/bujo.todo.injection.json",
                 "injectTo": ["text.html.markdown"]
