@@ -18,8 +18,23 @@
     "contributes": {
         "grammars": [
             {
-                "scopeName": "markdown.bujo",
-                "path": "./syntaxes/bujo.markdown.json",
+                "scopeName": "bujo.items.injection",
+                "path": "./syntaxes/bujo.items.injection.json",
+                "injectTo": ["text.html.markdown"]
+            },
+            {
+                "scopeName": "bujo.grid.injection",
+                "path": "./syntaxes/bujo.grid.injection.json",
+                "injectTo": ["text.html.markdown"]
+            },
+            {
+                "scopeName": "bujo.timeblock.injection",
+                "path": "./syntaxes/bujo.timeblock.injection.json",
+                "injectTo": ["text.html.markdown"]
+            },
+            {
+                "scopeName": "bujo.todo.injection",
+                "path": "./syntaxes/bujo.todo.injection.json",
                 "injectTo": ["text.html.markdown"]
             }
         ]
