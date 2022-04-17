@@ -1,17 +1,20 @@
 {
     "name": "bujo",
-    "publisher": "MihaiConstantin",
-    "displayName": "BuJo Syntax Highlighting",
-    "description": "Bullet Journal Syntax Highlighting for VS Code Markdown files",
-    "icon": "images/bujo.png",
-    "version": "1.1.0",
+    "displayName": "Bullet Journal Syntax Highlighting",
+    "description": "Bullet Journal (and more) syntax highlighting for markdown files",
+    "publisher": "mihaiconstantin",
+    "icon": "assets/icon/bujo_circle_128.png",
+    "private": true,
+    "version": "2.0.0",
+    "license": "MIT",
     "engines": {
-        "vscode": "^1.56.0"
+        "vscode": "^1.65.0"
     },
+    "homepage": "https://github.com/mihaiconstantin/bujo",
     "repository": {
-		"type": "git",
-		"url": "https://github.com/mihaiconstantin/bujo.git"
-	},
+        "url": "https://github.com/mihaiconstantin/bujo",
+        "type": "git"
+    },
     "categories": [
         "Other"
     ],
