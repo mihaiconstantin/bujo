@@ -1,27 +1,114 @@
 {
     "name": "bujo",
-    "publisher": "MihaiConstantin",
-    "displayName": "BuJo Syntax Highlighting",
-    "description": "Bullet Journal Syntax Highlighting for VS Code Markdown files",
-    "icon": "images/bujo.png",
-    "version": "1.1.0",
+    "displayName": "Bullet Journal Syntax Highlighting",
+    "description": "Bullet Journal (and more) syntax highlighting for markdown files",
+    "publisher": "mihaiconstantin",
+    "icon": "assets/icon/bujo_circle_128.png",
+    "private": true,
+    "version": "2.0.0",
+    "license": "MIT",
     "engines": {
-        "vscode": "^1.56.0"
+        "vscode": "^1.65.0"
     },
+    "homepage": "https://github.com/mihaiconstantin/bujo",
     "repository": {
-		"type": "git",
-		"url": "https://github.com/mihaiconstantin/bujo.git"
-	},
+        "url": "https://github.com/mihaiconstantin/bujo",
+        "type": "git"
+    },
     "categories": [
         "Other"
     ],
     "contributes": {
         "grammars": [
             {
-                "scopeName": "markdown.bujo",
-                "path": "./syntaxes/bujo.markdown.json",
+                "scopeName": "bujo.items.injection",
+                "path": "./syntaxes/bujo.items.injection.json",
+                "injectTo": ["text.html.markdown"]
+            },
+            {
+                "scopeName": "bujo.grid.injection",
+                "path": "./syntaxes/bujo.grid.injection.json",
+                "injectTo": ["text.html.markdown"]
+            },
+            {
+                "scopeName": "bujo.timeblock.injection",
+                "path": "./syntaxes/bujo.timeblock.injection.json",
+                "injectTo": ["text.html.markdown"]
+            },
+            {
+                "scopeName": "bujo.todo.injection",
+                "path": "./syntaxes/bujo.todo.injection.json",
                 "injectTo": ["text.html.markdown"]
             }
-        ]
+        ],
+        "configurationDefaults": {
+            "editor.tokenColorCustomizations": {
+                "textMateRules": [
+                    { "scope": "bujo.task.open.notation", "settings": { "foreground": "#7599C3" } },
+                    { "scope": "bujo.task.open.symbol", "settings": { "foreground": "#00000000" } },
+                    { "scope": "bujo.task.open.modifier", "settings": { "foreground": "#FF6E64", "fontStyle": "bold" } },
+                    { "scope": "bujo.task.open.text", "settings": { "foreground": "#7599C3" } },
+                    { "scope": "bujo.task.open.text.modifier", "settings": { "foreground": "#7599C3", "fontStyle": "bold" } },
+
+                    { "scope": "bujo.task.in.progress.notation", "settings": { "foreground": "#77BED9" } },
+                    { "scope": "bujo.task.in.progress.symbol", "settings": { "foreground": "#77BED9" } },
+                    { "scope": "bujo.task.in.progress.modifier", "settings": { "foreground": "#FF6E64", "fontStyle": "bold" } },
+                    { "scope": "bujo.task.in.progress.text", "settings": { "foreground": "#77BED9", "fontStyle": "italic bold" } },
+                    { "scope": "bujo.task.in.progress.text.modifier", "settings": { "foreground": "#77BED9", "fontStyle": "bold italic underline" } },
+
+                    { "scope": "bujo.task.completed.notation", "settings": { "foreground": "#6D6D6D" } },
+                    { "scope": "bujo.task.completed.symbol", "settings": { "foreground": "#6D6D6D" } },
+                    { "scope": "bujo.task.completed.modifier", "settings": { "foreground": "#6D6D6D", "fontStyle": "bold" } },
+                    { "scope": "bujo.task.completed.text", "settings": { "foreground": "#6D6D6D" } },
+                    { "scope": "bujo.task.completed.text.modifier", "settings": { "foreground": "#6D6D6D", "fontStyle": "bold" } },
+
+                    { "scope": "bujo.task.migrated.forward.notation", "settings": { "foreground": "#4D6C7D" } },
+                    { "scope": "bujo.task.migrated.forward.symbol", "settings": { "foreground": "#4D6C7D" } },
+                    { "scope": "bujo.task.migrated.forward.modifier", "settings": { "foreground": "#4D6C7D", "fontStyle": "bold" } },
+                    { "scope": "bujo.task.migrated.forward.text", "settings": { "foreground": "#4D6C7D", "fontStyle": "italic" } },
+                    { "scope": "bujo.task.migrated.forward.text.modifier", "settings": { "foreground": "#4D6C7D", "fontStyle": "italic bold" } },
+
+                    { "scope": "bujo.task.migrated.backward.notation", "settings": { "foreground": "#4D6C7D" } },
+                    { "scope": "bujo.task.migrated.backward.symbol", "settings": { "foreground": "#4D6C7D" } },
+                    { "scope": "bujo.task.migrated.backward.modifier", "settings": { "foreground": "#4D6C7D", "fontStyle": "bold" } },
+                    { "scope": "bujo.task.migrated.backward.text", "settings": { "foreground": "#4D6C7D", "fontStyle": "italic" } },
+                    { "scope": "bujo.task.migrated.backward.text.modifier", "settings": { "foreground": "#4D6C7D", "fontStyle": "italic bold" } },
+
+                    { "scope": "bujo.task.dropped.notation", "settings": { "foreground": "#6D6D6D", "fontStyle": "strikethrough" } },
+                    { "scope": "bujo.task.dropped.symbol", "settings": { "foreground": "#6D6D6D", "fontStyle": "strikethrough" } },
+                    { "scope": "bujo.task.dropped.modifier", "settings": { "foreground": "#6D6D6D", "fontStyle": "strikethrough" } },
+                    { "scope": "bujo.task.dropped.text", "settings": { "foreground": "#6D6D6D", "fontStyle": "strikethrough" } },
+                    { "scope": "bujo.task.dropped.text.modifier", "settings": { "foreground": "#6D6D6D", "fontStyle": "strikethrough" } },
+
+                    { "scope": "bujo.event.notation", "settings": { "foreground": "#D6A418" } },
+                    { "scope": "bujo.event.symbol", "settings": { "foreground": "#D6A418" } },
+                    { "scope": "bujo.event.modifier", "settings": { "foreground": "#FF6E64" } },
+                    { "scope": "bujo.event.text", "settings": { "foreground": "#D6A418" } },
+                    { "scope": "bujo.event.text.modifier", "settings": { "foreground": "#D6A418" } },
+
+                    { "scope": "bujo.todo.start.hour", "settings": { "foreground": "#b5954b" } },
+                    { "scope": "bujo.todo.start.colon", "settings": { "foreground": "#919191" } },
+                    { "scope": "bujo.todo.start.minute", "settings": { "foreground": "#b5954b" } },
+                    { "scope": "bujo.todo.separator", "settings": { "foreground": "#919191" } },
+                    { "scope": "bujo.todo.end.hour", "settings": { "foreground": "#b5954b" } },
+                    { "scope": "bujo.todo.end.colon", "settings": { "foreground": "#919191" } },
+                    { "scope": "bujo.todo.end.minute", "settings": { "foreground": "#b5954b" } },
+                    { "scope": "bujo.todo.total", "settings": { "foreground": "#e7b541", "fontStyle": "bold" } },
+
+                    { "scope": "bujo.timeblock.revision.time.parenthesis.open", "settings": { "foreground": "#6D6D6D" } },
+                    { "scope": "bujo.timeblock.revision.time.hour", "settings": { "foreground": "#6D6D6D" } },
+                    { "scope": "bujo.timeblock.revision.time.colon", "settings": { "foreground": "#6D6D6D" } },
+                    { "scope": "bujo.timeblock.revision.time.minute", "settings": { "foreground": "#6D6D6D" } },
+                    { "scope": "bujo.timeblock.revision.time.parenthesis.close", "settings": { "foreground": "#6D6D6D" } },
+                    { "scope": "bujo.timeblock.revision.text", "settings": { "foreground": "#c85f5f", "fontStyle": "bold underline" } },
+                    { "scope": "bujo.timeblock.chunk.title", "settings": { "foreground": "#7599C3" } },
+                    { "scope": "bujo.timeblock.chunk.note", "settings": { "foreground": "#6D6D6D" } },
+
+                    { "scope": "bujo.grid.horizontal", "settings": { "foreground": "#6d6d6d92" } },
+                    { "scope": "bujo.grid.colon", "settings": { "foreground": "#6d6d6d92" } },
+                    { "scope": "bujo.grid.vertical", "settings": { "foreground": "#6d6d6d92" } }
+                ]
+            }
+        }
     }
 }

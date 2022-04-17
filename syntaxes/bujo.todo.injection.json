@@ -1,0 +1,22 @@
+{
+    "scopeName": "bujo.todo.injection",
+    "injectionSelector": "L:text.html.markdown",
+    "patterns": [
+        { "include": "#bujo-todo" }
+    ],
+    "repository": {
+        "bujo-todo": {
+            "match": "(?<=\\|)(?:\\s+[^(]?)([0-2][0-9])(?:\\s*)(:)\\s*([0-5][0-9])(?:\\s*)(?:(-)(?:\\s*)([0-2][0-9])(?:\\s*)(:)(?:\\s*)([0-5][0-9]))?(?=[^\\)]?\\s+\\|)|(?<=\\|)(?:\\s+)(\\d+[m])(?=\\s+\\|)",
+            "captures": {
+                "1": { "name": "bujo.todo.start.hour" },
+                "2": { "name": "bujo.todo.start.colon" },
+                "3": { "name": "bujo.todo.start.minute" },
+                "4": { "name": "bujo.todo.separator" },
+                "5": { "name": "bujo.todo.end.hour" },
+                "6": { "name": "bujo.todo.end.colon" },
+                "7": { "name": "bujo.todo.end.minute" },
+                "8": { "name": "bujo.todo.total" }
+            }
+        }
+    }
+}

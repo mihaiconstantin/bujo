@@ -1,240 +1,301 @@
-# BuJo
+<div style="display: grid; grid-template-columns: 155px 1fr; border-bottom: 2px solid gray; padding-bottom: 1rem; margin-bottom: 1rem;">
+    <div style="grid-column: 1;">
+        <img src="./assets/icon/bujo_128.png" alt="BuJo Icon" style="border-radius: 100%;" width="128px">
+    </div>
+    <div style="grid-column: 2;">
+        <h1 style="padding-bottom: 1rem;">BuJo</h1>
+        <img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/mihaiconstantin/bujo">
+        <img alt="Repository Status" src="https://img.shields.io/badge/repo%20status-WIP-yellow">
+        <img alt="GitHub issues" src="https://img.shields.io/github/issues/mihaiconstantin/bujo">
+        <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/mihaiconstantin/bujo?style=social">
+    </div>
+</div>
 
-**BuJo** is an extension that adds syntax highlighting for Bullet Journal items (e.g., tasks, notes, etc.) in Markdown.
-It works by parsing the text written in Markdown files for specific patterns and highlighting the matches.
-At its core, **BuJo** uses the VS Code API for injecting language grammars (i.e., see [VS Code documentation](https://code.visualstudio.com/api/language-extensions/syntax-highlight-guide) for more details).
+**BuJo** is an extension that adds syntax highlighting for Bullet Journal items
+(e.g., tasks) in Markdown. It works by parsing the text written in Markdown
+files for specific patterns and highlighting the matches. At its core, **BuJo**
+uses the VS Code API for injecting language grammars (i.e., see [VS Code
+documentation](https://code.visualstudio.com/api/language-extensions/syntax-highlight-guide)
+for more details).
 
 ## Features
 
-**BuJo** provides highlighting for the standard Bullet Journal symbols (i.e., see [Carroll, 2018](https://bulletjournal.com/pages/book)). It also provides an way to select and colorize markdown table lines (i.e., see below).
+### Bullet Journal syntax highlighting
 
-For each Bullet Journal entry, you can highlight four different tokens. Take, for example, the Bullet Journal entry below: 
+**BuJo** provides highlighting for the standard Bullet Journal symbols (i.e.,
+see [Carroll, 2018](https://bulletjournal.com/pages/book)). It also provides an
+way to select and colorize markdown table lines, as well as
+tasks in tables (i.e., see below).
+
+For each Bullet Journal entry, you can highlight four different tokens. Take,
+for example, the Bullet Journal entry below:
 
 > `[x] Write BuJo readme file.`
 
-**BuJo** uses the **notation** `[]` to indicate that the text that follows is a Bullet Journal entry. The `x` inside `[]` represents the **symbol** that describes the type of Bullet Journal entry. The **text** that follows (i.e., `Write BuJo readme file.`) represents the content of the entry.
+**BuJo** uses the **_notation_** `[` `]` to indicate that the text that follows
+is a Bullet Journal entry. The `x` inside `[` `]` represents the **_symbol_**
+that describes the type of Bullet Journal entry. The **_text_** that follows
+(i.e., `Write BuJo readme file.`) represents the content of the entry.
 
-Aside from the notation, symbol, and text, you may also use a **modifier**. For example, you can use the `!` modifier after `[x]` to indicate a sense of priority:
+Aside from the *notation*, *symbol*, and *text*, you may also use a
+**_modifier_**. For example, you can use the `!` modifier after `[x]` to
+indicate a sense of priority:
 
 > `[x] ! Write BuJo readme file.`
 
-### Bullet Journal symbols
+#### Bullet Journal symbols
+
 Below is a list with the supported Bullet Journal symbols:
 
-    [ ] represents a task
-    [x] represents a completed task
-    [>] represents a task migrated forward
-    [<] represents a task migrated backward
-    [o] represents an event
-    [-] represents a note
+    - [ ] Represents a task.
+    - [x] Represents a completed task.
+    - [>] Represents a task migrated forward.
+    - [>] Represents a task migrated backward.
+    - [/] Represents a task in progress.
+    - [-] Represents a dropped task.
+    - [o] Represents an event.
+    - Represents a note. Nothing special about it.
 
-With the **BuJo** colors and the default **Dark+** theme, the symbols above get highlighted as follows:
+With the **BuJo** colors suggested below and the default **Dark+** theme, the
+entries above are highlighted as follows:
 
-![default highlighting for Bullet Journal symbols](./images/symbols.png)
+![default highlighting for Bullet Journal symbols](./assets/syntax/colored_entries.png)
 
-Note that, although not visible, the notation brackets `[]` are still present (e.g., `[x]`). With the default colors, the notation brackets are made transparent to keep the entry clean and emphasize the content.
+Note that the notation brackets `[]` can be colored such that they are not
+visible, but will still present (e.g., `[x]`). This might be useful if one wants
+to make the notation brackets transparent to keep the entry clean and emphasize
+the content. For instance:
 
-### Bullet Journal modifiers
-Below is the list of supported Bullet Journal modifiers:
+![highlighting for Bullet Journal symbols with transparent notation](./assets/syntax/transparent_notation.png)
+
+#### Bullet Journal modifiers
+
+**BuJo** supports three Bullet Journal modifiers:
 
     ! indicates, e.g., priority, inspiration, etc.
     ? indicates, e.g., waiting for someone or something, unclear, etc.
+    * indicates, e.g., something special about the entry, etc.
 
-These modifiers can be combined with any of the supported Bullet Journal symbols. For example, they can be applied to a task:
+These modifiers can be combined with any of the supported Bullet Journal
+symbols. For example:
 
-    [ ] ! This is a task with the `!` modifier.
-    [ ] ? This is another task, but with the `?` modifier.
+![default highlighting for Bullet Journal modifiers](./assets/syntax/modifiers.png)
 
-In which case, with the default **BuJo** colors you get:
+**BuJo** can easily be extended to support an arbitrary number of characters
+(i.e., including combinations of characters) as modifiers.
 
-![default highlighting for Bullet Journal modifiers](./images/modifiers.png)
+#### Compatibility with wiki links block quote IDs
+
+**BuJo** entries can also contain wiki links or blockquote IDs (e.g., see
+[Dendron](https://github.com/dendronhq/dendron) or
+[Foam](https://github.com/foambubble/foam) for an awesome way to turn VS Code
+into a full-fledge personal knowledge management and productivity system) as
+below.
+
+    - [ ] Represents a task | [[wiki.link]]
+    - [ ] Represents a task ^dzywxpxd9fvg
+    - [ ] Represents a task | [[wiki.link]] ^dzywxpxd9fvg
+
+The lines above will be parsed in such a way that the wiki link and the block
+quote IDs at the end of the line are omitted.
+
+![highlighting for Bullet Journal entries with wiki link](./assets/syntax/entries_wiki_link.png)
+
+
+### Table grids syntax highlighting
+
+**BuJo** also exposes scopes for targeting and highlighting grids in markdown
+tables (i.e., the `:---:`, `:---`, or `---:` for horizontal grid, and the `|`
+for vertical grid). A separate scope is also provided for highlighting the `:`
+in an horizontal grid. The following picture demonstrates the tokens
+highlighting:
+
+![highlighting for table grids](./assets/syntax/grids_colorful.png)
+
+With the default colors suggested below the table grid can be faded way to be
+less obtrusive:
+
+![highlighting for table grids](./assets/syntax/grids.png)
+
+### Time tracking and blocking highlighting
+
+**BuJo** also provides support for highlighting tasks in markdown tables, as
+well as well as time records:
+
+![highlighting for time tracking](./assets/syntax/time_tracking.png)
+
+Similarly, it also supports time blocking highlighting:
+
+![highlighting for time tracking](./assets/syntax/time_blocking.png)
+
+See the section **_Exposed TextMate scopes_** for a list of all exposed scopes
+that can be targeted and highlighted.
+
+
+
+
+## Colors and styles
+
+### Overriding colors and styles
+
+**BuJo** comes with default colors for the **TextMate** scopes it exposes. These
+colors and styles are chosen to work well with the default **Dark+** theme.
+However, they can be customized via the `editor.tokenColorCustomizations`
+setting in VS Code below.
+
+```jsonc
+{
+    // Other VS Code settings.
+
+    "editor.tokenColorCustomizations": {
+        // Override only for the `Default Dark+` theme.
+        "[Default Dark+]": {
+            "textMateRules": [
+                // The scopes for which we want to provide custom colors.
+            ]
+        }
+    }
+}
+```
+
+For example, to colorize the notation brackets `[` and `]` for a task `[x]`, you
+can use:
+
+```jsonc
+{
+    // Other VS Code settings.
+
+    "editor.tokenColorCustomizations": {
+        // Override only for the `Default Dark+` theme.
+        "[*Dark*]": {
+            "textMateRules": [
+                {
+                    "scope": "bujo.task.completed.notation",
+                    "settings": {
+                        "foreground": "#FFB6C1",
+                        "fontStyle": "bold underline"
+                    }
+                }
+            ]
+        }
+    }
+}
+```
+
+When the theme `Default Dark+` is used, the above override will result in a
+completed task with bolded, underlined, and pink notation:
+
+![custom highlighting with pink notation for a completed task](./assets/syntax/override.png)
+
+See the section **_Exposed TextMate scopes_** below for a complete overview
+of the scopes that can be customized via the `editor.tokenColorCustomizations"`
+setting.
 
 ### Exposed TextMate scopes
-Below are the **TextMate scopes** targeted in the VS Code settings for color customizations.
 
-For completed tasks (i.e., `[x]`):
+Below are the **TextMate scopes** targeted in the VS Code settings for color
+customizations.
 
-- `bujo.task.notation`: targets the left `[` and the right `]` barkets only when the symbol `x` is inbetween
-- `bujo.task.symbol`: targets the symbol `x` in between the notation barkets `[` and `]`  
-- `bujo.task.modifier.exclamation`: targets the modifier `!` that follows after `[x]`
-- `bujo.task.modifier.question`: targets the modifier `?` that follows after `[x]`
-- `bujo.task.text`: targets the **text** that follows `[x]` **without a modifier**, e.g., `[x]` __`This is targeted.`__
-- `bujo.task.text.modifier.exclamation`: targets the **text** that follows `[x] ! `
-- `bujo.task.text.modifier.question`: targets the **text** that follows `[x] ? `
+#### For (open) tasks (i.e., `[ ]`):
 
-The same pattern holds for the other symbols as well. You only need to replace the keyword `task` with the name of the symbol you are interested in targeting. For example, the all scopes for targeting the notation barkets are:
+- `bujo.task.open.notation`: targets the left `[` and the right `]` brackets only when they contain a space in-between
+- `bujo.task.open.symbol`: targets the space between the notation brackets `[` and `]`
+- `bujo.task.open.modifier`: targets any supported modifier that follows after `[ ]`
+- `bujo.task.open.text`: targets the **text** that follows `[ ]` **without a modifier**, e.g., `[ ]` ___`This is targeted.`___
+- `bujo.task.open.text.modifier`: targets the **text** that follows `[ ]` **with a modifier**, e.g., `[ ] !` ___`This is targeted.`___
 
-- for tasks: `bujo.task.notation`
-- for completed tasks: `bujo.task.done.notation`
-- for forward migrated tasks: `bujo.task.migrate.forward.notation`
-- for backward migrated tasks: `bujo.task.migrate.backward.notation`
-- for events: `bujo.event.notation`
-- for notes: `bujo.note.notation`
+#### For completed tasks (i.e., `[x]`):
 
+- `bujo.task.completed.notation`: targets the left `[` and the right `]` brackets only when they contain `x` in-between
+- `bujo.task.completed.symbol`: targets the symbol `x` between the notation brackets `[` and `]`
+- `bujo.task.completed.modifier`: targets any supported modifier that follows after `[x]`
+- `bujo.task.completed.text`: targets the **text** that follows `[x]` **without a modifier**, e.g., `[x]` ___`This is targeted.`___
+- `bujo.task.completed.text.modifier`: targets the **text** that follows `[x]` **with a modifier**, e.g., `[x] !` ___`This is targeted.`___
 
-## Extension Settings
+#### For tasks in progress (i.e., `[/]`):
 
-### Overriding default colors and styles
+- `bujo.task.in.progress.notation`: targets the left `[` and the right `]` brackets only when they contain `/` in-between
+- `bujo.task.in.progress.symbol`: targets the symbol `/` between the notation brackets `[` and `]`
+- `bujo.task.in.progress.modifier`: targets any supported modifier that follows after `[/]`
+- `bujo.task.in.progress.text`: targets the **text** that follows `[/]` **without a modifier**, e.g., `[/]` ___`This is targeted.`___
+- `bujo.task.in.progress.text.modifier`: targets the **text** that follows `[/]` **with a modifier**, e.g., `[/] !` ___`This is targeted.`___
 
-The TextMate scopes expose by **BuJo** can be colorized via the `editor.tokenColorCustomizations` setting in VS Code.
+#### For tasks migrated forward (i.e., `[>]`):
 
-```jsonc
-{
-    // Other VS Code settings.
+- `bujo.task.migrated.forward.notation`: targets the left `[` and the right `]` brackets only when they contain `>` in-between
+- `bujo.task.migrated.forward.symbol`: targets the symbol `>` between the notation brackets `[` and `]`
+- `bujo.task.migrated.forward.modifier`: targets any supported modifier that follows after `[>]`
+- `bujo.task.migrated.forward.text`: targets the **text** that follows `[>]` **without a modifier**, e.g., `[>]` ___`This is targeted.`___
+- `bujo.task.migrated.forward.text.modifier`: targets the **text** that follows `[>]` **with a modifier**, e.g., `[>] !` ___`This is targeted.`___
 
-    "editor.tokenColorCustomizations": {
-        "textMateRules": [
-            // The scopes for which we want to provide custom colors.
-        ]
-    }
-}
-```
+#### For tasks migrated backward (i.e., `[<]`):
 
-For example, to colorize the notation brackets `[` and `]` for a task `[x]`, you can use:
+- `bujo.task.migrated.forward.notation`: targets the left `[` and the right `]` brackets only when they contain `<` in-between
+- `bujo.task.migrated.forward.symbol`: targets the symbol `<` between the notation brackets `[` and `]`
+- `bujo.task.migrated.forward.modifier`: targets any supported modifier that follows after `[<]`
+- `bujo.task.migrated.forward.text`: targets the **text** that follows `[<]` **without a modifier**, e.g., `[<]` ___`This is targeted.`___
+- `bujo.task.migrated.forward.text.modifier`: targets the **text** that follows `[<]` **with a modifier**, e.g., `[<] !` ___`This is targeted.`___
 
-```jsonc
-{
-    // Other VS Code settings.
+#### For dropped tasks (i.e., `[-]`):
 
-    "editor.tokenColorCustomizations": {
-        "textMateRules": [
-            { 
-                "scope": "bujo.task.done.notation", 
-                "settings": { 
-                    "foreground": "#FFB6C1",
-                    "fontStyle": "bold underline"
-                } 
-            }
-        ]
-    }
-}
-```
+- `bujo.task.dropped.notation`: targets the left `[` and the right `]` brackets only when they contain `-` in-between
+- `bujo.task.dropped.symbol`: targets the symbol `-` between the notation brackets `[` and `]`
+- `bujo.task.dropped.modifier`: targets any supported modifier that follows after `[-]`
+- `bujo.task.dropped.text`: targets the **text** that follows `[-]` **without a modifier**, e.g., `[-]` ___`This is targeted.`___
+- `bujo.task.dropped.text.modifier`: targets the **text** that follows `[-]` **with a modifier**, e.g., `[-] !` ___`This is targeted.`___
 
-Which will result in a completed task with bolded, underlined, and pink notation:
+#### For events (i.e., `[o]`):
 
-![custom highlighting with pink notation for a completed task](./images/override.png)
+- `bujo.task.event.notation`: targets the left `[` and the right `]` brackets only when they contain `o` in-between
+- `bujo.task.event.symbol`: targets the symbol `o` between the notation brackets `[` and `]`
+- `bujo.task.event.modifier`: targets any supported modifier that follows after `[o]`
+- `bujo.task.event.text`: targets the **text** that follows `[o]` **without a modifier**, e.g., `[o]` ___`This is targeted.`___
+- `bujo.task.event.text.modifier`: targets the **text** that follows `[o]` **with a modifier**, e.g., `[o] !` ___`This is targeted.`___
 
-### Adding default colors and styles
+#### For table grids
 
-To the best of my knowledge, VS Code does not currently support adding default token color customizations via `contributes.configurationDefaults`.
-Therefore, to use this extension, you are required to manually set the colors for the **BuJo** scopes you want to colorize.
+- `bujo.grid.horizontal`: targets the `:---:`, `:---`, or `---:` horizontal grids in tables
+- `bujo.grid.colon`: targets the `:` in horizontal grids
+- `bujo.grid.vertical`: target the `|` vertical grids in tables
 
-I recommend the following colors chosen to work well with the default **Dark+** theme in VS Code. 
-You can copy and paste the configuration below to your `settings.json` file.
+#### For time tracking
 
-You can adjust any colors however you see fit.
+- `bujo.todo.start.hour`: targets, e.g., `08` in `08:10-09:20` inside a table row
+- `bujo.todo.start.colon`: targets, e.g., the `:` after `08` in `08:10-09:20` inside a table row
+- `bujo.todo.start.minute`: targets, e.g., `10` in `08:10-09:20` inside a table row
+- `bujo.todo.separator`: targets, e.g., `-` in `08:10-09:20` inside a table row
+- `bujo.todo.end.hour`: targets, e.g., `09` in `08:10-09:20` inside a table row
+- `bujo.todo.end.colon`: targets, e.g., the `:` after `09` in `08:10-09:20` inside a table row
+- `bujo.todo.end.minute`: targets, e.g., `20` in `08:10-09:20` inside a table row
+- `bujo.todo.total`: targets the total time spent, e.g., `98m` in a table row
 
-```jsonc
-{
-    // Other VS Code settings.
+#### For time blocking
 
-    // Copy this one.
-    "editor.tokenColorCustomizations": {
-        "textMateRules": [
-            // BuJo highlights for notes.
-            { "scope": "bujo.note.notation", "settings": { "foreground": "#1E1E1E" } },
-            { "scope": "bujo.note.symbol", "settings": { "foreground": "#CECECE" } },
-            { "scope": "bujo.note.modifier.exclamation", "settings": { "foreground": "#FF6E64", "fontStyle": "bold" } },
-            { "scope": "bujo.note.modifier.question", "settings": { "foreground": "#B14545", "fontStyle": "bold" } },
-            { "scope": "bujo.note.text", "settings": { "foreground": "#CECECE" } },
-            { "scope": "bujo.note.text.modifier.exclamation", "settings": { "foreground": "#CECECE" } },
-            { "scope": "bujo.note.text.modifier.question", "settings": { "foreground": "#CECECE" } },
+- `bujo.timeblock.revision.time.parenthesis.open`: targets, e.g., `(` in `| (07:40) | (Revision #1) |` inside a table row
+- `bujo.timeblock.revision.time.hour`: targets, e.g., `07` in `| (07:40) | (Revision #1) |` inside a table row
+- `bujo.timeblock.revision.time.colon`: targets, e.g., `:` in `| (07:40) | (Revision #1) |` inside a table row
+- `bujo.timeblock.revision.time.minute`: targets, e.g., `40` in `| (07:40) | (Revision #1) |` inside a table row
+- `bujo.timeblock.revision.time.parenthesis.close`: targets, e.g., `)` in `| (07:40) | (Revision #1) |` inside a table row
+- `bujo.timeblock.revision.text`: targets, e.g., `(Revision #1)` in `| (07:40) | (Revision #1) |` inside a table row
+- `bujo.timeblock.chunk.title`: targets, e.g., `Deep work (#1)` in `| 08:00-10:00 | Deep work (#1) |` in a table row
+- `bujo.timeblock.chunk.note`: targets, e.g., `- Random meeting` in `| | - Random meeting |` in a table row
 
-            // BuJo highlights for events.
-            { "scope": "bujo.event.notation", "settings": { "foreground": "#1E1E1E" } },
-            { "scope": "bujo.event.symbol", "settings": { "foreground": "#D6A418" } },
-            { "scope": "bujo.event.modifier.exclamation", "settings": { "foreground": "#FF6E64", "fontStyle": "bold" } },
-            { "scope": "bujo.event.modifier.question", "settings": { "foreground": "#B14545", "fontStyle": "bold" } },
-            { "scope": "bujo.event.text", "settings": { "foreground": "#D6A418" } },
-            { "scope": "bujo.event.text.modifier.exclamation", "settings": { "foreground": "#D6A418" } },
-            { "scope": "bujo.event.text.modifier.question", "settings": { "foreground": "#D6A418" } },
+In case you experience issues, the regular expressions used for capturing the
+scopes above can be consulted at:
 
-            // BuJo highlights for tasks not completed.
-            { "scope": "bujo.task.notation", "settings": { "foreground": "#7599C3" } },
-            { "scope": "bujo.task.symbol", "settings": { "foreground": "#00000000" } },
-            { "scope": "bujo.task.modifier.exclamation", "settings": { "foreground": "#FF6E64", "fontStyle": "bold" } },
-            { "scope": "bujo.task.modifier.question", "settings": { "foreground": "#B14545", "fontStyle": "bold" } },
-            { "scope": "bujo.task.text", "settings": { "foreground": "#7599C3" } },
-            { "scope": "bujo.task.text.modifier.exclamation", "settings": { "foreground": "#7599C3", "fontStyle": "bold" } },
-            { "scope": "bujo.task.text.modifier.question", "settings": { "foreground": "#7599C3" } },
-
-            // BuJo highlights for tasks migrated forward.
-            { "scope": "bujo.task.migrate.forward.notation", "settings": { "foreground": "#1E1E1E" } },
-            { "scope": "bujo.task.migrate.forward.symbol", "settings": { "foreground": "#4D6C7D" } },
-            { "scope": "bujo.task.migrate.forward.modifier.exclamation", "settings": { "foreground": "#FF6E64", "fontStyle": "bold" } },
-            { "scope": "bujo.task.migrate.forward.modifier.question", "settings": { "foreground": "#B14545", "fontStyle": "bold" } },
-            { "scope": "bujo.task.migrate.forward.text", "settings": { "foreground": "#4D6C7D" } },
-            { "scope": "bujo.task.migrate.forward.text.modifier.exclamation", "settings": { "foreground": "#4D6C7D" } },
-            { "scope": "bujo.task.migrate.forward.text.modifier.question", "settings": { "foreground": "#4D6C7D" } },
-            
-            // BuJo highlights for tasks migrated backward.
-            { "scope": "bujo.task.migrate.backward.notation", "settings": { "foreground": "#1E1E1E" } },
-            { "scope": "bujo.task.migrate.backward.symbol", "settings": { "foreground": "#4D6C7D" } },
-            { "scope": "bujo.task.migrate.backward.modifier.exclamation", "settings": { "foreground": "#FF6E64", "fontStyle": "bold" } },
-            { "scope": "bujo.task.migrate.backward.modifier.question", "settings": { "foreground": "#B14545", "fontStyle": "bold" } },
-            { "scope": "bujo.task.migrate.backward.text", "settings": { "foreground": "#4D6C7D" } },
-            { "scope": "bujo.task.migrate.backward.text.modifier.exclamation", "settings": { "foreground": "#4D6C7D" } },
-            { "scope": "bujo.task.migrate.backward.text.modifier.question", "settings": { "foreground": "#4D6C7D" } },
-
-            // BuJo highlights for completed tasks.
-            { "scope": "bujo.task.done.notation", "settings": { "foreground": "#1E1E1E" } },
-            { "scope": "bujo.task.done.symbol", "settings": { "foreground": "#6D6D6D" } },
-            { "scope": "bujo.task.done.modifier.exclamation", "settings": { "foreground": "#6D6D6D", "fontStyle": "bold" } },
-            { "scope": "bujo.task.done.modifier.question", "settings": { "foreground": "#6D6D6D", "fontStyle": "bold" } },
-            { "scope": "bujo.task.done.text", "settings": { "foreground": "#6D6D6D" } },
-            { "scope": "bujo.task.done.text.modifier.exclamation", "settings": { "foreground": "#6D6D6D" } },
-            { "scope": "bujo.task.done.text.modifier.question", "settings": { "foreground": "#6D6D6D" } }
-        ]
-    }
-}
-```
-
-You can also select the vertical and horizontal lines of a markdown table using
-the tokens `bujo.horizontal.grid` and `bujo.vertical.grid`. This may prove handy
-if you want to adjust the color of the table such that it fades in the
-background.
-
-```jsonc
-{
-    // Other VS Code settings.
-
-    // Copy this one.
-    "editor.tokenColorCustomizations": {
-        "textMateRules": [
-            // Highlights for horizontal table grids.
-            { "scope": "bujo.horizontal.grid", "settings": { "foreground": "#be53a1" } },
-
-            // Highlights for vertical table grids.
-            { "scope": "bujo.vertical.grid", "settings": { "foreground": "#be53a1" } }
-        ]
-    }
-}
-```
-
-Which will result in the following pink table lines:
-
-![custom highlighting for markdown table lines](./images/table_lines.png)
+- [For Bullet Journal entries](https://regex101.com/r/ByIG8W/17)
+- [For table grids](https://regex101.com/r/91IC8c/1)
+- [For time blocking](https://regex101.com/r/npln0p/5)
+- [For time tracking](https://regex101.com/r/36951B/5)
 
 ## Release Notes
 
-### 1.1.0
+See the [CHANGELOG](CHANGELOG.md) file.
 
-- Add two new tokens `bujo.horizontal.grid` and `bujo.vertical.grid` for
-  selecting grids in markdown tables (i.e., the `:---:`, `:---`, or `---:` for
-  horizontal grid, and the `|` for vertical grid).  
+## License
 
-### 1.0.0
-
-Initial release of **BuJo** with standard Bullet Journal symbols and two modifiers.
-
-- Added TextMate scopes for standard Bullet Journal symbols
-    - `[ ]` task
-    - `[x]` completed task
-    - `[>]` migrated forward task
-    - `[<]` migrated backward task
-    - `[o]` event
-    - `[-]` note
-- Added TextMate scopes for two modifiers `!` and `?`
+Foam is licensed under the [MIT license](LICENSE).
 
 ## References
-- Carroll, R. (2018). *The bullet journal method: Track the past, order the present, design the future.* Penguin.
+- Carroll, R. (2018). *The bullet journal method: Track the past, order the
+  present, design the future.* Penguin.

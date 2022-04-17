@@ -1,0 +1,17 @@
+{
+    "scopeName": "bujo.grid.injection",
+    "injectionSelector": "L:text.html.markdown",
+    "patterns": [
+        { "include": "#bujo-grid" }
+    ],
+    "repository": {
+        "bujo-grid": {
+            "match": "(?<=\\|\\s|\\|\\s:)(-+)(?=:?\\s\\|)|((?<=\\|\\s):|:(?=\\s\\|))|((?<=^)\\|(?=\\s)|(?<=\\s)\\|(?=$)|\\|(?=\\s+.+\\s+\\|))",
+            "captures": {
+                "1": { "name" : "bujo.grid.horizontal" },
+                "2": { "name" : "bujo.grid.colon" },
+                "3": { "name" : "bujo.grid.vertical" }
+            }
+        }
+    }
+}
