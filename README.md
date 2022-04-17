@@ -1,15 +1,18 @@
-<div style="display: grid; grid-template-columns: 155px 1fr; border-bottom: 2px solid gray; padding-bottom: 1rem; margin-bottom: 1rem;">
-    <div style="grid-column: 1;">
-        <img src="./assets/icon/bujo_128.png" alt="BuJo Icon" style="border-radius: 100%;" width="128px">
-    </div>
-    <div style="grid-column: 2;">
-        <h1 style="padding-bottom: 1rem;">BuJo</h1>
-        <img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/mihaiconstantin/bujo">
-        <img alt="Repository Status" src="https://img.shields.io/badge/repo%20status-WIP-yellow">
-        <img alt="GitHub issues" src="https://img.shields.io/github/issues/mihaiconstantin/bujo">
-        <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/mihaiconstantin/bujo?style=social">
-    </div>
+<div align="center">
+    <img src="./assets/icon/bujo_128.png" width="128px"/>
 </div>
+
+
+<h1 align="center" >Bullet Journal Syntax Highlighting</h1>
+
+<div align="center">
+    <img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/mihaiconstantin/bujo">
+    <img alt="Repository Status" src="https://img.shields.io/badge/repo%20status-WIP-yellow">
+    <img alt="GitHub issues" src="https://img.shields.io/github/issues/mihaiconstantin/bujo">
+    <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/mihaiconstantin/bujo?style=social">
+</div>
+
+<br>
 
 **BuJo** is an extension that adds syntax highlighting for Bullet Journal items
 (e.g., tasks) in Markdown. It works by parsing the text written in Markdown
