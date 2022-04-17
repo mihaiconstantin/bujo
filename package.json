@@ -1,7 +1,7 @@
 {
     "name": "bujo",
     "displayName": "Bullet Journal Syntax Highlighting",
-    "description": "Bullet Journal (and more) syntax highlighting for markdown files",
+    "description": "Bullet Journal (and more) syntax highlighting for markdown files.",
     "publisher": "mihaiconstantin",
     "icon": "assets/icon/bujo_circle_128.png",
     "private": true,
