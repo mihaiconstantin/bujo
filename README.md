@@ -1,7 +1,6 @@
 <div align="center">
-    <img src="./assets/icon/bujo_128.png" width="128px"/>
+    <img src="./assets/icon/bujo_circle_128.png" width="128px"/>
 </div>
-
 
 <h1 align="center" >Bullet Journal Syntax Highlighting</h1>
 
