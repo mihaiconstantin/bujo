@@ -1,5 +1,9 @@
 # Changelog
 
+## [2.0.1] - 2022.04.17
+### Changed
+- Remove language grammar identifiers in `package.json`
+
 ## [2.0.0] - 2022.04.17
 ### Added
 - Add scope for `*` modifier.
