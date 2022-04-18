@@ -8,6 +8,7 @@
     <img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/mihaiconstantin/bujo">
     <img alt="Repository Status" src="https://img.shields.io/badge/repo%20status-WIP-yellow">
     <img alt="GitHub issues" src="https://img.shields.io/github/issues/mihaiconstantin/bujo">
+    <img alt="Visual Studio Marketplace Downloads" src="https://img.shields.io/visual-studio-marketplace/d/mihaiconstantin.bujo">
     <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/mihaiconstantin/bujo?style=social">
 </div>
 
