@@ -1,8 +1,13 @@
 # Changelog
 
+## [unreleased]
+## Changed
+- Improved `README.md` text and images presentation.
+- Update extension name and description.
+
 ## [2.0.1] - 2022.04.17
 ### Changed
-- Remove language grammar identifiers in `package.json`
+- Remove language grammar identifiers in `package.json`.
 
 ## [2.0.0] - 2022.04.17
 ### Added
