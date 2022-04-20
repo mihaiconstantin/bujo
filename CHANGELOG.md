@@ -1,6 +1,6 @@
 # Changelog
 
-## [unreleased]
+## [2.0.2] - 2022.04.20
 ## Changed
 - Improved `README.md` text and images presentation.
 - Update extension name and description.
