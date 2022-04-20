@@ -308,10 +308,10 @@ customizations.
 In case you experience issues, the regular expressions used for capturing the
 scopes above can be consulted at:
 
-- [For Bullet Journal entries](https://regex101.com/r/ByIG8W/17)
-- [For table grids](https://regex101.com/r/91IC8c/1)
-- [For time blocking](https://regex101.com/r/npln0p/5)
-- [For time tracking](https://regex101.com/r/36951B/5)
+- [for Bullet Journal entries](https://regex101.com/r/ByIG8W/17)
+- [for table grids](https://regex101.com/r/91IC8c/1)
+- [for time blocking](https://regex101.com/r/npln0p/5)
+- [for time tracking](https://regex101.com/r/36951B/5)
 
 ## Release Notes
 
