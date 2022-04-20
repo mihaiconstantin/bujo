@@ -2,7 +2,7 @@
     <img src="./assets/icon/bujo_circle_128.png" width="128px"/>
 </div>
 
-<h1 align="center" >Bullet Journal Syntax Highlighting</h1>
+<h1 align="center">Bullet Journal Markdown Workflows</h1>
 
 <div align="center">
     <img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/mihaiconstantin/bujo">
@@ -14,24 +14,32 @@
 
 <br>
 
-**BuJo** is an extension that adds syntax highlighting for Bullet Journal items
-(e.g., tasks) in Markdown. It works by parsing the text written in Markdown
-files for specific patterns and highlighting the matches. At its core, **BuJo**
-uses the VS Code API for injecting language grammars (i.e., see [VS Code
-documentation](https://code.visualstudio.com/api/language-extensions/syntax-highlight-guide)
-for more details).
+**BuJo** is an extension that adds syntax highlighting for Bullet Journal
+entries (e.g., tasks and events) and provides convenient commands, snippets, and
+more for managing tasks and notes in Markdown. It works best in combination with
+[Dendron](https://github.com/dendronhq/dendron) or
+[Foam](https://github.com/foambubble/foam) for an awesome way to turn VS Code
+into a full-fledge personal knowledge management and productivity system.
 
 ## Features
 
-### Bullet Journal syntax highlighting
+### Syntax Highlighting
 
-**BuJo** provides highlighting for the standard Bullet Journal symbols (i.e.,
-see [Carroll, 2018](https://bulletjournal.com/pages/book)). It also provides an
-way to select and colorize markdown table lines, as well as
-tasks in tables (i.e., see below).
+When enabled, **BuJo** parses the text written in Markdown files for specific
+patterns and highlighting the matches. At its core, **BuJo** uses the VS Code
+API for injecting language grammars (i.e., see [VS Code
+documentation](https://code.visualstudio.com/api/language-extensions/syntax-highlight-guide)
+for more details).
+
+#### Bullet Journal Syntax
+
+**BuJo** provides highlighting for the standard Bullet Journal entries (i.e.,
+see [Carroll, 2018](https://bulletjournal.com/pages/book)), and it also provides
+a way to select and colorize markdown table lines, as well as tasks and time in
+tables (i.e., see below).
 
 For each Bullet Journal entry, you can highlight four different tokens. Take,
-for example, the Bullet Journal entry below:
+for example, the Bullet Journal entry below that constitutes a completed task:
 
 > `[x] Write BuJo readme file.`
 
@@ -46,9 +54,10 @@ indicate a sense of priority:
 
 > `[x] ! Write BuJo readme file.`
 
-#### Bullet Journal symbols
+##### Symbols
 
-Below is a list with the supported Bullet Journal symbols:
+Below is a list with the supported Bullet Journal symbols (i.e., more can be
+added upon request):
 
     - [ ] Represents a task.
     - [x] Represents a completed task.
@@ -59,41 +68,45 @@ Below is a list with the supported Bullet Journal symbols:
     - [o] Represents an event.
     - Represents a note. Nothing special about it.
 
-With the **BuJo** colors suggested below and the default **Dark+** theme, the
-entries above are highlighted as follows:
+With the default colors and the **Default Dark+** theme, the entries above are
+highlighted as follows:
 
-![default highlighting for Bullet Journal symbols](./assets/syntax/colored_entries.png)
+<div align="center">
+    <img src="./assets/syntax/colored_entries.png" alt="default highlighting for Bullet Journal symbols" width=400px>
+</div>
 
-Note that the notation brackets `[]` can be colored such that they are not
-visible, but will still present (e.g., `[x]`). This might be useful if one wants
-to make the notation brackets transparent to keep the entry clean and emphasize
-the content. For instance:
+The notation brackets `[]` can be colored such that they are not visible, but
+will still remain present in the editor (e.g., `[x]`). This can be useful if one
+wants to make the notation brackets transparent to keep the entry clean and
+emphasize the content. For example:
 
-![highlighting for Bullet Journal symbols with transparent notation](./assets/syntax/transparent_notation.png)
+<div align="center">
+    <img src="./assets/syntax/transparent_notation.png" alt="highlighting for Bullet Journal symbols with transparent notation" width=400px>
+</div>
 
-#### Bullet Journal modifiers
+##### Modifiers
 
 **BuJo** supports three Bullet Journal modifiers:
 
-    ! indicates, e.g., priority, inspiration, etc.
-    ? indicates, e.g., waiting for someone or something, unclear, etc.
-    * indicates, e.g., something special about the entry, etc.
+    `!` indicates, e.g., priority, inspiration, etc.
+    `?` indicates, e.g., waiting for someone or something, unclear, etc.
+    `*` indicates, e.g., something special about the entry, etc.
 
 These modifiers can be combined with any of the supported Bullet Journal
 symbols. For example:
 
-![default highlighting for Bullet Journal modifiers](./assets/syntax/modifiers.png)
+<div align="center">
+    <img src="./assets/syntax/modifiers.png" alt="default highlighting for Bullet Journal modifiers" width=410px>
+</div>
 
-**BuJo** can easily be extended to support an arbitrary number of characters
-(i.e., including combinations of characters) as modifiers.
+**BuJo** can easily be extended upon request to support an arbitrary number of
+characters (i.e., including combinations of characters) as modifiers.
 
-#### Compatibility with wiki links block quote IDs
+##### Wiki Links and Block Quote IDs
 
-**BuJo** entries can also contain wiki links or blockquote IDs (e.g., see
+**BuJo** entries can also contain wiki links or blockquote IDs (e.g., as used by
 [Dendron](https://github.com/dendronhq/dendron) or
-[Foam](https://github.com/foambubble/foam) for an awesome way to turn VS Code
-into a full-fledge personal knowledge management and productivity system) as
-below.
+[Foam](https://github.com/foambubble/foam)). For example:
 
     - [ ] Represents a task | [[wiki.link]]
     - [ ] Represents a task ^dzywxpxd9fvg
@@ -102,49 +115,56 @@ below.
 The lines above will be parsed in such a way that the wiki link and the block
 quote IDs at the end of the line are omitted.
 
-![highlighting for Bullet Journal entries with wiki link](./assets/syntax/entries_wiki_link.png)
+<div align="center">
+    <img src="./assets/syntax/entries_wiki_link.png" alt="highlighting for Bullet Journal entries with wiki link" width=460px>
+</div>
 
-
-### Table grids syntax highlighting
+#### Table Syntax
 
 **BuJo** also exposes scopes for targeting and highlighting grids in markdown
 tables (i.e., the `:---:`, `:---`, or `---:` for horizontal grid, and the `|`
 for vertical grid). A separate scope is also provided for highlighting the `:`
-in an horizontal grid. The following picture demonstrates the tokens
-highlighting:
+in a horizontal grid. The following screenshots show the tokens that can
+highlighted:
 
-![highlighting for table grids](./assets/syntax/grids_colorful.png)
+<div align="center">
+    <img src="./assets/syntax/grids_colorful.png" alt="highlighting for table grids" width=230px>
+</div>
 
-With the default colors suggested below the table grid can be faded way to be
-less obtrusive:
+With the default colors (i.e., and the `Default Dark+` theme) the table grid can
+be faded way to be less obtrusive:
 
-![highlighting for table grids](./assets/syntax/grids.png)
+<div align="center">
+    <img src="./assets/syntax/grids.png" alt="highlighting for table grids" width=230px>
+</div>
 
-### Time tracking and blocking highlighting
+#### Time Blocking and Tracking Syntax
 
 **BuJo** also provides support for highlighting tasks in markdown tables, as
 well as well as time records:
 
-![highlighting for time tracking](./assets/syntax/time_tracking.png)
+<div align="center">
+    <img src="./assets/syntax/time_tracking.png" alt="highlighting for time tracking" width=700px>
+</div>
 
 Similarly, it also supports time blocking highlighting:
 
-![highlighting for time tracking](./assets/syntax/time_blocking.png)
+<div align="center">
+    <img src="./assets/syntax/time_blocking.png" alt="highlighting for time blocking" width=450px>
+</div>
 
 See the section **_Exposed TextMate scopes_** for a list of all exposed scopes
 that can be targeted and highlighted.
 
+#### Colorizing and Styling
 
-
-
-## Colors and styles
-
-### Overriding colors and styles
-
-**BuJo** comes with default colors for the **TextMate** scopes it exposes. These
-colors and styles are chosen to work well with the default **Dark+** theme.
-However, they can be customized via the `editor.tokenColorCustomizations`
-setting in VS Code below.
+**BuJo** comes with default colors and styles for the **TextMate** scopes it
+exposes. These colors and styles are chosen to work well with the **Default
+Dark+** theme. However, they can be customized via the
+`editor.tokenColorCustomizations` setting in VS Code below. Upon typing
+`"editor.tokenColorCustomizations"` you can trigger VS Code's intellisense which
+will automatically pre-fill the `textMateRules` with the default one provided by
+**BuJo**.
 
 ```jsonc
 {
@@ -188,18 +208,20 @@ can use:
 When the theme `Default Dark+` is used, the above override will result in a
 completed task with bolded, underlined, and pink notation:
 
-![custom highlighting with pink notation for a completed task](./assets/syntax/override.png)
+<div align="center">
+    <img src="./assets/syntax/override.png" alt="custom highlighting with pink notation for a completed task" width=400px>
+</div>
 
 See the section **_Exposed TextMate scopes_** below for a complete overview
 of the scopes that can be customized via the `editor.tokenColorCustomizations"`
 setting.
 
-### Exposed TextMate scopes
+#### Exposed Scopes
 
 Below are the **TextMate scopes** targeted in the VS Code settings for color
 customizations.
 
-#### For (open) tasks (i.e., `[ ]`):
+##### For (open) tasks (i.e., `[ ]`):
 
 - `bujo.task.open.notation`: targets the left `[` and the right `]` brackets only when they contain a space in-between
 - `bujo.task.open.symbol`: targets the space between the notation brackets `[` and `]`
@@ -207,7 +229,7 @@ customizations.
 - `bujo.task.open.text`: targets the **text** that follows `[ ]` **without a modifier**, e.g., `[ ]` ___`This is targeted.`___
 - `bujo.task.open.text.modifier`: targets the **text** that follows `[ ]` **with a modifier**, e.g., `[ ] !` ___`This is targeted.`___
 
-#### For completed tasks (i.e., `[x]`):
+##### For completed tasks (i.e., `[x]`):
 
 - `bujo.task.completed.notation`: targets the left `[` and the right `]` brackets only when they contain `x` in-between
 - `bujo.task.completed.symbol`: targets the symbol `x` between the notation brackets `[` and `]`
@@ -215,7 +237,7 @@ customizations.
 - `bujo.task.completed.text`: targets the **text** that follows `[x]` **without a modifier**, e.g., `[x]` ___`This is targeted.`___
 - `bujo.task.completed.text.modifier`: targets the **text** that follows `[x]` **with a modifier**, e.g., `[x] !` ___`This is targeted.`___
 
-#### For tasks in progress (i.e., `[/]`):
+##### For tasks in progress (i.e., `[/]`):
 
 - `bujo.task.in.progress.notation`: targets the left `[` and the right `]` brackets only when they contain `/` in-between
 - `bujo.task.in.progress.symbol`: targets the symbol `/` between the notation brackets `[` and `]`
@@ -223,7 +245,7 @@ customizations.
 - `bujo.task.in.progress.text`: targets the **text** that follows `[/]` **without a modifier**, e.g., `[/]` ___`This is targeted.`___
 - `bujo.task.in.progress.text.modifier`: targets the **text** that follows `[/]` **with a modifier**, e.g., `[/] !` ___`This is targeted.`___
 
-#### For tasks migrated forward (i.e., `[>]`):
+##### For tasks migrated forward (i.e., `[>]`):
 
 - `bujo.task.migrated.forward.notation`: targets the left `[` and the right `]` brackets only when they contain `>` in-between
 - `bujo.task.migrated.forward.symbol`: targets the symbol `>` between the notation brackets `[` and `]`
@@ -231,7 +253,7 @@ customizations.
 - `bujo.task.migrated.forward.text`: targets the **text** that follows `[>]` **without a modifier**, e.g., `[>]` ___`This is targeted.`___
 - `bujo.task.migrated.forward.text.modifier`: targets the **text** that follows `[>]` **with a modifier**, e.g., `[>] !` ___`This is targeted.`___
 
-#### For tasks migrated backward (i.e., `[<]`):
+##### For tasks migrated backward (i.e., `[<]`):
 
 - `bujo.task.migrated.forward.notation`: targets the left `[` and the right `]` brackets only when they contain `<` in-between
 - `bujo.task.migrated.forward.symbol`: targets the symbol `<` between the notation brackets `[` and `]`
@@ -239,7 +261,7 @@ customizations.
 - `bujo.task.migrated.forward.text`: targets the **text** that follows `[<]` **without a modifier**, e.g., `[<]` ___`This is targeted.`___
 - `bujo.task.migrated.forward.text.modifier`: targets the **text** that follows `[<]` **with a modifier**, e.g., `[<] !` ___`This is targeted.`___
 
-#### For dropped tasks (i.e., `[-]`):
+##### For dropped tasks (i.e., `[-]`):
 
 - `bujo.task.dropped.notation`: targets the left `[` and the right `]` brackets only when they contain `-` in-between
 - `bujo.task.dropped.symbol`: targets the symbol `-` between the notation brackets `[` and `]`
@@ -247,7 +269,7 @@ customizations.
 - `bujo.task.dropped.text`: targets the **text** that follows `[-]` **without a modifier**, e.g., `[-]` ___`This is targeted.`___
 - `bujo.task.dropped.text.modifier`: targets the **text** that follows `[-]` **with a modifier**, e.g., `[-] !` ___`This is targeted.`___
 
-#### For events (i.e., `[o]`):
+##### For events (i.e., `[o]`):
 
 - `bujo.task.event.notation`: targets the left `[` and the right `]` brackets only when they contain `o` in-between
 - `bujo.task.event.symbol`: targets the symbol `o` between the notation brackets `[` and `]`
@@ -255,13 +277,13 @@ customizations.
 - `bujo.task.event.text`: targets the **text** that follows `[o]` **without a modifier**, e.g., `[o]` ___`This is targeted.`___
 - `bujo.task.event.text.modifier`: targets the **text** that follows `[o]` **with a modifier**, e.g., `[o] !` ___`This is targeted.`___
 
-#### For table grids
+##### For table grids
 
 - `bujo.grid.horizontal`: targets the `:---:`, `:---`, or `---:` horizontal grids in tables
 - `bujo.grid.colon`: targets the `:` in horizontal grids
 - `bujo.grid.vertical`: target the `|` vertical grids in tables
 
-#### For time tracking
+##### For time tracking
 
 - `bujo.todo.start.hour`: targets, e.g., `08` in `08:10-09:20` inside a table row
 - `bujo.todo.start.colon`: targets, e.g., the `:` after `08` in `08:10-09:20` inside a table row
@@ -272,14 +294,14 @@ customizations.
 - `bujo.todo.end.minute`: targets, e.g., `20` in `08:10-09:20` inside a table row
 - `bujo.todo.total`: targets the total time spent, e.g., `98m` in a table row
 
-#### For time blocking
+##### For time blocking
 
 - `bujo.timeblock.revision.time.parenthesis.open`: targets, e.g., `(` in `| (07:40) | (Revision #1) |` inside a table row
 - `bujo.timeblock.revision.time.hour`: targets, e.g., `07` in `| (07:40) | (Revision #1) |` inside a table row
 - `bujo.timeblock.revision.time.colon`: targets, e.g., `:` in `| (07:40) | (Revision #1) |` inside a table row
 - `bujo.timeblock.revision.time.minute`: targets, e.g., `40` in `| (07:40) | (Revision #1) |` inside a table row
 - `bujo.timeblock.revision.time.parenthesis.close`: targets, e.g., `)` in `| (07:40) | (Revision #1) |` inside a table row
-- `bujo.timeblock.revision.text`: targets, e.g., `(Revision #1)` in `| (07:40) | (Revision #1) |` inside a table row
+- `bujo.timeblock.revision.text`: targets, e.g., `(Revision \#1)` in `| (07:40) | (Revision \#1) |` inside a table row
 - `bujo.timeblock.chunk.title`: targets, e.g., `Deep work (#1)` in `| 08:00-10:00 | Deep work (#1) |` in a table row
 - `bujo.timeblock.chunk.note`: targets, e.g., `- Random meeting` in `| | - Random meeting |` in a table row
 
@@ -294,6 +316,11 @@ scopes above can be consulted at:
 ## Release Notes
 
 See the [CHANGELOG](CHANGELOG.md) file.
+
+## Contributing
+
+Any contributions, suggestions, or bug reports are welcome and greatly
+appreciated.
 
 ## License
 
