@@ -18,7 +18,42 @@
     "categories": [
         "Other"
     ],
+    "main": "./out/extension.js",
+    "activationEvents": [
+        "onCommand:bujo.setMigratedForward",
+        "onCommand:bujo.setMigratedBackward",
+        "onCommand:bujo.setCompleted",
+        "onCommand:bujo.setOpen",
+        "onCommand:bujo.setInProgress",
+        "onCommand:bujo.setDropped"
+    ],
     "contributes": {
+        "commands": [
+            {
+                "command": "bujo.setMigratedForward",
+                "title": "BuJo: Set Migrated Forward"
+            },
+            {
+                "command": "bujo.setMigratedBackward",
+                "title": "BuJo: Set Migrated Backward"
+            },
+            {
+                "command": "bujo.setCompleted",
+                "title": "BuJo: Set Completed"
+            },
+            {
+                "command": "bujo.setOpen",
+                "title": "BuJo: Set Open"
+            },
+            {
+                "command": "bujo.setInProgress",
+                "title": "BuJo: Set In Progress"
+            },
+            {
+                "command": "bujo.setDropped",
+                "title": "BuJo: Set Dropped"
+            }
+        ],
         "grammars": [
             {
                 "scopeName": "bujo.items.injection",

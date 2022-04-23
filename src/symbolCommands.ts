@@ -41,3 +41,69 @@ export async function entrySetSymbol(newSymbol: string): Promise<boolean> {
     return (editStatus);
 };
 
+// Migrate forward.
+export const setMigratedForward = (): void => {
+    entrySetSymbol('>').then(success => {
+        if (success) {
+            window.showInformationMessage('Migrated forward.');
+        }
+    }).catch(error => {
+        window.showErrorMessage(error.message);
+    });
+};
+
+// Migrate backward.
+export const setMigratedBackward = (): void => {
+    entrySetSymbol('<').then(success => {
+        if (success) {
+            window.showInformationMessage('Migrated backward.');
+        }
+    }).catch(error => {
+        window.showErrorMessage(error.message);
+    });
+};
+
+// Set completed.
+export const setCompleted = (): void => {
+    entrySetSymbol('x').then(success => {
+        if (success) {
+            window.showInformationMessage('Completed.');
+        }
+    }).catch(error => {
+        window.showErrorMessage(error.message);
+    });
+};
+
+// Set task open.
+export const setOpen = (): void => {
+    entrySetSymbol(' ').then(success => {
+        if (success) {
+            window.showInformationMessage('Opened.');
+        }
+    }).catch(error => {
+        window.showErrorMessage(error.message);
+    });
+};
+
+// Set task in progress.
+export const setInProgress = (): void => {
+    entrySetSymbol('/').then(success => {
+        if (success) {
+            window.showInformationMessage('Set in progress.');
+        }
+    }).catch(error => {
+        window.showErrorMessage(error.message);
+    });
+};
+
+// Set task as dropped.
+export const setDropped = (): void => {
+    entrySetSymbol('-').then(success => {
+        if (success) {
+            window.showInformationMessage('Dropped.');
+        }
+    }).catch(error => {
+        window.showErrorMessage(error.message);
+    });
+};
+
