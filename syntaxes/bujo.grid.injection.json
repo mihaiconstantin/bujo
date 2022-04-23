@@ -6,11 +6,11 @@
     ],
     "repository": {
         "bujo-grid": {
-            "match": "(?<=\\|\\s|\\|\\s:)(-+)(?=:?\\s\\|)|((?<=\\|\\s):|:(?=\\s\\|))|((?<=^)\\|(?=\\s)|(?<=\\s)\\|(?=$)|\\|(?=\\s+.+\\s+\\|))",
+            "match": "(\\|)(?=\\s+.+\\|\\s*$|$)|((?<=\\|\\s):|:(?=\\s\\|))|(?<=\\|\\s|\\|\\s:)(-+)(?=:?\\s\\|)",
             "captures": {
-                "1": { "name" : "bujo.grid.horizontal" },
+                "1": { "name" : "bujo.grid.vertical" },
                 "2": { "name" : "bujo.grid.colon" },
-                "3": { "name" : "bujo.grid.vertical" }
+                "3": { "name" : "bujo.grid.horizontal" }
             }
         }
     }

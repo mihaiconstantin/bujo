@@ -61,8 +61,8 @@
                 "injectTo": ["text.html.markdown"]
             },
             {
-                "scopeName": "bujo.grid.injection",
                 "path": "./syntaxes/bujo.grid.injection.json",
+                "scopeName": "bujo.grid.injection",
                 "injectTo": ["text.html.markdown"]
             },
             {
