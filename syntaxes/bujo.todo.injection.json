@@ -1,12 +1,12 @@
 {
-    "scopeName": "bujo.todo.injection",
+    "scopeName": "bujo.timetrack.injection",
     "injectionSelector": "L:text.html.markdown",
     "patterns": [
-        { "include": "#bujo-todo" }
+        { "include": "#bujo-timetrack" }
     ],
     "repository": {
-        "bujo-todo": {
-            "match": "(?<=\\|)(?:\\s+[^(]?)([0-2][0-9])(?:\\s*)(:)\\s*([0-5][0-9])(?:\\s*)(?:(-)(?:\\s*)([0-2][0-9])(?:\\s*)(:)(?:\\s*)([0-5][0-9]))?(?=[^\\)]?\\s+\\|)|(?<=\\|)(?:\\s+)(\\d+[m])(?=\\s+\\|)",
+        "bujo-timetrack": {
+            "match": "(?<=\\|)(?:\\s+[^(]?)([0-2][0-9])(?:\\s*)(:)\\s*([0-5][0-9])(?:\\s*)(-)?(?:(?:\\s*)([0-2][0-9])(?:\\s*)(:)(?:\\s*)([0-5][0-9]))?(?=[^\\)]?\\s+\\|)|(?<=\\|)(?:\\s+)(\\d+[m])(?=\\s+\\|)",
             "captures": {
                 "1": { "name": "bujo.todo.start.hour" },
                 "2": { "name": "bujo.todo.start.colon" },

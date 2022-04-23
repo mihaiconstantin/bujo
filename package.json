@@ -71,8 +71,7 @@
                 "injectTo": ["text.html.markdown"]
             },
             {
-                "scopeName": "bujo.todo.injection",
-                "path": "./syntaxes/bujo.todo.injection.json",
+                "scopeName": "bujo.timetrack.injection",
                 "injectTo": ["text.html.markdown"]
             }
         ],
