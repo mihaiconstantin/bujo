@@ -57,23 +57,23 @@
         ],
         "grammars": [
             {
-                "scopeName": "bujo.items.injection",
-                "path": "./syntaxes/bujo.items.injection.json",
+                "path": "./syntaxes/bujo.entry.injection.json",
+                "scopeName": "bujo.entry.injection",
                 "injectTo": ["text.html.markdown"]
             },
             {
-                "scopeName": "bujo.grid.injection",
                 "path": "./syntaxes/bujo.grid.injection.json",
+                "scopeName": "bujo.grid.injection",
                 "injectTo": ["text.html.markdown"]
             },
             {
-                "scopeName": "bujo.timeblock.injection",
                 "path": "./syntaxes/bujo.timeblock.injection.json",
+                "scopeName": "bujo.timeblock.injection",
                 "injectTo": ["text.html.markdown"]
             },
             {
-                "scopeName": "bujo.todo.injection",
-                "path": "./syntaxes/bujo.todo.injection.json",
+                "path": "./syntaxes/bujo.timetrack.injection.json",
+                "scopeName": "bujo.timetrack.injection",
                 "injectTo": ["text.html.markdown"]
             }
         ],
