@@ -77,6 +77,64 @@
                 "injectTo": ["text.html.markdown"]
             }
         ],
+        "keybindings":[
+            {
+                "key": "alt+x",
+                "command": "bujo.setSymbol",
+                "args": {
+                    "symbol": "x"
+                },
+                "when": "editorTextFocus && editorLangId == markdown"
+            },
+            {
+                "key": "alt+o",
+                "command": "bujo.setSymbol",
+                "args": {
+                    "symbol": " "
+                },
+                "when": "editorTextFocus && editorLangId == markdown"
+            },
+            {
+                "key": "alt+-",
+                "command": "bujo.setSymbol",
+                "args": {
+                    "symbol": "-"
+                },
+                "when": "editorTextFocus && editorLangId == markdown"
+            },
+            {
+                "key": "alt+/",
+                "command": "bujo.setSymbol",
+                "args": {
+                    "symbol": "/"
+                },
+                "when": "editorTextFocus && editorLangId == markdown"
+            },
+            {
+                "key": "alt+,",
+                "command": "bujo.setSymbol",
+                "args": {
+                    "symbol": "<"
+                },
+                "when": "editorTextFocus && editorLangId == markdown"
+            },
+            {
+                "key": "alt+.",
+                "command": "bujo.setSymbol",
+                "args": {
+                    "symbol": ">"
+                },
+                "when": "editorTextFocus && editorLangId == markdown"
+            },
+            {
+                "key": "alt+p",
+                "command": "bujo.setSymbol",
+                "args": {
+                    "symbol": "o"
+                },
+                "when": "editorTextFocus && editorLangId == markdown"
+            }
+        ],
         "configurationDefaults": {
             "editor.tokenColorCustomizations": {
                 "textMateRules": [
