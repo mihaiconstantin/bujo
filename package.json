@@ -57,8 +57,7 @@
         ],
         "grammars": [
             {
-                "scopeName": "bujo.items.injection",
-                "path": "./syntaxes/bujo.items.injection.json",
+                "scopeName": "bujo.entry.injection",
                 "injectTo": ["text.html.markdown"]
             },
             {
