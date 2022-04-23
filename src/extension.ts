@@ -13,6 +13,7 @@ export function activate(context: vscode.ExtensionContext) {
         vscode.commands.registerCommand('bujo.setOpen', symbolCommands.setOpen),
         vscode.commands.registerCommand('bujo.setInProgress', symbolCommands.setInProgress),
         vscode.commands.registerCommand('bujo.setDropped', symbolCommands.setDropped),
+        vscode.commands.registerCommand('bujo.setSymbol', symbolCommands.setSymbol)
     );
 }
 

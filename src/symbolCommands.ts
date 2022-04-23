@@ -107,3 +107,20 @@ export const setDropped = (): void => {
     });
 };
 
+// Set custom status.
+export const setSymbol = (args: any): void => {
+    // Ensure symbol is provided.
+    if (!args.symbol) {
+        window.showErrorMessage('Symbol not provided for keybinding.');
+        return
+    }
+
+    // Update the task status.
+    entrySetSymbol(args.symbol).then(success => {
+        if (success) {
+            window.showInformationMessage('Updated entry symbol.');
+        }
+    }).catch(error => {
+        window.showErrorMessage(error.message);
+    });
+}

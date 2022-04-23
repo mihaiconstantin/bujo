@@ -25,7 +25,8 @@
         "onCommand:bujo.setCompleted",
         "onCommand:bujo.setOpen",
         "onCommand:bujo.setInProgress",
-        "onCommand:bujo.setDropped"
+        "onCommand:bujo.setDropped",
+        "onCommand:bujo.setSymbol"
     ],
     "contributes": {
         "commands": [
