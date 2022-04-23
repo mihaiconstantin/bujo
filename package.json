@@ -57,6 +57,7 @@
         ],
         "grammars": [
             {
+                "path": "./syntaxes/bujo.entry.injection.json",
                 "scopeName": "bujo.entry.injection",
                 "injectTo": ["text.html.markdown"]
             },
@@ -66,11 +67,12 @@
                 "injectTo": ["text.html.markdown"]
             },
             {
-                "scopeName": "bujo.timeblock.injection",
                 "path": "./syntaxes/bujo.timeblock.injection.json",
+                "scopeName": "bujo.timeblock.injection",
                 "injectTo": ["text.html.markdown"]
             },
             {
+                "path": "./syntaxes/bujo.timetrack.injection.json",
                 "scopeName": "bujo.timetrack.injection",
                 "injectTo": ["text.html.markdown"]
             }
