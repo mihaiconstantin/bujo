@@ -18,7 +18,43 @@
     "categories": [
         "Other"
     ],
+    "main": "./out/extension.js",
+    "activationEvents": [
+        "onCommand:bujo.setMigratedForward",
+        "onCommand:bujo.setMigratedBackward",
+        "onCommand:bujo.setCompleted",
+        "onCommand:bujo.setOpen",
+        "onCommand:bujo.setInProgress",
+        "onCommand:bujo.setDropped",
+        "onCommand:bujo.setSymbol"
+    ],
     "contributes": {
+        "commands": [
+            {
+                "command": "bujo.setMigratedForward",
+                "title": "BuJo: Set Migrated Forward"
+            },
+            {
+                "command": "bujo.setMigratedBackward",
+                "title": "BuJo: Set Migrated Backward"
+            },
+            {
+                "command": "bujo.setCompleted",
+                "title": "BuJo: Set Completed"
+            },
+            {
+                "command": "bujo.setOpen",
+                "title": "BuJo: Set Open"
+            },
+            {
+                "command": "bujo.setInProgress",
+                "title": "BuJo: Set In Progress"
+            },
+            {
+                "command": "bujo.setDropped",
+                "title": "BuJo: Set Dropped"
+            }
+        ],
         "grammars": [
             {
                 "scopeName": "bujo.items.injection",
@@ -39,6 +75,64 @@
                 "scopeName": "bujo.todo.injection",
                 "path": "./syntaxes/bujo.todo.injection.json",
                 "injectTo": ["text.html.markdown"]
+            }
+        ],
+        "keybindings":[
+            {
+                "key": "alt+x",
+                "command": "bujo.setSymbol",
+                "args": {
+                    "symbol": "x"
+                },
+                "when": "editorTextFocus && editorLangId == markdown"
+            },
+            {
+                "key": "alt+o",
+                "command": "bujo.setSymbol",
+                "args": {
+                    "symbol": " "
+                },
+                "when": "editorTextFocus && editorLangId == markdown"
+            },
+            {
+                "key": "alt+-",
+                "command": "bujo.setSymbol",
+                "args": {
+                    "symbol": "-"
+                },
+                "when": "editorTextFocus && editorLangId == markdown"
+            },
+            {
+                "key": "alt+/",
+                "command": "bujo.setSymbol",
+                "args": {
+                    "symbol": "/"
+                },
+                "when": "editorTextFocus && editorLangId == markdown"
+            },
+            {
+                "key": "alt+,",
+                "command": "bujo.setSymbol",
+                "args": {
+                    "symbol": "<"
+                },
+                "when": "editorTextFocus && editorLangId == markdown"
+            },
+            {
+                "key": "alt+.",
+                "command": "bujo.setSymbol",
+                "args": {
+                    "symbol": ">"
+                },
+                "when": "editorTextFocus && editorLangId == markdown"
+            },
+            {
+                "key": "alt+p",
+                "command": "bujo.setSymbol",
+                "args": {
+                    "symbol": "o"
+                },
+                "when": "editorTextFocus && editorLangId == markdown"
             }
         ],
         "configurationDefaults": {
@@ -110,5 +204,36 @@
                 ]
             }
         }
+    },
+    "scripts": {
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "pretest": "npm run compile && npm run lint",
+        "lint": "eslint src --ext ts",
+        "test": "node ./out/test/runTest.js",
+        "vscode:prepublish": "npm run esbuild-base -- --minify",
+        "esbuild-base": "esbuild ./src/extension.ts --bundle --outfile=out/main.js --external:vscode --format=cjs --platform=node",
+        "esbuild": "npm run esbuild-base -- --sourcemap",
+        "esbuild-watch": "npm run esbuild-base -- --sourcemap --watch",
+        "test-compile": "tsc -p ./"
+    },
+    "devDependencies": {
+        "@types/glob": "^7.2.0",
+        "@types/lodash": "^4.14.180",
+        "@types/mocha": "^9.1.0",
+        "@types/node": "14.x",
+        "@types/vscode": "^1.65.0",
+        "@typescript-eslint/eslint-plugin": "^5.16.0",
+        "@typescript-eslint/parser": "^5.16.0",
+        "@vscode/test-electron": "^2.1.3",
+        "esbuild": "^0.14.28",
+        "eslint": "^8.11.0",
+        "glob": "^7.2.0",
+        "mocha": "^9.2.2",
+        "typescript": "^4.5.5"
+    },
+    "dependencies": {
+        "lodash": "^4.17.21",
+        "nanoid": "^3.3.1"
     }
 }
