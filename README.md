@@ -35,8 +35,8 @@ for more details).
 
 **BuJo** provides highlighting for the standard Bullet Journal entries (i.e.,
 see [Carroll, 2018](https://bulletjournal.com/pages/book)), and it also provides
-a way to select and colorize markdown table lines, as well as tasks and time in
-tables (i.e., see below).
+a way to select and colorize markdown table lines, as well as tasks and time
+records in tables (i.e., see below).
 
 For each Bullet Journal entry, you can highlight four different tokens. Take,
 for example, the Bullet Journal entry below that constitutes a completed task:
@@ -100,7 +100,31 @@ symbols. For example:
 </div>
 
 **BuJo** can easily be extended upon request to support an arbitrary number of
-characters (i.e., including combinations of characters) as modifiers.
+characters (i.e., including combinations of characters) as modifiers. **BuJo**
+provides flexibility with respect to where a supported modifier can be placed.
+For example, all of the following are correctly identified and parsed as valid
+entries, as can be seen in the image below:
+
+    - [ ] ! Represents a task
+    - [ ]! Represents a task
+    - [ ] !Represents a task
+    - [ ]!Represents a task
+
+<div align="center">
+    <img src="./assets/syntax/modifier_placement.png" alt="modifier placement" width=230px>
+</div>
+
+##### Multiple Entries Per Line
+
+**BuJo** has *experimental* syntax highlighting support for multiple entries on
+the same line separated by a `|` character:
+
+    - [ ] Task one | [ ] ! Task two | [x] Task three
+    - [<] Task one | [-] ! Task two | [>] Task three
+
+<div align="center">
+    <img src="./assets/syntax/multiple_entries_per_line.png" alt="support for multiple entries per line" width=423px>
+</div>
 
 ##### Wiki Links and Block Quote IDs
 
@@ -144,7 +168,7 @@ be faded way to be less obtrusive:
 well as well as time records:
 
 <div align="center">
-    <img src="./assets/syntax/time_tracking.png" alt="highlighting for time tracking" width=700px>
+    <img src="./assets/syntax/time_tracking.png" alt="highlighting for time tracking" width=690px>
 </div>
 
 Similarly, it also supports time blocking highlighting:
@@ -296,22 +320,194 @@ customizations.
 
 ##### For time blocking
 
-- `bujo.timeblock.revision.time.parenthesis.open`: targets, e.g., `(` in `| (07:40) | (Revision #1) |` inside a table row
-- `bujo.timeblock.revision.time.hour`: targets, e.g., `07` in `| (07:40) | (Revision #1) |` inside a table row
-- `bujo.timeblock.revision.time.colon`: targets, e.g., `:` in `| (07:40) | (Revision #1) |` inside a table row
-- `bujo.timeblock.revision.time.minute`: targets, e.g., `40` in `| (07:40) | (Revision #1) |` inside a table row
-- `bujo.timeblock.revision.time.parenthesis.close`: targets, e.g., `)` in `| (07:40) | (Revision #1) |` inside a table row
+- `bujo.timeblock.revision.time.parenthesis.open`: targets, e.g., `(` in `| (07:40) | (Revision \#1) |` inside a table row
+- `bujo.timeblock.revision.time.hour`: targets, e.g., `07` in `| (07:40) | (Revision \#1) |` inside a table row
+- `bujo.timeblock.revision.time.colon`: targets, e.g., `:` in `| (07:40) | (Revision \#1) |` inside a table row
+- `bujo.timeblock.revision.time.minute`: targets, e.g., `40` in `| (07:40) | (Revision \#1) |` inside a table row
+- `bujo.timeblock.revision.time.parenthesis.close`: targets, e.g., `)` in `| (07:40) | (Revision \#1) |` inside a table row
 - `bujo.timeblock.revision.text`: targets, e.g., `(Revision \#1)` in `| (07:40) | (Revision \#1) |` inside a table row
 - `bujo.timeblock.chunk.title`: targets, e.g., `Deep work (#1)` in `| 08:00-10:00 | Deep work (#1) |` in a table row
 - `bujo.timeblock.chunk.note`: targets, e.g., `- Random meeting` in `| | - Random meeting |` in a table row
 
-In case you experience issues, the regular expressions used for capturing the
-scopes above can be consulted at:
+In case you discover edge cases where the tokens are not highlighted properly,
+please submit an issue. The regular expressions used for capturing the scopes
+above can be consulted at:
 
-- [for Bullet Journal entries](https://regex101.com/r/ByIG8W/17)
+- [for Bullet Journal entries](https://regex101.com/r/LVVrrS/26)
 - [for table grids](https://regex101.com/r/91IC8c/1)
 - [for time blocking](https://regex101.com/r/npln0p/5)
-- [for time tracking](https://regex101.com/r/36951B/5)
+- [for time tracking](https://regex101.com/r/36951B/6)
+
+### Commands for Updating Entry Symbols
+
+**Bujo** provides several commands via the command palette (i.e., `ctrl/cmd +
+shift + p`) to update the symbol for the first entry on the line where the
+cursor is placed (i.e., including in markdown tables). The following commands
+are available:
+
+- `BuJo: Set Migrated Forward` to set the entry symbol to `[>]`
+- `BuJo: Set Migrated Backward` to set the entry symbol to `[<]`
+- `BuJo: Set Completed` to set the entry symbol to `[x]`
+- `BuJo: Set Open` to set the entry symbol to `[ ]`
+- `BuJo: Set In Progress` to set the entry symbol to `[/]`
+- `BuJo: Set Dropped` to set the entry symbol to `[-]`
+
+The following video demonstrates the commands in action:
+
+<a href="https://www.youtube.com/watch?v=ltXW8MO-45M" title="BuJo Symbol Commands">
+  <p align="center">
+    <img width="75%" src="./assets/thumbnail/bujo_cover_logo_video_1280x720.jpg" alt="BuJo symbol commands"/>
+  </p>
+</a>
+
+### Keybindings for Updating Entry Symbols
+
+**BuJo** also provides functionality to update entry symbols via arbitrary
+keybindings that pass as argument the symbol to be set. For instance, when
+triggered, the following keybinding will update the task status to `[x]`, and
+toggle between `[x]` and `[ ]` on subsequent triggers:
+
+    ```jsonc
+    [
+        // ...
+        {
+            "key": "alt+x",
+            "command": "bujo.setSymbol",
+            "args": {
+                "symbol": "x"
+            },
+            "when": "editorTextFocus && editorLangId == markdown"
+        }
+        // ...
+    ]
+    ```
+
+Several default keybindings are provided for changing entry symbols, albeit they
+can be changed as needed:
+
+- `alt+x` to toggle between `[x]` and `[ ]`
+- `alt+o` to set `[ ]`
+- `alt+-` to toggle between `[-]` and `[ ]`
+- `alt+/` to toggle between `[/]` and `[ ]`
+- `alt+,` to toggle between `[<]` and `[ ]`
+- `alt+.` to toggle between `[>]` and `[ ]`
+- `alt+p` to toggle between `[o]` and `[ ]`
+
+The video below demonstrates the keybindings in action:
+
+<a href="https://www.youtube.com/watch?v=h9AbEm-OVX0" title="BuJo Symbol Keybindings">
+  <p align="center">
+    <img width="75%" src="./assets/thumbnail/bujo_cover_logo_video_1280x720.jpg" alt="BuJo symbol keybindings"/>
+  </p>
+</a>
+
+### Snippets
+
+**BuJo** also provides various snippets for common actions. Below you can find a
+short description and example output for the snippets available:
+
+- `task` to enter a task
+
+    ```markdown
+    - [ ] <Enter text here>
+    ```
+
+- `taskclip` to enter a task from clipboard
+
+    ```markdown
+    - [ ] <Clipboard pasted here>
+    ```
+
+- `scratch` to scratch a text selection
+
+    ```markdown
+    ~Some text~
+    ```
+
+- `time` to enter the current time
+
+    ```markdown
+    10:38
+    ```
+
+- `date` to enter the current date
+
+    ```markdown
+    2022.04.24
+    ```
+
+- `datetime` to enter the current date and time
+
+    ```markdown
+    2022.04.24 10:39
+    ```
+
+- `timetracktable` to enter a time tracking table
+
+    ```markdown
+    |     Tracker | Task             | Backlog  |
+    | ----------: | :--------------- | :------- |
+    | 00:00-00:00 | [ ] Example task | [[link]] |
+    |             |                  |          |
+    ```
+
+- `timetrackrow` to add an empty row to the time tracking table
+
+    ```markdown
+    |             |                  |          |
+    ```
+
+- `timetracktask` to enter a task in the time tracking table
+
+    ```markdown
+    |             | [ ] <Enter here> |          |
+    ```
+
+- `timetracktaskclip` to enter a task from clipboard in the time tracking table
+
+    ```markdown
+    |             | [ ] <Clipboard>  |          |
+    ```
+
+- `timeblocktable` to enter a time blocking table
+
+    ```markdown
+    |        Time | Block          |
+    | ----------: | :------------- |
+    |     (00:00) | (Revision \#1) |
+    |             |                |
+    | 00:00-00:00 | Chunk (#1)     |
+    |             | - Chunk note   |
+    |             |                |
+    ```
+
+- `timeblockrow` to add an empty row to the time blocking table
+
+    ```markdown
+    |             |                |
+    ```
+
+- `timeblockrev` to enter a revision row in the time blocking table
+
+    ```markdown
+    |     (10:53) | (Revision \#1) |
+    ```
+
+- `timeblockchunk` to enter a chunk row in the time blocking table
+
+    ```markdown
+    | 00:00-00:00 | <Enter here>   |
+    ```
+
+- `timeblocknote` to enter a note row in the time blocking table
+
+    ```markdown
+    |             | - <Add here>   |
+    ```
+
+*Tip.* The *Markdown All in One* extension provides a table auto-formatter and
+keybinding (i.e., `alt + shift + f`) to it that makes it easy to work with and
+align markdown tables with a simple keyboard shortcut.
 
 ## Release Notes
 

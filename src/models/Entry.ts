@@ -30,7 +30,7 @@ export class Entry {
 
         // Check the line.
         if (!this.IsValid()) {
-            throw new Error("The lines does not contain a valid BuJo entry.");
+            throw new Error("The line does not contain a valid BuJo entry.");
         }
 
         // Parse the line.
