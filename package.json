@@ -77,6 +77,12 @@
                 "injectTo": ["text.html.markdown"]
             }
         ],
+        "snippets": [
+            {
+              "language": "markdown",
+              "path": "./snippets/bujo.markdown.json"
+            }
+        ],
         "keybindings":[
             {
                 "key": "alt+x",
