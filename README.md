@@ -19,7 +19,7 @@ entries (e.g., tasks and events) and provides convenient commands, snippets, and
 more for managing tasks and notes in Markdown. It works best in combination with
 [Dendron](https://github.com/dendronhq/dendron) or
 [Foam](https://github.com/foambubble/foam) for an awesome way to turn VS Code
-into a full-fledge personal knowledge management and productivity system.
+into a full-fledged personal knowledge management and productivity system.
 
 ## Features
 
