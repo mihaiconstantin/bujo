@@ -168,7 +168,7 @@ be faded way to be less obtrusive:
 well as well as time records:
 
 <div align="center">
-    <img src="./assets/syntax/time_tracking.png" alt="highlighting for time tracking" width=700px>
+    <img src="./assets/syntax/time_tracking.png" alt="highlighting for time tracking" width=690px>
 </div>
 
 Similarly, it also supports time blocking highlighting:
