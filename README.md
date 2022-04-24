@@ -472,37 +472,37 @@ short description and example output for the snippets available:
 - `timeblocktable` to enter a time blocking table
 
     ```markdown
-    |        Time | Block         |
-    | ----------: | :------------ |
-    |     (00:00) | (Revision #1) |
-    |             |               |
-    | 00:00-00:00 | Chunk (#1)    |
-    |             | - Chunk note  |
-    |             |               |
+    |        Time | Block          |
+    | ----------: | :------------- |
+    |     (00:00) | (Revision \#1) |
+    |             |                |
+    | 00:00-00:00 | Chunk (#1)     |
+    |             | - Chunk note   |
+    |             |                |
     ```
 
 - `timeblockrow` to add an empty row to the time blocking table
 
     ```markdown
-    |             |               |
+    |             |                |
     ```
 
 - `timeblockrev` to enter a revision row in the time blocking table
 
     ```markdown
-    |     (10:53) | (Revision #1) |
+    |     (10:53) | (Revision \#1) |
     ```
 
 - `timeblockchunk` to enter a chunk row in the time blocking table
 
     ```markdown
-    | 00:00-00:00 | <Enter here>  |
+    | 00:00-00:00 | <Enter here>   |
     ```
 
 - `timeblocknote` to enter a note row in the time blocking table
 
     ```markdown
-    |             | - <Add here>  |
+    |             | - <Add here>   |
     ```
 
 *Tip.* The *Markdown All in One* extension provides a table auto-formatter and
