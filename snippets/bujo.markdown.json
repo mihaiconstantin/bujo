@@ -1,19 +1,19 @@
 {
     "task": {
-        "prefix": "ts",
+        "prefix": "task",
         "scope": "markdown",
         "body": "- [ ] $1",
         "description": "Enter a task"
     },
     "task from clipboard": {
-        "prefix": "tsc",
+        "prefix": "taskclip",
         "scope": "markdown",
         "body": "- [ ] $CLIPBOARD$0",
         "description": "Enter a task from clipboard"
     },
 
-    "scratch": {
-        "prefix": "sc",
+    "scratch text": {
+        "prefix": "scratch",
         "scope": "markdown",
         "body": [
             "~${TM_SELECTED_TEXT}~"
@@ -33,7 +33,7 @@
         "body": "$CURRENT_YEAR.$CURRENT_MONTH.$CURRENT_DATE",
         "description": "Enter the current date"
     },
-    "date time": {
+    "datetime": {
         "prefix": "datetime",
         "scope": "markdown",
         "body": "$CURRENT_YEAR.$CURRENT_MONTH.$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE",
@@ -41,7 +41,7 @@
     },
 
     "time track table": {
-        "prefix": "tt",
+        "prefix": "timetracktable",
         "scope": "markdown",
         "body": [
             "|     Tracker | Task             | Backlog  |",
@@ -52,24 +52,24 @@
         ],
         "description": "Enter a time tracking table"
     },
+    "time track row": {
+        "prefix": "timetrackrow",
+        "scope": "markdown",
+        "body": [
+            "|             |                  |          |"
+        ],
+        "description": "Add an empty row to the time tracking table"
+    },
     "time track task": {
-        "prefix": "ttt",
+        "prefix": "timetracktask",
         "scope": "markdown",
         "body": [
             "|             | [ ] ${1}         |          |"
         ],
         "description": "Enter a task in the time tracking table"
     },
-    "time track empty": {
-        "prefix": "tte",
-        "scope": "markdown",
-        "body": [
-            "|             |                  |          |"
-        ],
-        "description": "Add an empty row in the time tracking table"
-    },
     "time track clipboard": {
-        "prefix": "ttc",
+        "prefix": "timetracktaskclip",
         "scope": "markdown",
         "body": [
             "|         | [ ] ${CLIPBOARD/(-\\s\\[[\\sx\\/<>]\\]\\s|\\^[a-z1-9].*|\\[\\[|\\|.*\\]\\])//g} | ${1}        |"
@@ -78,7 +78,7 @@
     },
 
     "time block table": {
-        "prefix": "tb",
+        "prefix": "timeblocktable",
         "scope": "markdown",
         "body": [
             "|        Time | Block         |",
@@ -91,36 +91,36 @@
         ],
         "description": "Enter a time blocking table"
     },
-    "time block empty": {
-        "prefix": "tbe",
+    "time block row": {
+        "prefix": "timeblockrow",
         "scope": "markdown",
         "body": [
             "|             |               |"
         ],
-        "description": "Enter an empty row in the time block table"
+        "description": "Add an empty row to the time blocking table"
     },
     "time block revision": {
-        "prefix": "tbr",
+        "prefix": "timeblockrev",
         "scope": "markdown",
         "body": [
             "|     ($CURRENT_HOUR:$CURRENT_MINUTE) | (Revision #${1}) |"
         ],
-        "description": "Enter a revision row in the time block table"
+        "description": "Enter a revision row in the time blocking table"
     },
     "time block chunk": {
-        "prefix": "tbc",
+        "prefix": "timeblockchunk",
         "scope": "markdown",
         "body": [
             "| 00:00-00:00 | ${1}          |"
         ],
-        "description": "Enter a chunk row in the time block table"
+        "description": "Enter a chunk row in the time blocking table"
     },
     "time block note": {
-        "prefix": "tbn",
+        "prefix": "timeblocknote",
         "scope": "markdown",
         "body": [
             "|             | - ${1}        |"
         ],
-        "description": "Enter a note row in the time block table"
+        "description": "Enter a note row in the time blocking table"
     }
 }
