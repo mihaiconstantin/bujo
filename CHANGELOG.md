@@ -1,7 +1,7 @@
 # Changelog
 
 ## [2.0.2] - 2022.04.20
-## Changed
+### Changed
 - Improved `README.md` text and images presentation.
 - Update extension name and description.
 
@@ -27,12 +27,12 @@
 - Drop scopes for each modifier. Currently, all supported modifiers fall under
   the same scope.
 
-### [1.1.0] - 2021.11.29
+## [1.1.0] - 2021.11.29
 - Add two new tokens `bujo.horizontal.grid` and `bujo.vertical.grid` for
   selecting grids in markdown tables (i.e., the `:---:`, `:---`, or `---:` for
   horizontal grid, and the `|` for vertical grid).
 
-### [1.0.0] - 2021.05.25
+## [1.0.0] - 2021.05.25
 ### Added
 - Added `TextMate` scopes for standard Bullet Journal symbols
     - `[ ]` task
