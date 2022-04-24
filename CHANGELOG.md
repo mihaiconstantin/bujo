@@ -67,11 +67,13 @@
     ```markdown
     ~Some text~
     ```
+
   - `time` to enter the current time
 
     ```markdown
     10:38
     ```
+
   - `date` to enter the current date
 
     ```markdown
@@ -83,6 +85,7 @@
     ```markdown
     2022.04.24 10:39
     ```
+
   - `timetracktable` to enter a time tracking table
 
     ```markdown
