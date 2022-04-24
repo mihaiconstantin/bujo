@@ -5,3 +5,4 @@ out
 dist
 .vscode-test/
 .DS_Store
+assets/video
