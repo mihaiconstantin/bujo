@@ -5,7 +5,7 @@
     "publisher": "mihaiconstantin",
     "icon": "assets/icon/bujo_circle_128.png",
     "private": true,
-    "version": "2.0.2",
+    "version": "2.1.0",
     "license": "MIT",
     "engines": {
         "vscode": "^1.65.0"
@@ -18,97 +18,517 @@
     "categories": [
         "Other"
     ],
+    "main": "./out/extension.js",
+    "activationEvents": [
+        "onCommand:bujo.setMigratedForward",
+        "onCommand:bujo.setMigratedBackward",
+        "onCommand:bujo.setCompleted",
+        "onCommand:bujo.setOpen",
+        "onCommand:bujo.setInProgress",
+        "onCommand:bujo.setDropped",
+        "onCommand:bujo.setSymbol"
+    ],
     "contributes": {
+        "commands": [
+            {
+                "command": "bujo.setMigratedForward",
+                "title": "BuJo: Set Migrated Forward"
+            },
+            {
+                "command": "bujo.setMigratedBackward",
+                "title": "BuJo: Set Migrated Backward"
+            },
+            {
+                "command": "bujo.setCompleted",
+                "title": "BuJo: Set Completed"
+            },
+            {
+                "command": "bujo.setOpen",
+                "title": "BuJo: Set Open"
+            },
+            {
+                "command": "bujo.setInProgress",
+                "title": "BuJo: Set In Progress"
+            },
+            {
+                "command": "bujo.setDropped",
+                "title": "BuJo: Set Dropped"
+            }
+        ],
         "grammars": [
             {
-                "scopeName": "bujo.items.injection",
-                "path": "./syntaxes/bujo.items.injection.json",
-                "injectTo": ["text.html.markdown"]
+                "path": "./syntaxes/bujo.entry.injection.json",
+                "scopeName": "bujo.entry.injection",
+                "injectTo": [
+                    "text.html.markdown"
+                ]
             },
             {
-                "scopeName": "bujo.grid.injection",
                 "path": "./syntaxes/bujo.grid.injection.json",
-                "injectTo": ["text.html.markdown"]
+                "scopeName": "bujo.grid.injection",
+                "injectTo": [
+                    "text.html.markdown"
+                ]
             },
             {
-                "scopeName": "bujo.timeblock.injection",
                 "path": "./syntaxes/bujo.timeblock.injection.json",
-                "injectTo": ["text.html.markdown"]
+                "scopeName": "bujo.timeblock.injection",
+                "injectTo": [
+                    "text.html.markdown"
+                ]
             },
             {
-                "scopeName": "bujo.todo.injection",
-                "path": "./syntaxes/bujo.todo.injection.json",
-                "injectTo": ["text.html.markdown"]
+                "path": "./syntaxes/bujo.timetrack.injection.json",
+                "scopeName": "bujo.timetrack.injection",
+                "injectTo": [
+                    "text.html.markdown"
+                ]
+            }
+        ],
+        "snippets": [
+            {
+                "language": "markdown",
+                "path": "./snippets/bujo.markdown.json"
+            }
+        ],
+        "keybindings": [
+            {
+                "key": "alt+x",
+                "command": "bujo.setSymbol",
+                "args": {
+                    "symbol": "x"
+                },
+                "when": "editorTextFocus && editorLangId == markdown"
+            },
+            {
+                "key": "alt+o",
+                "command": "bujo.setSymbol",
+                "args": {
+                    "symbol": " "
+                },
+                "when": "editorTextFocus && editorLangId == markdown"
+            },
+            {
+                "key": "alt+-",
+                "command": "bujo.setSymbol",
+                "args": {
+                    "symbol": "-"
+                },
+                "when": "editorTextFocus && editorLangId == markdown"
+            },
+            {
+                "key": "alt+/",
+                "command": "bujo.setSymbol",
+                "args": {
+                    "symbol": "/"
+                },
+                "when": "editorTextFocus && editorLangId == markdown"
+            },
+            {
+                "key": "alt+,",
+                "command": "bujo.setSymbol",
+                "args": {
+                    "symbol": "<"
+                },
+                "when": "editorTextFocus && editorLangId == markdown"
+            },
+            {
+                "key": "alt+.",
+                "command": "bujo.setSymbol",
+                "args": {
+                    "symbol": ">"
+                },
+                "when": "editorTextFocus && editorLangId == markdown"
+            },
+            {
+                "key": "alt+p",
+                "command": "bujo.setSymbol",
+                "args": {
+                    "symbol": "o"
+                },
+                "when": "editorTextFocus && editorLangId == markdown"
             }
         ],
         "configurationDefaults": {
             "editor.tokenColorCustomizations": {
                 "textMateRules": [
-                    { "scope": "bujo.task.open.notation", "settings": { "foreground": "#7599C3" } },
-                    { "scope": "bujo.task.open.symbol", "settings": { "foreground": "#00000000" } },
-                    { "scope": "bujo.task.open.modifier", "settings": { "foreground": "#FF6E64", "fontStyle": "bold" } },
-                    { "scope": "bujo.task.open.text", "settings": { "foreground": "#7599C3" } },
-                    { "scope": "bujo.task.open.text.modifier", "settings": { "foreground": "#7599C3", "fontStyle": "bold" } },
-
-                    { "scope": "bujo.task.in.progress.notation", "settings": { "foreground": "#77BED9" } },
-                    { "scope": "bujo.task.in.progress.symbol", "settings": { "foreground": "#77BED9" } },
-                    { "scope": "bujo.task.in.progress.modifier", "settings": { "foreground": "#FF6E64", "fontStyle": "bold" } },
-                    { "scope": "bujo.task.in.progress.text", "settings": { "foreground": "#77BED9", "fontStyle": "italic bold" } },
-                    { "scope": "bujo.task.in.progress.text.modifier", "settings": { "foreground": "#77BED9", "fontStyle": "bold italic underline" } },
-
-                    { "scope": "bujo.task.completed.notation", "settings": { "foreground": "#6D6D6D" } },
-                    { "scope": "bujo.task.completed.symbol", "settings": { "foreground": "#6D6D6D" } },
-                    { "scope": "bujo.task.completed.modifier", "settings": { "foreground": "#6D6D6D", "fontStyle": "bold" } },
-                    { "scope": "bujo.task.completed.text", "settings": { "foreground": "#6D6D6D" } },
-                    { "scope": "bujo.task.completed.text.modifier", "settings": { "foreground": "#6D6D6D", "fontStyle": "bold" } },
-
-                    { "scope": "bujo.task.migrated.forward.notation", "settings": { "foreground": "#4D6C7D" } },
-                    { "scope": "bujo.task.migrated.forward.symbol", "settings": { "foreground": "#4D6C7D" } },
-                    { "scope": "bujo.task.migrated.forward.modifier", "settings": { "foreground": "#4D6C7D", "fontStyle": "bold" } },
-                    { "scope": "bujo.task.migrated.forward.text", "settings": { "foreground": "#4D6C7D", "fontStyle": "italic" } },
-                    { "scope": "bujo.task.migrated.forward.text.modifier", "settings": { "foreground": "#4D6C7D", "fontStyle": "italic bold" } },
-
-                    { "scope": "bujo.task.migrated.backward.notation", "settings": { "foreground": "#4D6C7D" } },
-                    { "scope": "bujo.task.migrated.backward.symbol", "settings": { "foreground": "#4D6C7D" } },
-                    { "scope": "bujo.task.migrated.backward.modifier", "settings": { "foreground": "#4D6C7D", "fontStyle": "bold" } },
-                    { "scope": "bujo.task.migrated.backward.text", "settings": { "foreground": "#4D6C7D", "fontStyle": "italic" } },
-                    { "scope": "bujo.task.migrated.backward.text.modifier", "settings": { "foreground": "#4D6C7D", "fontStyle": "italic bold" } },
-
-                    { "scope": "bujo.task.dropped.notation", "settings": { "foreground": "#6D6D6D", "fontStyle": "strikethrough" } },
-                    { "scope": "bujo.task.dropped.symbol", "settings": { "foreground": "#6D6D6D", "fontStyle": "strikethrough" } },
-                    { "scope": "bujo.task.dropped.modifier", "settings": { "foreground": "#6D6D6D", "fontStyle": "strikethrough" } },
-                    { "scope": "bujo.task.dropped.text", "settings": { "foreground": "#6D6D6D", "fontStyle": "strikethrough" } },
-                    { "scope": "bujo.task.dropped.text.modifier", "settings": { "foreground": "#6D6D6D", "fontStyle": "strikethrough" } },
-
-                    { "scope": "bujo.event.notation", "settings": { "foreground": "#D6A418" } },
-                    { "scope": "bujo.event.symbol", "settings": { "foreground": "#D6A418" } },
-                    { "scope": "bujo.event.modifier", "settings": { "foreground": "#FF6E64" } },
-                    { "scope": "bujo.event.text", "settings": { "foreground": "#D6A418" } },
-                    { "scope": "bujo.event.text.modifier", "settings": { "foreground": "#D6A418" } },
-
-                    { "scope": "bujo.todo.start.hour", "settings": { "foreground": "#b5954b" } },
-                    { "scope": "bujo.todo.start.colon", "settings": { "foreground": "#919191" } },
-                    { "scope": "bujo.todo.start.minute", "settings": { "foreground": "#b5954b" } },
-                    { "scope": "bujo.todo.separator", "settings": { "foreground": "#919191" } },
-                    { "scope": "bujo.todo.end.hour", "settings": { "foreground": "#b5954b" } },
-                    { "scope": "bujo.todo.end.colon", "settings": { "foreground": "#919191" } },
-                    { "scope": "bujo.todo.end.minute", "settings": { "foreground": "#b5954b" } },
-                    { "scope": "bujo.todo.total", "settings": { "foreground": "#e7b541", "fontStyle": "bold" } },
-
-                    { "scope": "bujo.timeblock.revision.time.parenthesis.open", "settings": { "foreground": "#6D6D6D" } },
-                    { "scope": "bujo.timeblock.revision.time.hour", "settings": { "foreground": "#6D6D6D" } },
-                    { "scope": "bujo.timeblock.revision.time.colon", "settings": { "foreground": "#6D6D6D" } },
-                    { "scope": "bujo.timeblock.revision.time.minute", "settings": { "foreground": "#6D6D6D" } },
-                    { "scope": "bujo.timeblock.revision.time.parenthesis.close", "settings": { "foreground": "#6D6D6D" } },
-                    { "scope": "bujo.timeblock.revision.text", "settings": { "foreground": "#c85f5f", "fontStyle": "bold underline" } },
-                    { "scope": "bujo.timeblock.chunk.title", "settings": { "foreground": "#7599C3" } },
-                    { "scope": "bujo.timeblock.chunk.note", "settings": { "foreground": "#6D6D6D" } },
-
-                    { "scope": "bujo.grid.horizontal", "settings": { "foreground": "#6d6d6d92" } },
-                    { "scope": "bujo.grid.colon", "settings": { "foreground": "#6d6d6d92" } },
-                    { "scope": "bujo.grid.vertical", "settings": { "foreground": "#6d6d6d92" } }
+                    {
+                        "scope": "bujo.task.open.notation",
+                        "settings": {
+                            "foreground": "#7599C3"
+                        }
+                    },
+                    {
+                        "scope": "bujo.task.open.symbol",
+                        "settings": {
+                            "foreground": "#00000000"
+                        }
+                    },
+                    {
+                        "scope": "bujo.task.open.modifier",
+                        "settings": {
+                            "foreground": "#FF6E64",
+                            "fontStyle": "bold"
+                        }
+                    },
+                    {
+                        "scope": "bujo.task.open.text",
+                        "settings": {
+                            "foreground": "#7599C3"
+                        }
+                    },
+                    {
+                        "scope": "bujo.task.open.text.modifier",
+                        "settings": {
+                            "foreground": "#7599C3",
+                            "fontStyle": "bold"
+                        }
+                    },
+                    {
+                        "scope": "bujo.task.in.progress.notation",
+                        "settings": {
+                            "foreground": "#77BED9"
+                        }
+                    },
+                    {
+                        "scope": "bujo.task.in.progress.symbol",
+                        "settings": {
+                            "foreground": "#77BED9"
+                        }
+                    },
+                    {
+                        "scope": "bujo.task.in.progress.modifier",
+                        "settings": {
+                            "foreground": "#FF6E64",
+                            "fontStyle": "bold"
+                        }
+                    },
+                    {
+                        "scope": "bujo.task.in.progress.text",
+                        "settings": {
+                            "foreground": "#77BED9",
+                            "fontStyle": "italic bold"
+                        }
+                    },
+                    {
+                        "scope": "bujo.task.in.progress.text.modifier",
+                        "settings": {
+                            "foreground": "#77BED9",
+                            "fontStyle": "bold italic underline"
+                        }
+                    },
+                    {
+                        "scope": "bujo.task.completed.notation",
+                        "settings": {
+                            "foreground": "#6D6D6D"
+                        }
+                    },
+                    {
+                        "scope": "bujo.task.completed.symbol",
+                        "settings": {
+                            "foreground": "#6D6D6D"
+                        }
+                    },
+                    {
+                        "scope": "bujo.task.completed.modifier",
+                        "settings": {
+                            "foreground": "#6D6D6D",
+                            "fontStyle": "bold"
+                        }
+                    },
+                    {
+                        "scope": "bujo.task.completed.text",
+                        "settings": {
+                            "foreground": "#6D6D6D"
+                        }
+                    },
+                    {
+                        "scope": "bujo.task.completed.text.modifier",
+                        "settings": {
+                            "foreground": "#6D6D6D",
+                            "fontStyle": "bold"
+                        }
+                    },
+                    {
+                        "scope": "bujo.task.migrated.forward.notation",
+                        "settings": {
+                            "foreground": "#4D6C7D"
+                        }
+                    },
+                    {
+                        "scope": "bujo.task.migrated.forward.symbol",
+                        "settings": {
+                            "foreground": "#4D6C7D"
+                        }
+                    },
+                    {
+                        "scope": "bujo.task.migrated.forward.modifier",
+                        "settings": {
+                            "foreground": "#4D6C7D",
+                            "fontStyle": "bold"
+                        }
+                    },
+                    {
+                        "scope": "bujo.task.migrated.forward.text",
+                        "settings": {
+                            "foreground": "#4D6C7D",
+                            "fontStyle": "italic"
+                        }
+                    },
+                    {
+                        "scope": "bujo.task.migrated.forward.text.modifier",
+                        "settings": {
+                            "foreground": "#4D6C7D",
+                            "fontStyle": "italic bold"
+                        }
+                    },
+                    {
+                        "scope": "bujo.task.migrated.backward.notation",
+                        "settings": {
+                            "foreground": "#4D6C7D"
+                        }
+                    },
+                    {
+                        "scope": "bujo.task.migrated.backward.symbol",
+                        "settings": {
+                            "foreground": "#4D6C7D"
+                        }
+                    },
+                    {
+                        "scope": "bujo.task.migrated.backward.modifier",
+                        "settings": {
+                            "foreground": "#4D6C7D",
+                            "fontStyle": "bold"
+                        }
+                    },
+                    {
+                        "scope": "bujo.task.migrated.backward.text",
+                        "settings": {
+                            "foreground": "#4D6C7D",
+                            "fontStyle": "italic"
+                        }
+                    },
+                    {
+                        "scope": "bujo.task.migrated.backward.text.modifier",
+                        "settings": {
+                            "foreground": "#4D6C7D",
+                            "fontStyle": "italic bold"
+                        }
+                    },
+                    {
+                        "scope": "bujo.task.dropped.notation",
+                        "settings": {
+                            "foreground": "#6D6D6D",
+                            "fontStyle": "strikethrough"
+                        }
+                    },
+                    {
+                        "scope": "bujo.task.dropped.symbol",
+                        "settings": {
+                            "foreground": "#6D6D6D",
+                            "fontStyle": "strikethrough"
+                        }
+                    },
+                    {
+                        "scope": "bujo.task.dropped.modifier",
+                        "settings": {
+                            "foreground": "#6D6D6D",
+                            "fontStyle": "strikethrough"
+                        }
+                    },
+                    {
+                        "scope": "bujo.task.dropped.text",
+                        "settings": {
+                            "foreground": "#6D6D6D",
+                            "fontStyle": "strikethrough"
+                        }
+                    },
+                    {
+                        "scope": "bujo.task.dropped.text.modifier",
+                        "settings": {
+                            "foreground": "#6D6D6D",
+                            "fontStyle": "strikethrough"
+                        }
+                    },
+                    {
+                        "scope": "bujo.event.notation",
+                        "settings": {
+                            "foreground": "#D6A418"
+                        }
+                    },
+                    {
+                        "scope": "bujo.event.symbol",
+                        "settings": {
+                            "foreground": "#D6A418"
+                        }
+                    },
+                    {
+                        "scope": "bujo.event.modifier",
+                        "settings": {
+                            "foreground": "#FF6E64"
+                        }
+                    },
+                    {
+                        "scope": "bujo.event.text",
+                        "settings": {
+                            "foreground": "#D6A418"
+                        }
+                    },
+                    {
+                        "scope": "bujo.event.text.modifier",
+                        "settings": {
+                            "foreground": "#D6A418"
+                        }
+                    },
+                    {
+                        "scope": "bujo.todo.start.hour",
+                        "settings": {
+                            "foreground": "#b5954b"
+                        }
+                    },
+                    {
+                        "scope": "bujo.todo.start.colon",
+                        "settings": {
+                            "foreground": "#919191"
+                        }
+                    },
+                    {
+                        "scope": "bujo.todo.start.minute",
+                        "settings": {
+                            "foreground": "#b5954b"
+                        }
+                    },
+                    {
+                        "scope": "bujo.todo.separator",
+                        "settings": {
+                            "foreground": "#919191"
+                        }
+                    },
+                    {
+                        "scope": "bujo.todo.end.hour",
+                        "settings": {
+                            "foreground": "#b5954b"
+                        }
+                    },
+                    {
+                        "scope": "bujo.todo.end.colon",
+                        "settings": {
+                            "foreground": "#919191"
+                        }
+                    },
+                    {
+                        "scope": "bujo.todo.end.minute",
+                        "settings": {
+                            "foreground": "#b5954b"
+                        }
+                    },
+                    {
+                        "scope": "bujo.todo.total",
+                        "settings": {
+                            "foreground": "#e7b541",
+                            "fontStyle": "bold"
+                        }
+                    },
+                    {
+                        "scope": "bujo.timeblock.revision.time.parenthesis.open",
+                        "settings": {
+                            "foreground": "#6D6D6D"
+                        }
+                    },
+                    {
+                        "scope": "bujo.timeblock.revision.time.hour",
+                        "settings": {
+                            "foreground": "#6D6D6D"
+                        }
+                    },
+                    {
+                        "scope": "bujo.timeblock.revision.time.colon",
+                        "settings": {
+                            "foreground": "#6D6D6D"
+                        }
+                    },
+                    {
+                        "scope": "bujo.timeblock.revision.time.minute",
+                        "settings": {
+                            "foreground": "#6D6D6D"
+                        }
+                    },
+                    {
+                        "scope": "bujo.timeblock.revision.time.parenthesis.close",
+                        "settings": {
+                            "foreground": "#6D6D6D"
+                        }
+                    },
+                    {
+                        "scope": "bujo.timeblock.revision.text",
+                        "settings": {
+                            "foreground": "#c85f5f",
+                            "fontStyle": "bold underline"
+                        }
+                    },
+                    {
+                        "scope": "bujo.timeblock.chunk.title",
+                        "settings": {
+                            "foreground": "#7599C3"
+                        }
+                    },
+                    {
+                        "scope": "bujo.timeblock.chunk.note",
+                        "settings": {
+                            "foreground": "#6D6D6D"
+                        }
+                    },
+                    {
+                        "scope": "bujo.grid.horizontal",
+                        "settings": {
+                            "foreground": "#6d6d6d92"
+                        }
+                    },
+                    {
+                        "scope": "bujo.grid.colon",
+                        "settings": {
+                            "foreground": "#6d6d6d92"
+                        }
+                    },
+                    {
+                        "scope": "bujo.grid.vertical",
+                        "settings": {
+                            "foreground": "#6d6d6d92"
+                        }
+                    }
                 ]
             }
         }
+    },
+    "scripts": {
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "pretest": "npm run compile && npm run lint",
+        "lint": "eslint src --ext ts",
+        "test": "node ./out/test/runTest.js",
+        "vscode:prepublish": "npm run esbuild-base -- --minify",
+        "esbuild-base": "esbuild ./src/extension.ts --bundle --outfile=out/main.js --external:vscode --format=cjs --platform=node",
+        "esbuild": "npm run esbuild-base -- --sourcemap",
+        "esbuild-watch": "npm run esbuild-base -- --sourcemap --watch",
+        "test-compile": "tsc -p ./"
+    },
+    "devDependencies": {
+        "@types/glob": "^7.2.0",
+        "@types/lodash": "^4.14.180",
+        "@types/mocha": "^9.1.0",
+        "@types/node": "14.x",
+        "@types/vscode": "^1.65.0",
+        "@typescript-eslint/eslint-plugin": "^5.16.0",
+        "@typescript-eslint/parser": "^5.16.0",
+        "@vscode/test-electron": "^2.1.3",
+        "esbuild": "^0.14.38",
+        "eslint": "^8.11.0",
+        "glob": "^7.2.0",
+        "mocha": "^9.2.2",
+        "typescript": "^4.5.5"
+    },
+    "dependencies": {
+        "lodash": "^4.17.21",
+        "nanoid": "^3.3.1"
     }
 }
