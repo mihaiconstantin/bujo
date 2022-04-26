@@ -62,7 +62,7 @@ added upon request):
     - [ ] Represents a task.
     - [x] Represents a completed task.
     - [>] Represents a task migrated forward.
-    - [>] Represents a task migrated backward.
+    - [<] Represents a task migrated backward.
     - [/] Represents a task in progress.
     - [-] Represents a dropped task.
     - [o] Represents an event.
