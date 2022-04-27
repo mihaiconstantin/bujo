@@ -518,6 +518,12 @@ See the [CHANGELOG](CHANGELOG.md) file.
 Any contributions, suggestions, or bug reports are welcome and greatly
 appreciated.
 
+## Roadmap
+
+For planned features please visit our [project
+page](https://github.com/users/mihaiconstantin/projects/1). Any ideas and
+discussions are welcome!
+
 ## License
 
 Foam is licensed under the [MIT license](LICENSE).
