@@ -26,7 +26,7 @@ into a full-fledged personal knowledge management and productivity system.
 ### Syntax Highlighting
 
 When enabled, **BuJo** parses the text written in Markdown files for specific
-patterns and highlighting the matches. At its core, **BuJo** uses the VS Code
+patterns and highlights the matches. At its core, **BuJo** uses the VS Code
 API for injecting language grammars (i.e., see [VS Code
 documentation](https://code.visualstudio.com/api/language-extensions/syntax-highlight-guide)
 for more details).
