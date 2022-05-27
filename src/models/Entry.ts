@@ -1,77 +1,106 @@
 import { TextLine } from "vscode";
-import { EntryComponent } from "./EntryComponent";
+import { BuJoSkeleton } from "./BuJoSkeleton";
+import { Pattern } from "./Pattern";
 
-export class Entry {
-    /*
-    * Pattern to check if a line contains a valid entry.
-    * Demo: https://regex101.com/r/kQeMBp/1
-    */
-    checkLinePattern: RegExp = /(?<=\s)\[.\](?=\s*[?!*]?\s*)(?!\s*[?!*]?\s*\||\s*[?!*]?\s*$)/;
 
-    /*
-    * Pattern to parse a line and extract the componenets of an entry.
-    * Demo: https://regex101.com/r/LVVrrS/26
-    */
-    // Pattern to parse a line to entry componenets.
-    parseLinePattern: RegExp = /(?<=\s)(?<open>\[)(?<symbol>.)(?<close>\])(?=\s*[?!*]?\s*)(?!\s*[?!*]?\s*\||\s*[?!*]?\s*$)\s*(?<modifier>[!?*]?)\s*(?<text>.*?)(?=\s+\^[a-z0-9]{6,}|\s+\||\s*$)/;
+export class Entry implements BuJoSkeleton {
+    // Implement BuJo entity.
+    public notationOpen: string = "";
+    public notationClose: string = "";
+    public symbol: string = "";
+    public modifier: string = "";
+    public text: string = "";
+    public id: string = "";
+    public parsedText: { alias: string; filename: string } = { alias: "", filename: "" };
 
-    // Match.
-    match!: RegExpMatchArray | null;
 
-    // The current line under selection.
-    line: TextLine;
+    // The editor text line corresponding to the entry.
+    public line: TextLine | undefined;
 
-    // Entry.
-    component!: EntryComponent;
 
-    constructor(line: TextLine) {
-        // Set the raw line.
-        this.line = line;
+    /**
+     * Set entry elements from text.
+     */
+    private parseEntryComponents(text: string) {
+        // Match the entry elements text.
+        const match = text.match(Pattern.extractEntry);
 
-        // Check the line.
-        if (!this.IsValid()) {
+        // Set the entry elements.
+        this.notationOpen = match!.groups!.open;
+        this.notationClose = match!.groups!.close;
+        this.symbol = match!.groups!.symbol;
+        this.modifier = match!.groups!.modifier;
+        this.text = match!.groups!.text;
+    }
+
+
+    /**
+     * Set entry id from text.
+     */
+    private parseEntryId(text: string) {
+        // Match the entry id.
+        const match = text.match(Pattern.extractId);
+
+        // If there is match.
+        if (match) {
+            // Set the entry ID.
+            this.id = match.groups!.id;
+        }
+    }
+
+
+    /**
+     * Initialize entry from editor line.
+     */
+    public fromTextLine(line: TextLine): void {
+        // Set the line.
+        this.line = line
+
+        // Check if the line has a valid entry.
+        if (!Pattern.checkEntry.test(line.text)) {
             throw new Error("The line does not contain a valid BuJo entry.");
         }
 
-        // Parse the line.
-        this.component = this.Parse();
-    };
+        // Set entry components.
+        this.parseEntryComponents(line.text);
 
-    /*
-    * Check if a line is valid.
-    */
-    public IsValid(): boolean {
-        return this.checkLinePattern.test(this.line.text);
-    };
+        // Set entry ID.
+        this.parseEntryId(line.text);
 
-    /*
-    * Extract entry componenets.
-    */
-    public Parse(): EntryComponent {
-        // Match the line text.
-        this.match = this.line.text.match(this.parseLinePattern);
+        // Parse the entry text if it is a valid wiki link with alias.
+        if (this.isWikiLinkWithALias()) {
+            this.parsedText = this.parseWikiLink();
+        }
+    }
 
-        // Create new componenet objects.
-        const entryComponent: EntryComponent = new EntryComponent();
 
-        // Set the entry components.
-        entryComponent.notationOpen = this.match!.groups!.open;
-        entryComponent.notationClose = this.match!.groups!.close;
-        entryComponent.symbol = this.match!.groups!.symbol;
-        entryComponent.modifier = this.match!.groups!.modifier;
-        entryComponent.text = this.match!.groups!.text;
+    /**
+     * Check if the entry text is a wiki link.
+     */
+    public isWikiLinkWithALias(): boolean {
+        // Perform the check.
+        const check: boolean = Pattern.checkAlias.test(this.text!);
 
-        return entryComponent;
-    };
+        return check;
+    }
 
-    /*
-    * Get index for entry symbol.
-    */
-    public GetIndexAtSymbol(): number {
-        // Regex pattern (i.e., see: https://regex101.com/r/ABVEf2/3).
-        const pattern = new RegExp("(?<=\\s\\[)(" + this.component.symbol + ")(?=\\]\\s)");
 
-        // Match and return.
-        return this.line.text.match(pattern)!.index!;
-    };
+    /**
+     * Extract alias from wiki link.
+     */
+    public parseWikiLink(): { alias: string; filename: string } {
+        // Match the entry id.
+        const match = this.text.match(Pattern.extractWikiLink);
+
+        // Check if there was a match.
+        if (match) {
+            // Store the matches.
+            return {
+                alias: match.groups!.alias,
+                filename: match.groups!.filename,
+            }
+        } else {
+            throw new Error("Entry text does not contain a wiki link with alias.");
+        }
+    }
 }
