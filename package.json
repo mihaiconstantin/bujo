@@ -60,6 +60,30 @@
                 "title": "BuJo: Schedule To Time Tracking Table"
             }
         ],
+        "configuration": {
+            "title": "BuJo",
+            "properties": {
+                "bujo.scheduler.dailyPlannerPrefix": {
+                    "type": "string",
+                    "default": "log",
+                    "markdownDescription": "Specifies the prefix for the daily planner file (e.g., `log.2022.03.20`)."
+                },
+                "bujo.scheduler.wikiLinkName": {
+                    "type": "string",
+                    "default": "alias",
+                    "enum": ["alias", "filename"],
+                    "markdownEnumDescriptions": [
+                      "Use the wiki link **alias** as task name for scheduling (e.g., `[[`**`alias`**`|filename]]`)",
+                      "Use the wiki link **filename** as task name for scheduling (e.g., `[[alias|`**`filename`**`]]`)"
+                    ]
+                },
+                "bujo.scheduler.symbolForScheduledEntry": {
+                    "type": "string",
+                    "default": ">",
+                    "markdownDescription": "Specifies the symbol to set for a scheduled entry (e.g., `>`)."
+                }
+            }
+        },
         "grammars": [
             {
                 "path": "./syntaxes/bujo.entry.injection.json",
