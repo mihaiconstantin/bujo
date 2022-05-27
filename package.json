@@ -27,7 +27,9 @@
         "onCommand:bujo.setInProgress",
         "onCommand:bujo.setDropped",
         "onCommand:bujo.setSymbol",
-        "onCommand:bujo.scheduleToTimeTrackingTable"
+        "onCommand:bujo.scheduleToTimeTrackingTable",
+        "onCommand:bujo.recordTime",
+        "onCommand:bujo.calculateTime"
     ],
     "contributes": {
         "commands": [
@@ -58,6 +60,14 @@
             {
                 "command": "bujo.scheduleToTimeTrackingTable",
                 "title": "BuJo: Schedule To Time Tracking Table"
+            },
+            {
+                "command": "bujo.recordTime",
+                "title": "BuJo: Record Time"
+            },
+            {
+                "command": "bujo.calculateTime",
+                "title": "BuJo: Calculate Total Time"
             }
         ],
         "configuration": {
@@ -180,6 +190,11 @@
             {
                 "key": "alt+shift+p",
                 "command": "bujo.scheduleToTimeTrackingTable",
+                "when": "editorTextFocus && editorLangId == markdown"
+            },
+            {
+                "key": "alt+shift+t",
+                "command": "bujo.recordTime",
                 "when": "editorTextFocus && editorLangId == markdown"
             }
         ],
