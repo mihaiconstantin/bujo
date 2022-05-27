@@ -1,4 +1,5 @@
 import * as vscode from 'vscode';
+import { scheduleTaskToTimeTrackingTable } from './scheduleCommands';
 import * as symbolCommands from './symbolCommands';
 
 // When extension gets activated.
@@ -13,7 +14,10 @@ export function activate(context: vscode.ExtensionContext) {
         vscode.commands.registerCommand('bujo.setOpen', symbolCommands.setOpen),
         vscode.commands.registerCommand('bujo.setInProgress', symbolCommands.setInProgress),
         vscode.commands.registerCommand('bujo.setDropped', symbolCommands.setDropped),
-        vscode.commands.registerCommand('bujo.setSymbol', symbolCommands.setSymbol)
+        vscode.commands.registerCommand('bujo.setSymbol', symbolCommands.setSymbol),
+
+        // Copy an entry to the time tracking table.
+        vscode.commands.registerCommand('bujo.scheduleToTimeTrackingTable', scheduleTaskToTimeTrackingTable)
     );
 }
 

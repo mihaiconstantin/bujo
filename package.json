@@ -26,7 +26,8 @@
         "onCommand:bujo.setOpen",
         "onCommand:bujo.setInProgress",
         "onCommand:bujo.setDropped",
-        "onCommand:bujo.setSymbol"
+        "onCommand:bujo.setSymbol",
+        "onCommand:bujo.scheduleToTimeTrackingTable"
     ],
     "contributes": {
         "commands": [
@@ -53,6 +54,10 @@
             {
                 "command": "bujo.setDropped",
                 "title": "BuJo: Set Dropped"
+            },
+            {
+                "command": "bujo.scheduleToTimeTrackingTable",
+                "title": "BuJo: Schedule To Time Tracking Table"
             }
         ],
         "grammars": [
@@ -146,6 +151,11 @@
                 "args": {
                     "symbol": "o"
                 },
+                "when": "editorTextFocus && editorLangId == markdown"
+            },
+            {
+                "key": "alt+shift+p",
+                "command": "bujo.scheduleToTimeTrackingTable",
                 "when": "editorTextFocus && editorLangId == markdown"
             }
         ],
