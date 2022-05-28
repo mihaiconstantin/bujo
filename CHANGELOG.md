@@ -3,12 +3,14 @@
 ## [2.2.0] - 2022.05.28
 ### Added
 - Add functionality to **schedule `BuJo` entries** to time tracking tables via
-  the `BuJo: Schedule To Time Tracking Table` command.
+  the `BuJo: Schedule To Time Tracking Table` command. Closes
+  [#8](https://github.com/mihaiconstantin/bujo/issues/8).
 - Add functionality for **time tracking** for `BuJo` entries via the `BuJo:
-  Record Time` command.
+  Record Time` command. Closes
+  [#6](https://github.com/mihaiconstantin/bujo/issues/6),
 - Add functionality to *calculate the total time spent on a task* for `BuJo`
   entries scheduled to the time tracking table via the command `BuJo: Calculate
-  Total Time`.
+  Total Time`. Closes [#7](https://github.com/mihaiconstantin/bujo/issues/7).
 - Add default keybindings scheduling and time tracking commands:
   - `alt+shift+p` to run command `BuJo: Schedule To Time Tracking Table`
   - `alt+shift+t` to run command `BuJo: Record Time`
