@@ -32,7 +32,7 @@
   tracking table.
 
 ### Changed
-- Refactor `Entry` class into multiple classes, each corresponding to a time of
+- Refactor `Entry` class into multiple classes, each corresponding to a type of
   functionality:
   - `Scheduler` class for handling scheduling operation
   - `Symbol` class for handling entry symbol updates
