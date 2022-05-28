@@ -196,6 +196,11 @@
                 "key": "alt+shift+t",
                 "command": "bujo.recordTime",
                 "when": "editorTextFocus && editorLangId == markdown"
+            },
+            {
+                "key": "alt+shift+s",
+                "command": "bujo.calculateTime",
+                "when": "editorTextFocus && editorLangId == markdown"
             }
         ],
         "configurationDefaults": {
