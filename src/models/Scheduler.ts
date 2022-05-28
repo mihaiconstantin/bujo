@@ -55,7 +55,13 @@ export class Scheduler {
         const prefix = this.config.get("scheduler.dailyPlannerPrefix");
 
         // Get today's date.
-        const [year, month, day]: string[] = new Date().toISOString().slice(0, 10).split('-');
+        const [month, day, year]: string[] = new Date().toLocaleString("en-US",
+            {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit'
+            }
+        ).split("/");
 
         // Ask user what daily note to use.
         const dailyPlanner = await window.showInputBox({
