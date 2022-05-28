@@ -72,9 +72,15 @@ export class Tracker {
      * @param interval The time interval to compute the difference for.
      */
     private getTimeIntervalDifference(interval: Interval): number {
-        // Convert to dates.
-        const start = new Date(`2000-01-01 ${interval.start}:00`);
-        const stop = new Date(`2000-01-01 ${interval.stop}:00`);
+        // Create dates.
+        let start = new Date(Date.parse(`2000-01-01 ${interval.start}:00`));
+        let stop = new Date(Date.parse(`2000-01-01 ${interval.stop}:00`));
+
+        // Check if a day has passed.
+        if (stop.getHours() < start.getHours()) {
+            // Add a day.
+            stop.setDate(stop.getDate() + 1);
+        }
 
         // Compute difference.
         return +(stop) - (+start);
