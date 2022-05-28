@@ -81,10 +81,14 @@
                 "bujo.scheduler.wikiLinkName": {
                     "type": "string",
                     "default": "alias",
-                    "enum": ["alias", "filename"],
+                    "enum": [
+                        "alias",
+                        "filename"
+                    ],
+                    "markdownDescription": "Specifies how to construct the task name for the time tracking table when scheduling a `BuJo` entry that contains a wiki link with an alias (e.g., `- [ ] [[An arbitrary task|file-for-arbitrary-task]]`).",
                     "markdownEnumDescriptions": [
-                      "Use the wiki link **alias** as task name for scheduling (e.g., `[[`**`alias`**`|filename]]`)",
-                      "Use the wiki link **filename** as task name for scheduling (e.g., `[[alias|`**`filename`**`]]`)"
+                        "Use the wiki link **alias** as task name (e.g., `An arbitrary task`).",
+                        "Use the wiki link **filename** as task name (e.g., `[[file-for-arbitrary-task]]`)."
                     ]
                 },
                 "bujo.scheduler.symbolForScheduledEntry": {
