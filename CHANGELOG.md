@@ -1,5 +1,46 @@
 # Changelog
 
+## [2.2.0] - 2022.05.28
+### Added
+- Add functionality to **schedule `BuJo` entries** to time tracking tables via
+  the `BuJo: Schedule To Time Tracking Table` command.
+- Add functionality for **time tracking** for `BuJo` entries via the `BuJo:
+  Record Time` command.
+- Add functionality to *calculate the total time spent on a task* for `BuJo`
+  entries scheduled to the time tracking table via the command `BuJo: Calculate
+  Total Time`.
+- Add default keybindings scheduling and time tracking commands:
+  - `alt+shift+p` to run command `BuJo: Schedule To Time Tracking Table`
+  - `alt+shift+t` to run command `BuJo: Record Time`
+  - `alt+shift+s` to run command `BuJo: Calculate Total Time`
+- Add user settings for customizing the scheduling and time tracking behavior:
+  - `bujo.scheduler.dailyPlannerPrefix` to specify the prefix to use when
+    selecting the daily planner file via the input box (e.g.,
+    **`prefix`**`.2022.03.20`)
+  - `bujo.scheduler.wikiLinkName` to specify what to use as task name for the
+    time tracking table when scheduling a `BuJo` entry that contains a wiki link
+    with an alias (e.g., `[[A random task|project.example.a-random-task]]`:
+      - `alias` sets the name of the task in the table to wiki link alias (e.g.,
+    `A random task`)
+      - `filename` sets the name of the task to the actual wiki link (e.g.,
+        `[[project.example.a-random-task]]`)
+  - `symbolForScheduledEntry` to specify the symbol to set for a `BuJo` entry
+    scheduled to the time track table (i.e., by default, the symbol is updated
+    from `[ ]` to `[>]`)
+- Add `genUUID` and `genUUIDInsecure` helper functions to\ generate
+  Dendron-compatible blockquote IDs when scheduling `BuJo` entries to the time
+  tracking table.
+
+### Changed
+- Refactor `Entry` class into multiple classes, each corresponding to a time of
+  functionality:
+  - `Scheduler` class for handling scheduling operation
+  - `Symbol` class for handling entry symbol updates
+  - `Tracker` and `Interval` classes for handling time tracking and time totals
+- Move most of the regular expressions to the `Pattern` class and add
+  demonstration links to `regex101.com` to improve debugging of `regex`.
+- Update the functions for the user-available commands to use new classes.
+
 ## [2.1.0] - 2022.04.24
 ### Added
 - Add syntax highlighting support for multiple entries on the same line
