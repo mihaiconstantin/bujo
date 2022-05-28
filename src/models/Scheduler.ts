@@ -103,6 +103,11 @@ export class Scheduler {
             }
         }
 
+        // Append modifier if present.
+        if (entry.modifier != '') {
+            task = `${entry.modifier} ${task}`
+        }
+
         return `| | [ ] ${task} | [[${backlog}#^${entry.id}]] |\n`;
     }
 
