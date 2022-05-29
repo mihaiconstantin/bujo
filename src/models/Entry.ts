@@ -1,7 +1,7 @@
 import { TextLine } from "vscode";
 
 
-export interface BuJoSkeleton {
+export interface Entry {
     // Fields.
     notationOpen: string;
     notationClose: string;

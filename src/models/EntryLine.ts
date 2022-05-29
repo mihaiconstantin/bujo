@@ -1,10 +1,10 @@
 import { TextEditor, TextEditorEdit, TextLine } from "vscode";
-import { BuJoSkeleton } from "./BuJoSkeleton";
+import { Entry } from "./Entry";
 import { Pattern } from "./Pattern";
 import { genUUIDInsecure } from "../uuid";
 
 
-export class EntryLine implements BuJoSkeleton {
+export class EntryLine implements Entry {
     /**
      * BuJo skeleton implementation.
      */
