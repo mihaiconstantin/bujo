@@ -13,10 +13,13 @@ export class Scheduler {
 
 
     /**
-     * Sanitizer constructor.
+     * Scheduler constructor.
      */
     public constructor(editor: TextEditor, config: WorkspaceConfiguration) {
+        // Set the editor.
         this.editor = editor;
+
+        // Get user settings.
         this.config = config;
     }
 
@@ -53,13 +56,13 @@ export class Scheduler {
 
         // Ask user what daily note to use.
         const dailyPlanner = await window.showInputBox({
-            title: 'Enter the name of the daily planner',
+            title: 'Enter the name of the planner file',
             value: [prefix, year, month, day].join('.')
         });
 
         // If no input is provided cancel the planning.
         if (!dailyPlanner) {
-            throw new Error('Daily planner not provided.');
+            throw new Error('Planner file not provided.');
         }
 
         return dailyPlanner;
@@ -68,7 +71,6 @@ export class Scheduler {
 
     /**
      * Prepare a table row for the time tracking table.
-     * @param entry An instance of class `Entry`.
      * @returns A table row with a task for the time tracking table.
      */
     private makeTableRow(entry: Entry): string {
@@ -114,7 +116,7 @@ export class Scheduler {
 
         // Throw if the daily planner does not exist.
         if (destinationSearch.length == 0) {
-            throw new Error(`Daily planner '${destinationFile}.md' not found.`);
+            throw new Error(`Planner '${destinationFile}.md' not found.`);
         }
 
         // Extract the daily note URI.
@@ -136,7 +138,7 @@ export class Scheduler {
 
         // Ensure the time tracking table exists.
         if (!tableHeader) {
-            throw new Error('Time tracking table is missing.');
+            throw new Error('Planner is missing the time tracking table.');
         }
 
         // Get the position instance.
@@ -145,7 +147,7 @@ export class Scheduler {
         // Find first available line in the table.
         let lineNumber: number = tablePosition.line + 1;
 
-        // Update the candidate line number until a suitable number is found.
+        // Update the candidate line number until a suitable line is found.
         while (!document.lineAt(lineNumber).isEmptyOrWhitespace) {
             // Increment the line.
             lineNumber++;
