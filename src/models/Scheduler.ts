@@ -97,9 +97,9 @@ export class Scheduler {
 
             // Decide whether to use the alias or the filename.
             if (name == "alias") {
-                task = entry.parsedText.alias;
+                task = entry.wikiLink.alias;
             } else {
-                task = `[[${entry.parsedText.filename}]]`;
+                task = `[[${entry.wikiLink.filename}]]`;
             }
         }
 

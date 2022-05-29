@@ -4,17 +4,26 @@ import { Pattern } from "./Pattern";
 
 
 export class Entry implements BuJoSkeleton {
-    // Implement BuJo entity.
+    /**
+     * BuJo skeleton implementation.
+     */
     public notationOpen: string = "";
     public notationClose: string = "";
     public symbol: string = "";
     public modifier: string = "";
     public text: string = "";
     public id: string = "";
-    public parsedText: { alias: string; filename: string } = { alias: "", filename: "" };
 
 
-    // The editor text line corresponding to the entry.
+    /**
+     * If the entry text is a full wiki link with an alias.
+     */
+    public wikiLink: { alias: string; filename: string } = { alias: "", filename: "" };
+
+
+    /**
+     * The editor text line corresponding to the entry.
+     */
     public line: TextLine | undefined;
 
 
@@ -50,7 +59,25 @@ export class Entry implements BuJoSkeleton {
 
 
     /**
-     * Initialize entry from editor line.
+     * Set wiki link alias and filename.
+     */
+    private parseWikiLink(): void {
+        // Match the entry id.
+        const match = this.text.match(Pattern.extractWikiLink);
+
+        // Throw if not a match.
+        if (!match) {
+            throw new Error("The entry text is not a wiki link with an alias.");
+        }
+
+        // Store the matches.
+        this.wikiLink.alias = match.groups!.alias;
+        this.wikiLink.filename = match.groups!.filename;
+    }
+
+
+    /**
+     * Create an entry from a given editor line or fail.
      */
     public fromTextLine(line: TextLine): void {
         // Set the line.
@@ -67,40 +94,18 @@ export class Entry implements BuJoSkeleton {
         // Set entry ID.
         this.parseEntryId(line.text);
 
-        // Parse the entry text if it is a valid wiki link with alias.
+        // Parse the entry text if it is a valid wiki link with an alias.
         if (this.isWikiLinkWithALias()) {
-            this.parsedText = this.parseWikiLink();
+            this.parseWikiLink();
         }
     }
 
 
     /**
-     * Check if the entry text is a wiki link.
+     * Check if the entry **text** is a wiki link with an alias.
      */
     public isWikiLinkWithALias(): boolean {
         // Perform the check.
-        const check: boolean = Pattern.checkAlias.test(this.text!);
-
-        return check;
-    }
-
-
-    /**
-     * Extract alias from wiki link.
-     */
-    public parseWikiLink(): { alias: string; filename: string } {
-        // Match the entry id.
-        const match = this.text.match(Pattern.extractWikiLink);
-
-        // Check if there was a match.
-        if (match) {
-            // Store the matches.
-            return {
-                alias: match.groups!.alias,
-                filename: match.groups!.filename,
-            }
-        } else {
-            throw new Error("Entry text does not contain a wiki link with alias.");
-        }
+        return Pattern.checkAlias.test(this.text!);
     }
 }
