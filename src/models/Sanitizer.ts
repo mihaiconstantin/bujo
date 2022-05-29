@@ -1,11 +1,13 @@
 import { Range, TextEditor, TextEditorEdit, TextLine } from "vscode";
 
+
 export class Sanitizer {
     /**
      * Patterns for removing trailing whitespace.
      */
     private patternWhitespace: RegExp = /(\s*)(?<=$)/;
     private patternLineEnd: RegExp = /$/;
+
 
     /**
      * Text editor.
@@ -28,10 +30,10 @@ export class Sanitizer {
         // Get active line.
         const line: TextLine = this.editor.document.lineAt(this.editor.selection.active.line);
 
-        // Find index for first `\s` before the line's end.
+        // Find all white space at the end of the line.
         let indexStart: number = line.text.match(this.patternWhitespace)?.index!;
 
-        // Get end of line index.
+        // Get the index at the end of the line.
         let indexEnd: number = line.text.match(this.patternLineEnd)?.index!;
 
         // Create range for replacement.
