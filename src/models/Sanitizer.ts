@@ -26,7 +26,7 @@ export class Sanitizer {
     /**
      * Sanitize the active line in the editor.
      */
-    public async sanitizeActiveLine(): Promise<void> {
+    public async sanitizeActiveLine(): Promise<boolean> {
         // Get active line.
         const line: TextLine = this.editor.document.lineAt(this.editor.selection.active.line);
 
@@ -40,7 +40,7 @@ export class Sanitizer {
         const range: Range = new Range(line.lineNumber, indexStart, line.lineNumber, indexEnd);
 
         // Remove white space.
-        await this.editor.edit((editBuilder: TextEditorEdit) => {
+        return await this.editor.edit((editBuilder: TextEditorEdit) => {
             editBuilder.replace(range, '');
         });
     }
