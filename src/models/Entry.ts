@@ -1,7 +1,7 @@
-import { TextLine } from "vscode";
-
-
-export interface Entry {
+/**
+ * Representation of a `BuJo` entry.
+ */
+ export interface Entry {
     // Fields.
     notationOpen: string;
     notationClose: string;
@@ -9,7 +9,4 @@ export interface Entry {
     modifier: string;
     text: string;
     id: string;
-
-    // Methods to convert from text to entry instances.
-    fromTextLine(line: TextLine): void
 }
