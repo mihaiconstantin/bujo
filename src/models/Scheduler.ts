@@ -176,7 +176,7 @@ export class Scheduler {
         const destDocument = await this.getDestinationDocument();
 
         // Write the task to the table.
-        const status = this.writeTask(destDocument, row);
+        const status = await this.writeTask(destDocument, row);
 
         // Show the destination document.
         await window.showTextDocument(destDocument);
