@@ -78,7 +78,7 @@
                     "default": "log",
                     "markdownDescription": "Specifies the prefix for the planner file (e.g., **`log`**`.2022.03.20`)."
                 },
-                "bujo.scheduler.wikiLinkName": {
+                "bujo.scheduler.taskName": {
                     "type": "string",
                     "default": "alias",
                     "enum": [

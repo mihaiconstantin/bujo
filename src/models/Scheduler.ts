@@ -83,7 +83,7 @@ export class Scheduler {
         // Customize task name if entry text is valid wiki link with alias.
         if (entry.isWikiLinkWithALias()) {
             // Get the user configuration.
-            const name = this.config.get("scheduler.wikiLinkName");
+            const name = this.config.get("scheduler.taskName");
 
             // Decide whether to use the alias or the filename.
             if (name == "alias") {
