@@ -10,11 +10,21 @@ export class Interval {
 
 
     /**
-     * Interval elements.
+     * The line used to parse the interval elements.
      */
     public line: TextLine;
+
+
+    /**
+     * Interval elements for the start and stop time records.
+     */
     public start: string = "";
     public stop: string = "";
+
+
+    /**
+     * Whether the interval comes from a line that contains a `BuJo` entry.
+     */
     public root: boolean = false;
 
 
@@ -65,7 +75,7 @@ export class Interval {
 
 
     /**
-     * Return status for time interval.
+     * Return status for the time interval.
      */
     public getState(): { start: boolean; stop: boolean } {
         return {
