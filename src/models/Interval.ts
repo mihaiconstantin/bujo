@@ -29,6 +29,21 @@ export class Interval {
 
 
     /**
+     * Parse a given line to get the time records.
+     */
+     constructor(line: TextLine, root: boolean) {
+        // Set the line.
+        this.line = line;
+
+        // Indicate whether it is a task entry line.
+        this.root = root;
+
+        // Set time records.
+        this.parseTimeRecords();
+    }
+
+
+    /**
      * Parse a line to extract time the time records.
      */
     private parseTimeRecords(): void {
@@ -56,21 +71,6 @@ export class Interval {
                 this.stop = `${match.groups!.stopHour}:${match.groups!.stopMinute}`
             }
         }
-    }
-
-
-    /**
-     * Parse a given line to get the time records.
-     */
-    constructor(line: TextLine, root: boolean) {
-        // Set the line.
-        this.line = line;
-
-        // Indicate whether it is a task entry line.
-        this.root = root;
-
-        // Set time records.
-        this.parseTimeRecords();
     }
 
 
