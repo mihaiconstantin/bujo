@@ -2,6 +2,7 @@ import { Range, TextEditor, TextEditorEdit, TextLine } from "vscode";
 import { Entry } from "./Entry";
 import { Pattern } from "./Pattern";
 
+
 export class Symbol {
     /**
      * VS Code objects.
@@ -23,7 +24,7 @@ export class Symbol {
      * @param symbol The symbol to use during parsing.
      */
     private getLineIndexAtSymbol(line: TextLine, symbol: string): number {
-        // Regex pattern (i.e., see: https://regex101.com/r/ABVEf2/3).
+        // Get `regex` pattern given symbol.
         const pattern = Pattern.extractSymbol(symbol);
 
         // Match and return.
@@ -35,10 +36,11 @@ export class Symbol {
      * Update the symbol corresponding to an entry.
      * @param newSymbol The new symbol for updating the entry.
      * @param entry An instance of `Entry` class.
+     * @param toggle A logical value indicating whether to toggle between the current symbol and the open task symbol.
      */
     public async update(newSymbol: string, entry: Entry, toggle: boolean = true): Promise<boolean> {
         // Get index for the current symbol.
-        const index = this.getLineIndexAtSymbol(entry.line!,  entry.symbol);
+        const index = this.getLineIndexAtSymbol(entry.line, entry.symbol);
 
         // Toggle symbol if the new symbol matches the current one.
         if (toggle && entry.symbol == newSymbol) {
@@ -50,13 +52,13 @@ export class Symbol {
         }
 
         // Create range for replacement.
-        const range: Range = new Range(entry.line!.lineNumber, index, entry.line!.lineNumber, index + 1);
+        const range: Range = new Range(entry.line.lineNumber, index, entry.line.lineNumber, index + 1);
 
         // Replace character with symbol.
-        const editStatus = await this.editor.edit((editBuilder: TextEditorEdit) => {
-            editBuilder.replace(range,  entry.symbol);
+        const status = await this.editor.edit((editBuilder: TextEditorEdit) => {
+            editBuilder.replace(range, entry.symbol);
         });
 
-        return editStatus;
+        return status;
     }
 }
