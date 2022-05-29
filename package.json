@@ -73,10 +73,10 @@
         "configuration": {
             "title": "BuJo",
             "properties": {
-                "bujo.scheduler.dailyPlannerPrefix": {
+                "bujo.scheduler.plannerPrefix": {
                     "type": "string",
                     "default": "log",
-                    "markdownDescription": "Specifies the prefix for the daily planner file (e.g., `log.2022.03.20`)."
+                    "markdownDescription": "Specifies the prefix for the planner file (e.g., **`log`**`.2022.03.20`)."
                 },
                 "bujo.scheduler.wikiLinkName": {
                     "type": "string",

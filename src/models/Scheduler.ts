@@ -43,7 +43,7 @@ export class Scheduler {
      */
     private async getDestinationFile(): Promise<string> {
         // Get prefix from user configuration.
-        const prefix = this.config.get("scheduler.dailyPlannerPrefix");
+        const prefix = this.config.get("scheduler.plannerPrefix");
 
         // Get today's date.
         const [month, day, year]: string[] = new Date().toLocaleString("en-US",
