@@ -6,9 +6,9 @@ import { Symbol } from "./models/Symbol";
 
 
 /*
- * Copy a task to a time tracking table.
+ * Copy an entry to a time tracking table.
  */
-const scheduleTask = async (): Promise<boolean> => {
+const scheduleEntryOperation = async (): Promise<boolean> => {
     // Ensure an editor is open.
     const editor: TextEditor | undefined = window.activeTextEditor;
 
@@ -50,7 +50,7 @@ const scheduleTask = async (): Promise<boolean> => {
             // Create symbol instance.
             const symbol: Symbol = new Symbol(editor);
 
-            // Update symbol.
+            // Update symbol without toggling.
             return symbol.update(newSymbol as string, entry, false);
         }
 
@@ -60,12 +60,15 @@ const scheduleTask = async (): Promise<boolean> => {
 };
 
 
-export const scheduleTaskToTimeTrackingTable = (): void => {
-    scheduleTask().then(success => {
+/**
+ * Wrapper for to the user command for the scheduling operation.
+ */
+export const scheduleEntry = (): void => {
+    scheduleEntryOperation().then(success => {
         if (success) {
-            window.showInformationMessage('Entry added to the time tracking table.');
+            window.showInformationMessage('Entry scheduled.');
         } else {
-            window.showErrorMessage('Failed to add entry to the time tracking table.');
+            window.showErrorMessage('Failed to schedule entry.');
         }
     }).catch(error => {
         window.showErrorMessage(error.message);
