@@ -22,18 +22,6 @@ export class Scheduler {
 
 
     /**
-     * Write the entry ID to the active line in the editor.
-     * @param id The entry ID.
-     */
-    private async writeEntryId(line: TextLine, id: string): Promise<boolean> {
-        // Write the id.
-        return await this.editor.edit((editBuilder: TextEditorEdit) => {
-            editBuilder.insert(line.range.end, ` ^${id}`);
-        });
-    }
-
-
-    /**
      * Get the origin file name (i.e., the backlog).
      */
     private getOriginFile(): string {
@@ -179,15 +167,6 @@ export class Scheduler {
      * @param entry An instance of class `Entry`.
      */
     public async schedule(entry: Entry): Promise<boolean> {
-        // Check if the entry has an ID.
-        if (entry.id == "") {
-            // Generate an entry id.
-            entry.id = genUUIDInsecure()
-
-            // Also add the ID to the line in the editor.
-            await this.writeEntryId(entry.line!, entry.id)
-        }
-
         // Prepare row for the time tracking table.
         const row: string = this.makeTableRow(entry);
 

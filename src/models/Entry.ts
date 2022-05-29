@@ -1,6 +1,7 @@
-import { TextLine } from "vscode";
+import { TextEditor, TextEditorEdit, TextLine } from "vscode";
 import { BuJoSkeleton } from "./BuJoSkeleton";
 import { Pattern } from "./Pattern";
+import { genUUIDInsecure } from "../uuid";
 
 
 export class Entry implements BuJoSkeleton {
@@ -22,9 +23,33 @@ export class Entry implements BuJoSkeleton {
 
 
     /**
-     * The editor text line corresponding to the entry.
+     * The editor and text line corresponding to the entry.
      */
-    public line: TextLine | undefined;
+    public line: TextLine;
+    private editor: TextEditor;
+
+
+    /**
+     * Entry constructor.
+     */
+     public constructor(editor: TextEditor, line: TextLine) {
+        // Set the editor.
+        this.editor = editor;
+
+        // Set the line.
+        this.line = line;
+    }
+
+
+    /**
+     * Write a given entry id to the corresponding line in the editor.
+     */
+    private async writeEntryId(id: string): Promise<boolean> {
+        // Write the id.
+        return await this.editor.edit((editBuilder: TextEditorEdit) => {
+            editBuilder.insert(this.line.range.end, ` ^${id}`);
+        });
+    }
 
 
     /**
@@ -46,7 +71,7 @@ export class Entry implements BuJoSkeleton {
     /**
      * Set entry id from text.
      */
-    private parseEntryId(text: string) {
+    private async parseEntryId(text: string): Promise<void> {
         // Match the entry id.
         const match = text.match(Pattern.extractId);
 
@@ -54,6 +79,12 @@ export class Entry implements BuJoSkeleton {
         if (match) {
             // Set the entry ID.
             this.id = match.groups!.id;
+        } else {
+            // Generate an entry ID.
+            this.id = genUUIDInsecure();
+
+            // Write the ID on the line.
+            await this.writeEntryId(this.id);
         }
     }
 
@@ -79,20 +110,17 @@ export class Entry implements BuJoSkeleton {
     /**
      * Create an entry from a given editor line or fail.
      */
-    public fromTextLine(line: TextLine): void {
-        // Set the line.
-        this.line = line
-
+    public async fromTextLine(): Promise<void> {
         // Check if the line has a valid entry.
-        if (!Pattern.checkEntry.test(line.text)) {
+        if (!Pattern.checkEntry.test(this.line.text)) {
             throw new Error("The line does not contain a valid BuJo entry.");
         }
 
         // Set entry components.
-        this.parseEntryComponents(line.text);
+        this.parseEntryComponents(this.line.text);
 
         // Set entry ID.
-        this.parseEntryId(line.text);
+        await this.parseEntryId(this.line.text);
 
         // Parse the entry text if it is a valid wiki link with an alias.
         if (this.isWikiLinkWithALias()) {
