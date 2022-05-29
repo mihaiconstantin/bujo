@@ -1,5 +1,4 @@
-import { TextEditor, TextEditorEdit, TextLine, WorkspaceConfiguration, window, Uri, workspace, TextDocument, Position, WorkspaceEdit, commands } from "vscode";
-import { genUUIDInsecure } from "../uuid";
+import { TextEditor, WorkspaceConfiguration, window, Uri, workspace, TextDocument, Position, WorkspaceEdit, commands } from "vscode";
 import { Entry } from "./Entry";
 import { Pattern } from "./Pattern";
 
