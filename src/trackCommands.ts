@@ -18,8 +18,8 @@ const addTimeRecord = async (): Promise<boolean> => {
     // Make entry.
     const entry = new EntryLine(editor, editor.document.lineAt(editor.selection.active.line));
 
-    // Make entry from selection.
-    entry.fromTextLine()
+    // Parse and set the entry elements.
+    await entry.parse();
 
     // Make tracker.
     const tracker = new Tracker(editor);
@@ -68,8 +68,8 @@ const sumTimeIntervals = async (): Promise<number> => {
     // Make entry.
     const entry = new EntryLine(editor, editor.document.lineAt(editor.selection.active.line));
 
-    // Make entry from selection.
-    entry.fromTextLine()
+    // Parse and set the entry elements.
+    await entry.parse();
 
     // Make tracker.
     const tracker = new Tracker(editor);

@@ -110,7 +110,7 @@ export class EntryLine implements Entry {
     /**
      * Create an entry from a given editor line or fail.
      */
-    public async fromTextLine(): Promise<void> {
+    public async parse(): Promise<void> {
         // Check if the line has a valid entry.
         if (!Pattern.checkEntry.test(this.line.text)) {
             throw new Error("The line does not contain a valid BuJo entry.");

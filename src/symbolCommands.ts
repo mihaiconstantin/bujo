@@ -19,8 +19,8 @@ export async function entrySetSymbol(newSymbol: string): Promise<boolean> {
     // Make entry.
     const entry = new EntryLine(editor, editor.document.lineAt(editor.selection.active.line));
 
-    // Make entry from selection.
-    entry.fromTextLine()
+    // Parse and set the entry elements.
+    await entry.parse();
 
     // Make symbol.
     const symbol = new Symbol(editor);

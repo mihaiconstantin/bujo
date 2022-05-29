@@ -34,8 +34,8 @@ const scheduleTask = async (): Promise<boolean> => {
     // Make entry.
     const entry = new EntryLine(editor, editor.document.lineAt(editor.selection.active.line));
 
-    // Extract entry elements.
-    entry.fromTextLine();
+    // Parse and set the entry elements.
+    await entry.parse();
 
     // Create scheduler.
     const scheduler = new Scheduler(editor, config);
