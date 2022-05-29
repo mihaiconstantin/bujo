@@ -32,7 +32,7 @@ export class Entry implements BuJoSkeleton {
     /**
      * Entry constructor.
      */
-     public constructor(editor: TextEditor, line: TextLine) {
+    public constructor(editor: TextEditor, line: TextLine) {
         // Set the editor.
         this.editor = editor;
 
