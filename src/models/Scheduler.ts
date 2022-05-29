@@ -178,14 +178,17 @@ export class Scheduler {
         // Write the task to the table.
         const status = await this.writeTask(destDocument, row);
 
-        // Show the destination document.
-        await window.showTextDocument(destDocument);
+        // If the writing action succeeded.
+        if (status) {
+            // Show the destination document.
+            await window.showTextDocument(destDocument);
 
-        // Format the destination document to realign the table.
-        await commands.executeCommand('editor.action.formatDocument');
+            // Format the destination document to realign the table.
+            await commands.executeCommand('editor.action.formatDocument');
 
-        // Focus back on the origin document.
-        window.showTextDocument(this.editor.document);
+            // Focus back on the origin document.
+            await window.showTextDocument(this.editor.document);
+        }
 
         return status;
     }
