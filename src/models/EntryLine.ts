@@ -4,7 +4,7 @@ import { Pattern } from "./Pattern";
 import { genUUIDInsecure } from "../uuid";
 
 
-export class Entry implements BuJoSkeleton {
+export class EntryLine implements BuJoSkeleton {
     /**
      * BuJo skeleton implementation.
      */

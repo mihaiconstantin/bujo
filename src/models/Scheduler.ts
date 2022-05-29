@@ -1,5 +1,5 @@
 import { TextEditor, WorkspaceConfiguration, window, Uri, workspace, TextDocument, Position, WorkspaceEdit, commands } from "vscode";
-import { Entry } from "./Entry";
+import { EntryLine } from "./EntryLine";
 import { Pattern } from "./Pattern";
 
 
@@ -72,7 +72,7 @@ export class Scheduler {
      * Prepare a table row for the time tracking table.
      * @returns A table row with a task for the time tracking table.
      */
-    private makeTableRow(entry: Entry): string {
+    private makeTableRow(entry: EntryLine): string {
         // Get the origin file (i.e., the backlog).
         const backlog = this.getOriginFile();
 
@@ -167,7 +167,7 @@ export class Scheduler {
      * Schedule a single entry.
      * @param entry An instance of class `Entry`.
      */
-    public async schedule(entry: Entry): Promise<boolean> {
+    public async schedule(entry: EntryLine): Promise<boolean> {
         // Prepare row for the time tracking table.
         const row: string = this.makeTableRow(entry);
 

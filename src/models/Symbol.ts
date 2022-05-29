@@ -1,5 +1,5 @@
 import { Range, TextEditor, TextEditorEdit, TextLine } from "vscode";
-import { Entry } from "./Entry";
+import { EntryLine } from "./EntryLine";
 import { Pattern } from "./Pattern";
 
 
@@ -38,7 +38,7 @@ export class Symbol {
      * @param entry An instance of `Entry` class.
      * @param toggle A logical value indicating whether to toggle between the current symbol and the open task symbol.
      */
-    public async update(newSymbol: string, entry: Entry, toggle: boolean = true): Promise<boolean> {
+    public async update(newSymbol: string, entry: EntryLine, toggle: boolean = true): Promise<boolean> {
         // Get index for the current symbol.
         const index = this.getLineIndexAtSymbol(entry.line, entry.symbol);
 

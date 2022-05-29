@@ -1,5 +1,5 @@
 import { commands, TextEditor, window } from "vscode";
-import { Entry } from "./models/Entry";
+import { EntryLine } from "./models/EntryLine";
 import { Tracker } from "./models/Tracker";
 import * as _ from "lodash";
 
@@ -16,10 +16,10 @@ const addTimeRecord = async (): Promise<boolean> => {
     }
 
     // Make entry.
-    const entry = new Entry();
+    const entry = new EntryLine(editor, editor.document.lineAt(editor.selection.active.line));
 
     // Make entry from selection.
-    entry.fromTextLine(editor.document.lineAt(editor.selection.active.line))
+    entry.fromTextLine()
 
     // Make tracker.
     const tracker = new Tracker(editor);
@@ -66,10 +66,10 @@ const sumTimeIntervals = async (): Promise<number> => {
     }
 
     // Make entry.
-    const entry = new Entry();
+    const entry = new EntryLine(editor, editor.document.lineAt(editor.selection.active.line));
 
     // Make entry from selection.
-    entry.fromTextLine(editor.document.lineAt(editor.selection.active.line))
+    entry.fromTextLine()
 
     // Make tracker.
     const tracker = new Tracker(editor);

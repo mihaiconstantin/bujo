@@ -1,5 +1,5 @@
 import { Position, TextEditor, TextEditorEdit, TextLine } from "vscode";
-import { Entry } from "./Entry";
+import { EntryLine } from "./EntryLine";
 import { Interval } from "./Interval";
 
 
@@ -90,7 +90,7 @@ export class Tracker {
     /**
      * Add time record to the time tracking table.
      */
-    public async addTimeRecord(entry: Entry): Promise<boolean> {
+    public async addTimeRecord(entry: EntryLine): Promise<boolean> {
         // Create time interval from entry line.
         let interval = new Interval(entry.line, true);
 
@@ -169,7 +169,7 @@ export class Tracker {
     /**
      * Calculate the total time spent on a task.
      */
-    public sumTimeIntervals(entry: Entry): number {
+    public sumTimeIntervals(entry: EntryLine): number {
         // Starting total time.
         let total = 0;
 

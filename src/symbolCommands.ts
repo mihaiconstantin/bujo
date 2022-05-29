@@ -1,5 +1,5 @@
 import { TextEditor, window } from "vscode";
-import { Entry } from "./models/Entry";
+import { EntryLine } from "./models/EntryLine";
 import { Symbol } from "./models/Symbol";
 
 
@@ -17,10 +17,10 @@ export async function entrySetSymbol(newSymbol: string): Promise<boolean> {
     }
 
     // Make entry.
-    const entry = new Entry();
+    const entry = new EntryLine(editor, editor.document.lineAt(editor.selection.active.line));
 
     // Make entry from selection.
-    entry.fromTextLine(editor.document.lineAt(editor.selection.active.line))
+    entry.fromTextLine()
 
     // Make symbol.
     const symbol = new Symbol(editor);

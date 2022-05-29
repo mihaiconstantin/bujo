@@ -1,5 +1,5 @@
 import { TextEditor, window, workspace } from "vscode";
-import { Entry } from "./models/Entry";
+import { EntryLine } from "./models/EntryLine";
 import { Sanitizer } from "./models/Sanitizer";
 import { Scheduler } from "./models/Scheduler";
 import { Symbol } from "./models/Symbol";
@@ -32,10 +32,10 @@ const scheduleTask = async (): Promise<boolean> => {
     await sanitizer.sanitizeActiveLine();
 
     // Make entry.
-    const entry = new Entry();
+    const entry = new EntryLine(editor, editor.document.lineAt(editor.selection.active.line));
 
-    // Make entry from selection.
-    entry.fromTextLine(editor.document.lineAt(editor.selection.active.line))
+    // Extract entry elements.
+    entry.fromTextLine();
 
     // Create scheduler.
     const scheduler = new Scheduler(editor, config);
