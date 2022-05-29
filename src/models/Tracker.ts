@@ -43,8 +43,8 @@ export class Tracker {
 
         // Extract hour and minute with two digits.
         // See https://stackoverflow.com/questions/18889548/javascript-change-gethours-to-2-digit.
-        const hour = ("0" + date.getHours()).slice(-2)
-        const minute = ("0" + date.getMinutes()).slice(-2)
+        const hour = ("0" + date.getHours()).slice(-2);
+        const minute = ("0" + date.getMinutes()).slice(-2);
 
         // Formatted time.
         let timeRecord = `${hour}:${minute}`
@@ -92,7 +92,7 @@ export class Tracker {
      */
     public async addTimeRecord(entry: Entry): Promise<boolean> {
         // Create time interval from entry line.
-        let interval = new Interval(entry.line!, true);
+        let interval = new Interval(entry.line, true);
 
         // Get interval state.
         let state = interval.getState();
@@ -100,23 +100,23 @@ export class Tracker {
         // If the entry line is missing a start record.
         if (!state.start) {
             // Get index for adding a start time record.
-            let index = this.getIndex(entry.line!, this.patternStartRecord);
+            let index = this.getIndex(entry.line, this.patternStartRecord);
 
             // Write time record.
-            return await this.writeTimeRecord(entry.line!, state, index);
+            return await this.writeTimeRecord(entry.line, state, index);
         }
 
         // If the entry line is missing a stop record.
         if (!(state.start && state.stop)) {
             // Get index for adding a start time record.
-            let index = this.getIndex(entry.line!, this.patternStopRecord);
+            let index = this.getIndex(entry.line, this.patternStopRecord);
 
             // Write time record.
-            return await this.writeTimeRecord(entry.line!, state, index);
+            return await this.writeTimeRecord(entry.line, state, index);
         }
 
         // Line number.
-        let lineNumber = entry.line!.lineNumber;
+        let lineNumber = entry.line.lineNumber;
 
         // If the entry line contains a complete time interval.
         if (state.start && state.stop) {
@@ -174,7 +174,7 @@ export class Tracker {
         let total = 0;
 
         // Create interval from entry line.
-        let interval = new Interval(entry.line!, true)
+        let interval = new Interval(entry.line, true)
 
         // Get the state for entry line.
         let state = interval.getState();
@@ -185,7 +185,7 @@ export class Tracker {
         }
 
         // Get the line number.
-        let lineNumber = entry.line!.lineNumber;
+        let lineNumber = entry.line.lineNumber;
 
         // Compute time difference for any subsequent intervals.
         while (true) {
