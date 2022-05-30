@@ -108,8 +108,9 @@ export class EntryLine implements Entry {
 
     /**
      * Create an entry from a given editor line or fail.
+     * @param {boolean} [parseId = true] - A boolean indicating whether to parse the entry ID or not.
      */
-    public async parse(): Promise<void> {
+    public async parse(parseId: boolean = true): Promise<void> {
         // Check if the line has a valid entry.
         if (!Pattern.checkEntry.test(this.line.text)) {
             throw new Error("The line does not contain a valid BuJo entry.");
@@ -118,8 +119,11 @@ export class EntryLine implements Entry {
         // Set entry components.
         this.parseEntryComponents(this.line.text);
 
-        // Set entry ID.
-        await this.parseEntryId(this.line.text);
+        // If the ID is relevant.
+        if (parseId) {
+            // Set entry ID.
+            await this.parseEntryId(this.line.text);
+        }
 
         // Parse the entry text if it is a valid wiki link with an alias.
         if (this.isWikiLinkWithALias()) {
