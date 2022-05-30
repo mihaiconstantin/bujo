@@ -3,10 +3,11 @@ import { EntryLine } from "./models/EntryLine";
 import { Tracker } from "./models/Tracker";
 import * as _ from "lodash";
 
+
 /**
- * Add time record to the time tracking table.
+ * Add a time record to the time tracking table.
  */
-const addTimeRecord = async (): Promise<boolean> => {
+const recordTimeOperation = async (): Promise<boolean> => {
     // Ensure an editor is open.
     const editor: TextEditor | undefined = window.activeTextEditor;
 
@@ -40,8 +41,11 @@ const addTimeRecord = async (): Promise<boolean> => {
 }
 
 
+/**
+ * Wrapper for the user command for the record adding operation.
+ */
 export const recordTime = (): void => {
-    addTimeRecord().then(success => {
+    recordTimeOperation().then(success => {
         if (success) {
             window.showInformationMessage("Time record added successfully.");
         } else {
@@ -56,7 +60,7 @@ export const recordTime = (): void => {
 /**
  * Calculate the total time for a valid entry in the time tracking table.
  */
-const sumTimeIntervals = async (): Promise<number> => {
+const calculateEntryTimeOperation = async (): Promise<number> => {
     // Ensure an editor is open.
     const editor: TextEditor | undefined = window.activeTextEditor;
 
@@ -79,8 +83,11 @@ const sumTimeIntervals = async (): Promise<number> => {
 }
 
 
-export const calculateTime = (): void => {
-    sumTimeIntervals().then(total => {
+/**
+ * Wrapper for the user command for entry time calculation operation.
+ */
+export const calculateEntryTime = (): void => {
+    calculateEntryTimeOperation().then(total => {
         window.showInformationMessage(`Time spent: ${total} minutes (${_.round(total / 60, 2)} hours).`);
     }).catch(error => {
         window.showErrorMessage(error.message);

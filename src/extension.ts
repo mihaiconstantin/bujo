@@ -1,7 +1,7 @@
 import * as vscode from 'vscode';
 import * as symbol from './symbolCommands';
 import * as scheduler from './scheduleCommands';
-import { calculateTime, recordTime } from './trackCommands';
+import * as tracker from './trackCommands';
 
 // When extension gets activated.
 export function activate(context: vscode.ExtensionContext) {
@@ -24,11 +24,12 @@ export function activate(context: vscode.ExtensionContext) {
         // Schedule entry.
         vscode.commands.registerCommand('bujo.scheduler.scheduleEntry', scheduler.scheduleEntry),
 
+        // Tracker operations.
         // Add time records to the time tracking table.
-        vscode.commands.registerCommand('bujo.recordTime', recordTime),
+        vscode.commands.registerCommand('bujo.tracker.recordTime', tracker.recordTime),
 
         // Sum time records.
-        vscode.commands.registerCommand('bujo.calculateTime', calculateTime)
+        vscode.commands.registerCommand('bujo.tracker.calculateEntryTime', tracker.calculateEntryTime)
     );
 }
 
