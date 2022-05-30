@@ -1,13 +1,13 @@
 import { TextEditor, window } from "vscode";
-import { EntryLine } from "./models/EntryLine";
-import { Symbol } from "./models/Symbol";
+import { EntryLine } from "../models/EntryLine";
+import { Symbol } from "../models/Symbol";
 
 
 /**
  * Set an entry's symbol.
  * @param newSymbol The new symbol for updating the entry.
  */
-export async function setSymbolOperation(newSymbol: string): Promise<boolean> {
+async function setSymbolOperation(newSymbol: string): Promise<boolean> {
     // Ensure an editor is open.
     const editor: TextEditor | undefined = window.activeTextEditor;
 

@@ -1,6 +1,6 @@
 import { commands, TextEditor, window } from "vscode";
-import { EntryLine } from "./models/EntryLine";
-import { Tracker } from "./models/Tracker";
+import { EntryLine } from "../models/EntryLine";
+import { Tracker } from "../models/Tracker";
 import * as _ from "lodash";
 
 

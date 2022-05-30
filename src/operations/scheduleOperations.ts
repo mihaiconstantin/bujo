@@ -1,8 +1,8 @@
 import { TextEditor, window, workspace } from "vscode";
-import { EntryLine } from "./models/EntryLine";
-import { Sanitizer } from "./models/Sanitizer";
-import { Scheduler } from "./models/Scheduler";
-import { Symbol } from "./models/Symbol";
+import { EntryLine } from "../models/EntryLine";
+import { Sanitizer } from "../models/Sanitizer";
+import { Scheduler } from "../models/Scheduler";
+import { Symbol } from "../models/Symbol";
 
 
 /*
