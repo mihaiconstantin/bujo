@@ -25,28 +25,27 @@ into a full-fledged personal knowledge management and productivity system.
 
 ### Syntax Highlighting
 
-When enabled, **BuJo** parses the text written in Markdown files for specific
-patterns and highlights the matches. At its core, **BuJo** uses the VS Code
-API for injecting language grammars (i.e., see [VS Code
+**BuJo** parses the text written in Markdown files for specific patterns and
+highlights the matches. At its core, **BuJo** uses the VS Code API for injecting
+a language grammar (i.e., see [VS Code
 documentation](https://code.visualstudio.com/api/language-extensions/syntax-highlight-guide)
 for more details).
 
 #### Bullet Journal Syntax
 
 **BuJo** provides highlighting for the standard Bullet Journal entries (i.e.,
-see [Carroll, 2018](https://bulletjournal.com/pages/book)), and it also provides
-a way to select and colorize markdown table lines, as well as tasks and time
-records in tables (i.e., see below).
-
-For each Bullet Journal entry, you can highlight four different tokens. Take,
-for example, the Bullet Journal entry below that constitutes a completed task:
+see [Carroll, 2018](https://bulletjournal.com/pages/book)). It also provides a
+way to select and colorize markdown table lines and tasks and time records in
+tables (i.e., see below). For each Bullet Journal entry, you can highlight four
+different tokens. Take, for example, the Bullet Journal entry below that
+constitutes a completed task:
 
 > `[x] Write BuJo readme file.`
 
 **BuJo** uses the **_notation_** `[` `]` to indicate that the text that follows
 is a Bullet Journal entry. The `x` inside `[` `]` represents the **_symbol_**
 that describes the type of Bullet Journal entry. The **_text_** that follows
-(i.e., `Write BuJo readme file.`) represents the content of the entry.
+(i.e., `Write BuJo readme file.`) represents the entry's content.
 
 Aside from the *notation*, *symbol*, and *text*, you may also use a
 **_modifier_**. For example, you can use the `!` modifier after `[x]` to
@@ -86,7 +85,7 @@ emphasize the content. For example:
 
 ##### Modifiers
 
-**BuJo** supports three Bullet Journal modifiers:
+**BuJo** also supports three Bullet Journal modifiers:
 
     `!` indicates, e.g., priority, inspiration, etc.
     `?` indicates, e.g., waiting for someone or something, unclear, etc.
@@ -170,6 +169,9 @@ well as well as time records:
 <div align="center">
     <img src="./assets/syntax/time_tracking.png" alt="highlighting for time tracking" width=690px>
 </div>
+
+_Note. See section [Commands for Time Tracking](###commands-for-time-tracking)
+for adding entries to the time tracking table and _tracking_ the time spent._
 
 Similarly, it also supports time blocking highlighting:
 
@@ -333,7 +335,7 @@ In case you discover edge cases where the tokens are not highlighted properly,
 please submit an issue. The regular expressions used for capturing the scopes
 above can be consulted at:
 
-- [for Bullet Journal entries](https://regex101.com/r/LVVrrS/26)
+- [for `BuJo` entries](https://regex101.com/r/LVVrrS/26)
 - [for table grids](https://regex101.com/r/91IC8c/1)
 - [for time blocking](https://regex101.com/r/npln0p/5)
 - [for time tracking](https://regex101.com/r/36951B/6)
@@ -360,27 +362,61 @@ The following video demonstrates the commands in action:
   </p>
 </a>
 
+### Commands for Time Tracking
+**BuJo** provides several commands via the command palette to schedule entries
+(i.e., copy them to the time tracking table as tasks) and track the time spent.
+The following commands are available:
+
+- `BuJo: Schedule Entry` to copy entries to the time tracking table (i.e.,
+  scheduling a task)
+- `BuJo: Record Time` to add a time record for a task in the time tracking table
+- `BuJo: Time Spent` to calculate the total time spent on a task in the time
+  tracking table
+
+Additionally, the commands above can also be invoked via the default keybindings:
+
+- `alt+shift+p` to run command `BuJo: Schedule Entry`
+- `alt+shift+t` to run command `BuJo: Record Time`
+- `alt+shift+s` to run command `BuJo: Time Spent`
+
+Furthermore, the behavior of these commands can be customized via the following
+settings keys:
+
+- `bujo.scheduler.plannerPrefix` to specify the prefix to use when
+  selecting the daily planner file via the input box (e.g.,
+  **`prefix`**`.2022.03.20`)
+- `bujo.scheduler.taskName` to specify what to use as task name for the
+  time tracking table when scheduling a `BuJo` entry that contains a wiki link
+  with an alias (e.g., `[[A random task|project.example.a-random-task]]`:
+    - `alias` sets the name of the task in the table to wiki link alias (e.g.,
+  `A random task`)
+    - `filename` sets the name of the task to the actual wiki link (e.g.,
+      `[[project.example.a-random-task]]`)
+- `bujo.scheduler.symbolForScheduledEntry` to specify the symbol to set for a
+  `BuJo` entry scheduled to the time track table (i.e., by default, the symbol
+  is updated from `[ ]` to `[>]`)
+
 ### Keybindings for Updating Entry Symbols
 
 **BuJo** also provides functionality to update entry symbols via arbitrary
-keybindings that pass as argument the symbol to be set. For instance, when
+keybindings that pass the symbol to be set as an argument. For instance, when
 triggered, the following keybinding will update the task status to `[x]`, and
 toggle between `[x]` and `[ ]` on subsequent triggers:
 
-    ```jsonc
-    [
-        // ...
-        {
-            "key": "alt+x",
-            "command": "bujo.setSymbol",
-            "args": {
-                "symbol": "x"
-            },
-            "when": "editorTextFocus && editorLangId == markdown"
-        }
-        // ...
-    ]
-    ```
+```jsonc
+[
+    // ...
+    {
+        "key": "alt+x",
+        "command": "bujo.setSymbol",
+        "args": {
+            "symbol": "x"
+        },
+        "when": "editorTextFocus && editorLangId == markdown"
+    }
+    // ...
+]
+```
 
 Several default keybindings are provided for changing entry symbols, albeit they
 can be changed as needed:
@@ -403,8 +439,8 @@ The video below demonstrates the keybindings in action:
 
 ### Snippets
 
-**BuJo** also provides various snippets for common actions. Below you can find a
-short description and example output for the snippets available:
+**BuJo** also provides various snippets for everyday actions. Below you can find
+a short description and example output for the snippets available:
 
 - `task` to enter a task
 
@@ -519,14 +555,12 @@ Any contributions, suggestions, or bug reports are welcome and greatly
 appreciated.
 
 ## Roadmap
-
-For planned features please visit our [project
+For planned features, please visit our [project
 page](https://github.com/users/mihaiconstantin/projects/1). Any ideas and
 discussions are welcome!
 
 ## License
-
-Foam is licensed under the [MIT license](LICENSE).
+`BuJo` is licensed under the [MIT license](LICENSE).
 
 ## References
 - Carroll, R. (2018). *The bullet journal method: Track the past, order the
