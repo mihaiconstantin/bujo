@@ -20,54 +20,54 @@
     ],
     "main": "./out/extension.js",
     "activationEvents": [
-        "onCommand:bujo.setMigratedForward",
-        "onCommand:bujo.setMigratedBackward",
-        "onCommand:bujo.setCompleted",
-        "onCommand:bujo.setOpen",
-        "onCommand:bujo.setInProgress",
-        "onCommand:bujo.setDropped",
-        "onCommand:bujo.setSymbol",
-        "onCommand:bujo.scheduleToTimeTrackingTable",
-        "onCommand:bujo.recordTime",
-        "onCommand:bujo.calculateTime"
+        "onCommand:bujo.symbol.setMigratedForward",
+        "onCommand:bujo.symbol.setMigratedBackward",
+        "onCommand:bujo.symbol.setCompleted",
+        "onCommand:bujo.symbol.setOpened",
+        "onCommand:bujo.symbol.setStarted",
+        "onCommand:bujo.symbol.setDropped",
+        "onCommand:bujo.symbol.setSymbol",
+        "onCommand:bujo.scheduler.scheduleEntry",
+        "onCommand:bujo.tracker.recordTime",
+        "onCommand:bujo.tracker.calculateEntryTime"
     ],
     "contributes": {
         "commands": [
             {
-                "command": "bujo.setMigratedForward",
+                "command": "bujo.symbol.setMigratedForward",
                 "title": "BuJo: Set Migrated Forward"
             },
             {
-                "command": "bujo.setMigratedBackward",
+                "command": "bujo.symbol.setMigratedBackward",
                 "title": "BuJo: Set Migrated Backward"
             },
             {
-                "command": "bujo.setCompleted",
+                "command": "bujo.symbol.setCompleted",
                 "title": "BuJo: Set Completed"
             },
             {
-                "command": "bujo.setOpen",
+                "command": "bujo.symbol.setOpened",
                 "title": "BuJo: Set Open"
             },
             {
-                "command": "bujo.setInProgress",
-                "title": "BuJo: Set In Progress"
+                "command": "bujo.symbol.setStarted",
+                "title": "BuJo: Set Started"
             },
             {
-                "command": "bujo.setDropped",
+                "command": "bujo.symbol.setDropped",
                 "title": "BuJo: Set Dropped"
             },
             {
-                "command": "bujo.scheduleToTimeTrackingTable",
-                "title": "BuJo: Schedule To Time Tracking Table"
+                "command": "bujo.scheduler.scheduleEntry",
+                "title": "BuJo: Schedule Entry"
             },
             {
-                "command": "bujo.recordTime",
+                "command": "bujo.tracker.recordTime",
                 "title": "BuJo: Record Time"
             },
             {
-                "command": "bujo.calculateTime",
-                "title": "BuJo: Calculate Total Time"
+                "command": "bujo.tracker.calculateEntryTime",
+                "title": "BuJo: Calculate Entry Time"
             }
         ],
         "configuration": {
@@ -137,7 +137,7 @@
         "keybindings": [
             {
                 "key": "alt+x",
-                "command": "bujo.setSymbol",
+                "command": "bujo.symbol.setSymbol",
                 "args": {
                     "symbol": "x"
                 },
@@ -145,7 +145,7 @@
             },
             {
                 "key": "alt+o",
-                "command": "bujo.setSymbol",
+                "command": "bujo.symbol.setSymbol",
                 "args": {
                     "symbol": " "
                 },
@@ -153,7 +153,7 @@
             },
             {
                 "key": "alt+-",
-                "command": "bujo.setSymbol",
+                "command": "bujo.symbol.setSymbol",
                 "args": {
                     "symbol": "-"
                 },
@@ -161,7 +161,7 @@
             },
             {
                 "key": "alt+/",
-                "command": "bujo.setSymbol",
+                "command": "bujo.symbol.setSymbol",
                 "args": {
                     "symbol": "/"
                 },
@@ -169,7 +169,7 @@
             },
             {
                 "key": "alt+,",
-                "command": "bujo.setSymbol",
+                "command": "bujo.symbol.setSymbol",
                 "args": {
                     "symbol": "<"
                 },
@@ -177,7 +177,7 @@
             },
             {
                 "key": "alt+.",
-                "command": "bujo.setSymbol",
+                "command": "bujo.symbol.setSymbol",
                 "args": {
                     "symbol": ">"
                 },
@@ -185,7 +185,7 @@
             },
             {
                 "key": "alt+p",
-                "command": "bujo.setSymbol",
+                "command": "bujo.symbol.setSymbol",
                 "args": {
                     "symbol": "o"
                 },
@@ -193,17 +193,17 @@
             },
             {
                 "key": "alt+shift+p",
-                "command": "bujo.scheduleToTimeTrackingTable",
+                "command": "bujo.scheduler.scheduleEntry",
                 "when": "editorTextFocus && editorLangId == markdown"
             },
             {
                 "key": "alt+shift+t",
-                "command": "bujo.recordTime",
+                "command": "bujo.tracker.recordTime",
                 "when": "editorTextFocus && editorLangId == markdown"
             },
             {
                 "key": "alt+shift+s",
-                "command": "bujo.calculateTime",
+                "command": "bujo.tracker.calculateEntryTime",
                 "when": "editorTextFocus && editorLangId == markdown"
             }
         ],
