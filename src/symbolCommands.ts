@@ -4,10 +4,10 @@ import { Symbol } from "./models/Symbol";
 
 
 /**
- * Set a custom symbol.
+ * Set an entry's symbol.
  * @param newSymbol The new symbol for updating the entry.
  */
-export async function entrySetSymbol(newSymbol: string): Promise<boolean> {
+export async function setSymbolOperation(newSymbol: string): Promise<boolean> {
     // Ensure an editor is open.
     const editor: TextEditor | undefined = window.activeTextEditor;
 
@@ -30,9 +30,34 @@ export async function entrySetSymbol(newSymbol: string): Promise<boolean> {
 };
 
 
-// Migrate forward.
-export const setMigratedForward = (): void => {
-    entrySetSymbol('>').then(success => {
+/**
+ * Wrapper for to the user command for the symbol setting operation.
+ */
+export const setSymbol = (args: any): void => {
+    // Ensure symbol is provided.
+    if (!args.symbol) {
+        window.showErrorMessage('Symbol not provided via keybinding.');
+        return
+    }
+
+    // Update the task status.
+    setSymbolOperation(args.symbol).then(success => {
+        if (success) {
+            window.showInformationMessage('Updated entry symbol.');
+        } else {
+            window.showErrorMessage("Failed to update task symbol");
+        }
+    }).catch(error => {
+        window.showErrorMessage(error.message);
+    });
+}
+
+
+/**
+ * Migrated forward.
+ */
+export const setSymbolMigratedForward = (): void => {
+    setSymbolOperation('>').then(success => {
         if (success) {
             window.showInformationMessage('Migrated forward.');
         } else {
@@ -44,9 +69,11 @@ export const setMigratedForward = (): void => {
 };
 
 
-// Migrate backward.
-export const setMigratedBackward = (): void => {
-    entrySetSymbol('<').then(success => {
+/**
+ * Migrated backward.
+ */
+export const setSymbolMigratedBackward = (): void => {
+    setSymbolOperation('<').then(success => {
         if (success) {
             window.showInformationMessage('Migrated backward.');
         } else {
@@ -58,9 +85,11 @@ export const setMigratedBackward = (): void => {
 };
 
 
-// Set completed.
-export const setCompleted = (): void => {
-    entrySetSymbol('x').then(success => {
+/**
+ * Completed.
+ */
+export const setSymbolCompleted = (): void => {
+    setSymbolOperation('x').then(success => {
         if (success) {
             window.showInformationMessage('Completed.');
         } else {
@@ -71,9 +100,12 @@ export const setCompleted = (): void => {
     });
 };
 
-// Set task open.
-export const setOpen = (): void => {
-    entrySetSymbol(' ').then(success => {
+
+/**
+ * Opened.
+ */
+export const setSymbolOpened = (): void => {
+    setSymbolOperation(' ').then(success => {
         if (success) {
             window.showInformationMessage('Opened.');
         } else {
@@ -85,11 +117,13 @@ export const setOpen = (): void => {
 };
 
 
-// Set task in progress.
-export const setInProgress = (): void => {
-    entrySetSymbol('/').then(success => {
+/**
+ * Started (i.e., in progress).
+ */
+export const setSymbolStarted = (): void => {
+    setSymbolOperation('/').then(success => {
         if (success) {
-            window.showInformationMessage('Set in progress.');
+            window.showInformationMessage('Started.');
         } else {
             window.showErrorMessage("Failed to update task symbol");
         }
@@ -99,9 +133,11 @@ export const setInProgress = (): void => {
 };
 
 
-// Set task as dropped.
-export const setDropped = (): void => {
-    entrySetSymbol('-').then(success => {
+/**
+ * Dropped.
+ */
+export const setSymbolDropped = (): void => {
+    setSymbolOperation('-').then(success => {
         if (success) {
             window.showInformationMessage('Dropped.');
         } else {
@@ -111,24 +147,3 @@ export const setDropped = (): void => {
         window.showErrorMessage(error.message);
     });
 };
-
-
-// Set custom status.
-export const setSymbol = (args: any): void => {
-    // Ensure symbol is provided.
-    if (!args.symbol) {
-        window.showErrorMessage('Symbol not provided for keybinding.');
-        return
-    }
-
-    // Update the task status.
-    entrySetSymbol(args.symbol).then(success => {
-        if (success) {
-            window.showInformationMessage('Updated entry symbol.');
-        } else {
-            window.showErrorMessage("Failed to update task symbol");
-        }
-    }).catch(error => {
-        window.showErrorMessage(error.message);
-    });
-}

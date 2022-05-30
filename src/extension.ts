@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { scheduleTaskToTimeTrackingTable } from './scheduleCommands';
+import * as symbol from './symbolCommands';
 import * as scheduler from './scheduleCommands';
 import { calculateTime, recordTime } from './trackCommands';
 
@@ -9,13 +9,16 @@ export function activate(context: vscode.ExtensionContext) {
     // Register commands.
     context.subscriptions.push(
         // Symbol operations.
-        vscode.commands.registerCommand('bujo.setMigratedForward', symbolCommands.setMigratedForward),
-        vscode.commands.registerCommand('bujo.setMigratedBackward', symbolCommands.setMigratedBackward),
-        vscode.commands.registerCommand('bujo.setCompleted', symbolCommands.setCompleted),
-        vscode.commands.registerCommand('bujo.setOpen', symbolCommands.setOpen),
-        vscode.commands.registerCommand('bujo.setInProgress', symbolCommands.setInProgress),
-        vscode.commands.registerCommand('bujo.setDropped', symbolCommands.setDropped),
-        vscode.commands.registerCommand('bujo.setSymbol', symbolCommands.setSymbol),
+        // Set custom symbol via keybindings.
+        vscode.commands.registerCommand('bujo.symbol.setSymbol', symbol.setSymbol),
+
+        // Symbol default symbols.
+        vscode.commands.registerCommand('bujo.symbol.setMigratedForward', symbol.setSymbolMigratedForward),
+        vscode.commands.registerCommand('bujo.symbol.setMigratedBackward', symbol.setSymbolMigratedBackward),
+        vscode.commands.registerCommand('bujo.symbol.setCompleted', symbol.setSymbolCompleted),
+        vscode.commands.registerCommand('bujo.symbol.setOpened', symbol.setSymbolOpened),
+        vscode.commands.registerCommand('bujo.symbol.setStarted', symbol.setSymbolStarted),
+        vscode.commands.registerCommand('bujo.symbol.setDropped', symbol.setSymbolDropped),
 
         // Scheduler operations.
         // Schedule entry.
