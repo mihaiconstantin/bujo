@@ -1,8 +1,7 @@
 import { TextEditor, TextEditorEdit, TextLine } from "vscode";
 import { Entry } from "./Entry";
 import { Pattern } from "./Pattern";
-import { genUUIDInsecure } from "../uuid";
-
+import { genUUIDInsecure } from '../helpers';
 
 export class EntryLine implements Entry {
     /**
