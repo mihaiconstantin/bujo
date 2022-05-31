@@ -8,3 +8,4 @@ dist
 assets/video
 .temp
 .cache
+**/temp*
