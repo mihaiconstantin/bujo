@@ -6,3 +6,5 @@ dist
 .vscode-test/
 .DS_Store
 assets/video
+.temp
+.cache
