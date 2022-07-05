@@ -568,7 +568,9 @@
         "esbuild-base": "esbuild ./src/extension.ts --bundle --outfile=out/main.js --external:vscode --format=cjs --platform=node",
         "esbuild": "npm run esbuild-base -- --sourcemap",
         "esbuild-watch": "npm run esbuild-base -- --sourcemap --watch",
-        "test-compile": "tsc -p ./"
+        "test-compile": "tsc -p ./",
+        "docs:dev": "vuepress dev docs",
+        "docs:build": "vuepress build docs"
     },
     "devDependencies": {
         "@types/glob": "^7.2.0",
@@ -579,11 +581,13 @@
         "@typescript-eslint/eslint-plugin": "^5.16.0",
         "@typescript-eslint/parser": "^5.16.0",
         "@vscode/test-electron": "^2.1.3",
+        "@vuepress/plugin-search": "^2.0.0-beta.46",
         "esbuild": "^0.14.41",
         "eslint": "^8.11.0",
         "glob": "^7.2.0",
         "mocha": "^9.2.2",
-        "typescript": "^4.5.5"
+        "typescript": "^4.5.5",
+        "vuepress": "^2.0.0-beta.46"
     },
     "dependencies": {
         "lodash": "^4.17.21",
