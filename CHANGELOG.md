@@ -1,8 +1,11 @@
 # Changelog
 
-## [2.2.0] - 2022.05.30
+## [2.4.0] - 2022.07.05
 
 ### Added
+- Add extension documentation via `VuePress` at
+  [bujo.mihaiconstantin.com](https://bujo.mihaiconstantin.com). Closes
+  [#14](https://github.com/mihaiconstantin/bujo/issues/14).
 - Add functionality to **schedule `BuJo` entries** to time tracking tables via
   the `BuJo: Schedule Entry` command. Closes
   [#8](https://github.com/mihaiconstantin/bujo/issues/8).
@@ -37,6 +40,8 @@
   [#12](https://github.com/mihaiconstantin/bujo/issues/12).
 
 ### Changed
+- Simplify `README.md` file to point to the new documentation. Closes
+  [#12](https://github.com/mihaiconstantin/bujo/issues/12).
 - Refactor `Entry` class into multiple classes, each corresponding to a type of
   functionality:
   - `Scheduler` class for handling scheduling operation
