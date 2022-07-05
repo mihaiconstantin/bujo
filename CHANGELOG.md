@@ -3,6 +3,7 @@
 ## [2.4.0] - 2022.07.05
 
 ### Added
+- Add `.github` workflow for building documentation website.
 - Add extension documentation via `VuePress` at
   [bujo.mihaiconstantin.com](https://bujo.mihaiconstantin.com). Closes
   [#14](https://github.com/mihaiconstantin/bujo/issues/14).
@@ -11,7 +12,7 @@
   [#8](https://github.com/mihaiconstantin/bujo/issues/8).
 - Add functionality for **time tracking** for `BuJo` entries via the `BuJo:
   Record Time` command. Closes
-  [#6](https://github.com/mihaiconstantin/bujo/issues/6),
+  [#6](https://github.com/mihaiconstantin/bujo/issues/6).
 - Add functionality to *calculate the total time spent on a task* for `BuJo`
   entries scheduled to the time tracking table via the command `BuJo: Calculate
   Entry Time`. Closes [#7](https://github.com/mihaiconstantin/bujo/issues/7).
