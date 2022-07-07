@@ -6,7 +6,7 @@ import { sidebar, navbar, head } from "./configs";
  * VuePress config.
  */
 export default defineUserConfig({
-    base: "/bujo/",
+    base: "/",
     lang: "en-US",
     title: "BuJo",
     description: "Bullet Journal Markdown Workflows",
