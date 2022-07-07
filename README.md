@@ -36,17 +36,17 @@ and colorize markdown table grids, and tasks and time records within tables.
 
 <div align="center">
     <h4>BuJo Entries</h4>
-    <img src="assets/features/bujo-syntax-highlighting-colored-entries.png" alt="BuJo Syntax Highlighting Feature" width=400>
+    <img src="./assets/features/bujo-syntax-highlighting-colored-entries.png" alt="BuJo Syntax Highlighting Feature" width=400>
 </div>
 
 <div align="center">
     <h4>Time Blocking</h4>
-    <img src="assets/features/bujo-syntax-highlighting-time-blocking.png" alt="Time Blocking Feature" width=420px>
+    <img src="./assets/features/bujo-syntax-highlighting-time-blocking.png" alt="Time Blocking Feature" width=420px>
 </div>
 
 <div align="center">
     <h4>Time Tracking</h4>
-    <img src="assets/features/bujo-syntax-highlighting-time-tracking.png" alt="Time Tracking Feature" width=530px>
+    <img src="./assets/features/bujo-syntax-highlighting-time-tracking.png" alt="Time Tracking Feature" width=530px>
 </div>
 
 ### Task Management
