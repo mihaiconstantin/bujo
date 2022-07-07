@@ -1,5 +1,84 @@
 # Changelog
 
+## [2.4.0] - 2022.07.07
+
+### Added
+- Add `.github` workflow for building documentation website.
+- Add extension documentation via `VuePress` at
+  [bujo.mihaiconstantin.com](https://bujo.mihaiconstantin.com). Closes
+  [#14](https://github.com/mihaiconstantin/bujo/issues/14).
+- Add functionality to **schedule `BuJo` entries** to time tracking tables via
+  the `BuJo: Schedule Entry` command. Closes
+  [#8](https://github.com/mihaiconstantin/bujo/issues/8).
+- Add functionality for **time tracking** for `BuJo` entries via the `BuJo:
+  Record Time` command. Closes
+  [#6](https://github.com/mihaiconstantin/bujo/issues/6).
+- Add functionality to *calculate the total time spent on a task* for `BuJo`
+  entries scheduled to the time tracking table via the command `BuJo: Calculate
+  Entry Time`. Closes [#7](https://github.com/mihaiconstantin/bujo/issues/7).
+- Add default keybindings scheduling and time tracking commands:
+  - `alt+shift+p` to run command `BuJo: Schedule Entry`
+  - `alt+shift+t` to run command `BuJo: Record Time`
+  - `alt+shift+s` to run command `BuJo: Calculate Entry Time`
+- Add user settings for customizing the scheduling and time tracking behavior:
+  - `bujo.scheduler.plannerPrefix` to specify the prefix to use when
+    selecting the daily planner file via the input box (e.g.,
+    **`prefix`**`.2022.03.20`)
+  - `bujo.scheduler.taskName` to specify what to use as task name for the
+    time tracking table when scheduling a `BuJo` entry that contains a wiki link
+    with an alias (e.g., `[[A random task|project.example.a-random-task]]`:
+      - `alias` sets the name of the task in the table to wiki link alias (e.g.,
+    `A random task`)
+      - `filename` sets the name of the task to the actual wiki link (e.g.,
+        `[[project.example.a-random-task]]`)
+  - `bujo.scheduler.symbolForScheduledEntry` to specify the symbol to set for a
+    `BuJo` entry scheduled to the time track table (i.e., by default, the symbol
+    is updated from `[ ]` to `[>]`)
+- Add `genUUID` and `genUUIDInsecure` helper functions to generate
+  Dendron-compatible blockquote IDs for scheduling `BuJo` entries to the time
+  tracking table.
+- Add essential documentation in `README.md` for new changes. Closes
+  [#12](https://github.com/mihaiconstantin/bujo/issues/12).
+
+### Changed
+- Switched from `esbuild` to `webpack` for bundling extension source files.
+- Simplify `README.md` file to point to the new documentation. Closes
+  [#12](https://github.com/mihaiconstantin/bujo/issues/12).
+- Refactor `Entry` class into multiple classes, each corresponding to a type of
+  functionality:
+  - `Scheduler` class for handling scheduling operation
+  - `Symbol` class for handling entry symbol updates
+  - `Tracker` and `Interval` classes for handling time tracking and time totals
+- Move most of the regular expressions to the `Pattern` class and add
+  demonstration links to `regex101.com` to improve debugging of `regex`.
+- Create `operations` module that contains functions and wrappers to use in the
+  context of the command palette, e.g.:
+
+    ```typescript
+    // Import the module.
+    import * as operations from "./operations";
+
+    // The module currently contains `symbol`, `scheduler` and `tracker` commands.
+    // ...
+    vscode.commands.registerCommand('bujo.scheduler.scheduleEntry', operations.scheduler.scheduleEntry)
+    // ...
+    ```
+
+- Create `helpers` module for small functions used in various places.
+- Update the functions within the operations module to use new classes.
+- **Rename several commands to maintain consistency with the `operations`
+  module:**
+  - from `bujo.setMigratedForward` to `bujo.symbol.setMigratedForward`
+  - from `bujo.setMigratedBackward` to `bujo.symbol.setMigratedBackward`
+  - from `bujo.setCompleted` to `bujo.symbol.setCompleted`
+  - from `bujo.setOpen` to `bujo.symbol.setOpened`
+  - from `bujo.setInProgress` to `bujo.symbol.setStarted`
+  - from `bujo.setDropped` to `bujo.symbol.setDropped`
+  - from `bujo.setSymbol` to `bujo.symbol.setSymbol`
+  - from `bujo.scheduleToTimeTrackingTable` to `bujo.scheduler.scheduleEntry`
+  - from `bujo.recordTime` to `bujo.tracker.recordTime`
+  - from `bujo.calculateTime` to `bujo.tracker.calculateEntryTime`
+
 ## [2.1.0] - 2022.04.24
 ### Added
 - Add syntax highlighting support for multiple entries on the same line

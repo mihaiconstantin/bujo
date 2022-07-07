@@ -1,12 +1,25 @@
-.vscode/**
-.vscode-test/**
-src/**
+# Configuration files.
+.github/
+.vscode/
 .gitignore
-.yarnrc
-vsc-extension-quickstart.md
-**/tsconfig.json
-**/.eslintrc.json
-**/*.map
+tsconfig.json
+.eslintrc.json
+package-json.lock
+webpack.config.js
+CNAME
+
+# Source files.
+node_modules/**
+src/
 **/*.ts
-assets/video/
+
+# Documentation files.
+docs/
+
+# Debug files.
 debug/
+
+# Development files.
+.vscode-test/
+out/
+**/*.map

@@ -5,7 +5,7 @@
     "publisher": "mihaiconstantin",
     "icon": "assets/icon/bujo_circle_128.png",
     "private": true,
-    "version": "2.1.0",
+    "version": "2.4.0",
     "license": "MIT",
     "engines": {
         "vscode": "^1.65.0"
@@ -18,43 +18,86 @@
     "categories": [
         "Other"
     ],
-    "main": "./out/extension.js",
+    "main": "./dist/extension.js",
     "activationEvents": [
-        "onCommand:bujo.setMigratedForward",
-        "onCommand:bujo.setMigratedBackward",
-        "onCommand:bujo.setCompleted",
-        "onCommand:bujo.setOpen",
-        "onCommand:bujo.setInProgress",
-        "onCommand:bujo.setDropped",
-        "onCommand:bujo.setSymbol"
+        "onCommand:bujo.symbol.setMigratedForward",
+        "onCommand:bujo.symbol.setMigratedBackward",
+        "onCommand:bujo.symbol.setCompleted",
+        "onCommand:bujo.symbol.setOpened",
+        "onCommand:bujo.symbol.setStarted",
+        "onCommand:bujo.symbol.setDropped",
+        "onCommand:bujo.symbol.setSymbol",
+        "onCommand:bujo.scheduler.scheduleEntry",
+        "onCommand:bujo.tracker.recordTime",
+        "onCommand:bujo.tracker.calculateEntryTime"
     ],
     "contributes": {
         "commands": [
             {
-                "command": "bujo.setMigratedForward",
+                "command": "bujo.symbol.setMigratedForward",
                 "title": "BuJo: Set Migrated Forward"
             },
             {
-                "command": "bujo.setMigratedBackward",
+                "command": "bujo.symbol.setMigratedBackward",
                 "title": "BuJo: Set Migrated Backward"
             },
             {
-                "command": "bujo.setCompleted",
+                "command": "bujo.symbol.setCompleted",
                 "title": "BuJo: Set Completed"
             },
             {
-                "command": "bujo.setOpen",
+                "command": "bujo.symbol.setOpened",
                 "title": "BuJo: Set Open"
             },
             {
-                "command": "bujo.setInProgress",
-                "title": "BuJo: Set In Progress"
+                "command": "bujo.symbol.setStarted",
+                "title": "BuJo: Set Started"
             },
             {
-                "command": "bujo.setDropped",
+                "command": "bujo.symbol.setDropped",
                 "title": "BuJo: Set Dropped"
+            },
+            {
+                "command": "bujo.scheduler.scheduleEntry",
+                "title": "BuJo: Schedule Entry"
+            },
+            {
+                "command": "bujo.tracker.recordTime",
+                "title": "BuJo: Record Time"
+            },
+            {
+                "command": "bujo.tracker.calculateEntryTime",
+                "title": "BuJo: Calculate Entry Time"
             }
         ],
+        "configuration": {
+            "title": "BuJo",
+            "properties": {
+                "bujo.scheduler.plannerPrefix": {
+                    "type": "string",
+                    "default": "log",
+                    "markdownDescription": "Specifies the prefix for the planner file (e.g., **`log`**`.2022.03.20`)."
+                },
+                "bujo.scheduler.taskName": {
+                    "type": "string",
+                    "default": "alias",
+                    "enum": [
+                        "alias",
+                        "filename"
+                    ],
+                    "markdownDescription": "Specifies how to construct the task name for the time tracking table when scheduling a `BuJo` entry that contains a wiki link with an alias (e.g., `- [ ] [[An arbitrary task|file-for-arbitrary-task]]`).",
+                    "markdownEnumDescriptions": [
+                        "Use the wiki link **alias** as task name (e.g., `An arbitrary task`).",
+                        "Use the wiki link **filename** as task name (e.g., `[[file-for-arbitrary-task]]`)."
+                    ]
+                },
+                "bujo.scheduler.symbolForScheduledEntry": {
+                    "type": "string",
+                    "default": ">",
+                    "markdownDescription": "Specifies the symbol to set for a scheduled entry (e.g., `>`)."
+                }
+            }
+        },
         "grammars": [
             {
                 "path": "./syntaxes/bujo.entry.injection.json",
@@ -94,7 +137,7 @@
         "keybindings": [
             {
                 "key": "alt+x",
-                "command": "bujo.setSymbol",
+                "command": "bujo.symbol.setSymbol",
                 "args": {
                     "symbol": "x"
                 },
@@ -102,7 +145,7 @@
             },
             {
                 "key": "alt+o",
-                "command": "bujo.setSymbol",
+                "command": "bujo.symbol.setSymbol",
                 "args": {
                     "symbol": " "
                 },
@@ -110,7 +153,7 @@
             },
             {
                 "key": "alt+-",
-                "command": "bujo.setSymbol",
+                "command": "bujo.symbol.setSymbol",
                 "args": {
                     "symbol": "-"
                 },
@@ -118,7 +161,7 @@
             },
             {
                 "key": "alt+/",
-                "command": "bujo.setSymbol",
+                "command": "bujo.symbol.setSymbol",
                 "args": {
                     "symbol": "/"
                 },
@@ -126,7 +169,7 @@
             },
             {
                 "key": "alt+,",
-                "command": "bujo.setSymbol",
+                "command": "bujo.symbol.setSymbol",
                 "args": {
                     "symbol": "<"
                 },
@@ -134,7 +177,7 @@
             },
             {
                 "key": "alt+.",
-                "command": "bujo.setSymbol",
+                "command": "bujo.symbol.setSymbol",
                 "args": {
                     "symbol": ">"
                 },
@@ -142,10 +185,25 @@
             },
             {
                 "key": "alt+p",
-                "command": "bujo.setSymbol",
+                "command": "bujo.symbol.setSymbol",
                 "args": {
                     "symbol": "o"
                 },
+                "when": "editorTextFocus && editorLangId == markdown"
+            },
+            {
+                "key": "alt+shift+p",
+                "command": "bujo.scheduler.scheduleEntry",
+                "when": "editorTextFocus && editorLangId == markdown"
+            },
+            {
+                "key": "alt+shift+t",
+                "command": "bujo.tracker.recordTime",
+                "when": "editorTextFocus && editorLangId == markdown"
+            },
+            {
+                "key": "alt+shift+s",
+                "command": "bujo.tracker.calculateEntryTime",
                 "when": "editorTextFocus && editorLangId == markdown"
             }
         ],
@@ -506,11 +564,13 @@
         "pretest": "npm run compile && npm run lint",
         "lint": "eslint src --ext ts",
         "test": "node ./out/test/runTest.js",
-        "vscode:prepublish": "npm run esbuild-base -- --minify",
-        "esbuild-base": "esbuild ./src/extension.ts --bundle --outfile=out/main.js --external:vscode --format=cjs --platform=node",
-        "esbuild": "npm run esbuild-base -- --sourcemap",
-        "esbuild-watch": "npm run esbuild-base -- --sourcemap --watch",
-        "test-compile": "tsc -p ./"
+        "vscode:prepublish": "npm run package",
+        "webpack": "webpack --mode development",
+        "webpack-dev": "webpack --mode development --watch",
+        "package": "webpack --mode production --devtool hidden-source-map",
+        "test-compile": "tsc -p ./",
+        "docs:dev": "vuepress dev docs",
+        "docs:build": "vuepress build docs"
     },
     "devDependencies": {
         "@types/glob": "^7.2.0",
@@ -521,11 +581,15 @@
         "@typescript-eslint/eslint-plugin": "^5.16.0",
         "@typescript-eslint/parser": "^5.16.0",
         "@vscode/test-electron": "^2.1.3",
-        "esbuild": "^0.14.38",
+        "@vuepress/plugin-search": "^2.0.0-beta.46",
         "eslint": "^8.11.0",
         "glob": "^7.2.0",
         "mocha": "^9.2.2",
-        "typescript": "^4.5.5"
+        "ts-loader": "^9.3.1",
+        "typescript": "^4.5.5",
+        "vuepress": "^2.0.0-beta.46",
+        "webpack": "^5.73.0",
+        "webpack-cli": "^4.10.0"
     },
     "dependencies": {
         "lodash": "^4.17.21",

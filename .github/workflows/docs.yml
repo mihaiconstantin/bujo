@@ -1,0 +1,62 @@
+# Workflow name.
+name: docs
+
+# Events.
+on:
+  # Trigger on push to branch.
+  push:
+    branches: [main]
+  # Trigger manually via the GitHub UI.
+  workflow_dispatch:
+
+# Jobs.
+jobs:
+  docs:
+    # Virtual machine type.
+    runs-on: ubuntu-latest
+
+    # Job steps.
+    steps:
+      # Fetch all commits to get all `.git` info logs.
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      # Install `Node.js`.
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14'
+
+      # Cache `node_modules`.
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        id: yarn-cache
+        with:
+          path: |
+            **/node_modules
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      # Install `Node.js` dependencies if the cache did not hit.
+      - name: Install dependencies
+        if: steps.yarn-cache.outputs.cache-hit != 'true'
+        run: yarn --frozen-lockfile
+
+      # Run build script.
+      - name: Build VuePress site
+        run: yarn docs:build
+
+      # Deploy website.
+      # https://github.com/crazy-max/ghaction-github-pages.
+      - name: Deploy to GitHub Pages
+        uses: crazy-max/ghaction-github-pages@v2
+        with:
+          # Deploy to `gh-pages` branch.
+          target_branch: gh-pages
+          # Deploy the default output dir of VuePress.
+          build_dir: docs/.vuepress/dist
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
