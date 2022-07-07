@@ -19,7 +19,7 @@ Code](https://code.visualstudio.com/) extension that adds syntax highlighting
 for Bullet Journal entries and provides convenient commands, snippets,
 keybindings, and more for managing tasks and notes in Markdown. It works best in
 combination with [Dendron](https://github.com/dendronhq/dendron) or
-[Foam](https://github.com/foambubble/foam) for an awesome way to turn yor text
+[Foam](https://github.com/foambubble/foam) for an awesome way to turn your text
 editor into a full-fledged personal knowledge management and productivity
 system.
 
@@ -70,11 +70,11 @@ plan working days, and track the time spent on tasks.
 | `bujo.tracker.calculateEntryTime` | BuJo: Calculate Entry Time  | time tracking |
 
 <br><hr>
-<h2 align="center">
+<h3 align="center">
     Check out the <a href="https://bujo.mihaiconstantin.com"><b>guide</b></a> at
     <a href="https://bujo.mihaiconstantin.com">bujo.mihaiconstantin.com</a> for
     an overview of what <a href="https://bujo.mihaiconstantin.com"><b>BuJo</b></a> can do.
-</h2>
+</h3>
 <hr><br>
 
 ## Release Notes

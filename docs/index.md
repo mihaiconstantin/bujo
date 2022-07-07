@@ -24,7 +24,7 @@ pageClass: page-home
 syntax highlighting for Bullet Journal entries and provides convenient commands,
 snippets, keybindings, and more for managing tasks and notes in Markdown. It
 works best in combination with [Dendron](https://github.com/dendronhq/dendron)
-or [Foam](https://github.com/foambubble/foam) for an awesome way to turn yor
+or [Foam](https://github.com/foambubble/foam) for an excellent way to turn your
 text editor into a full-fledged personal knowledge management and productivity
 system.
 

@@ -38,7 +38,7 @@ plan working days, and track the time spent on tasks.
 
 ## Learn More
 
-The following guide is aimed at first-time users  to provide an overview of the
+The following guide is aimed at first-time users to provide an overview of the
 **BuJo** notation and its main features. The remainder of the guide is
 structured as follows:
 

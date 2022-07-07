@@ -12,7 +12,7 @@ language grammar that can be used for syntax highlighting. At its core, **BuJo**
 uses the VS Code API for injecting a language grammar (i.e., see [VS Code
 documentation](https://code.visualstudio.com/api/language-extensions/syntax-highlight-guide)
 for more details). This section of the guide provides information about the
-anatomy of a **BuJo** entry, as well as other components that are support for
+anatomy of a **BuJo** entry, as well as other components that are supported for
 syntax highlighting.
 
 ## BuJo Entries
@@ -88,9 +88,9 @@ symbols. For example:
 
 **BuJo** can easily be extended upon request to support an arbitrary number of
 characters (i.e., including combinations of characters) as modifiers. **BuJo**
-provides flexibility with respect to where a supported modifier can be placed.
-For example, all of the following are correctly identified and parsed as valid
-entries, as can be seen in the image below:
+provides flexibility for where a supported modifier can be placed. For example,
+all of the following are correctly identified and parsed as valid entries, as
+can be seen in the image below:
 
 ```markdown
 - [ ] ! Represents a task
@@ -126,7 +126,7 @@ change in the future.
 
 ### Metadata
 
-**BuJo** entries may also contain inline *metadata* stored after the the `|`
+**BuJo** entries may also contain inline *metadata* stored after the `|`
 character. For example, entries can contain wiki links or blockquote IDs (e.g.,
 as used by [Dendron](https://github.com/dendronhq/dendron) and
 [Foam](https://github.com/foambubble/foam)):

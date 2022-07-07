@@ -4,7 +4,7 @@ pageClass: page-reference
 
 # TextMate Scopes
 
-Below are the **TextMate Scopes** that can targeted via the VS Code setting
+Below are the **TextMate Scopes** that can be targeted via the VS Code setting
 `editor.tokenColorCustomizations"` for color customizations.
 
 ## BuJo Entries
@@ -100,7 +100,7 @@ The tokens `bujo.todo.*` are deprecated and will be replaced by
 
 ## Regular Expressions
 
-In case you discover edge cases where the tokens are not highlighted properly,
+If you discover edge cases where the tokens are not appropriately highlighted,
 please open an issue on
 [GitHub](https://github.com/mihaiconstantin/bujo/issues). The regular
 expressions used for capturing the **TextMate Scopes** above can be consulted

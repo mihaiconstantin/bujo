@@ -78,7 +78,7 @@ The following video demonstrates these commands in action:
     <iframe src="https://www.youtube.com/embed/FiB0kfvz0XU?rel=0&showinfo=0&controls=0&loop=1&modestbranding=1&playlist=FiB0kfvz0XU" title="BuJo VS Code - Commands for time tracking" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
-Additionally, these commands above can also be invoked via the default
+Additionally, the two commands above can also be invoked via the default
 keybindings:
 
 - `alt+shift+t` to run command `BuJo: Record Time`
@@ -86,6 +86,6 @@ keybindings:
 
 ::: tip
 Check out the [Snippets Reference](/reference/scopes.md) for handy snippets that
-can be used to generate time tracking tables, add tasks from clipboard, and
+can be used to generate time tracking tables, add tasks from the clipboard, and
 more.
 :::
