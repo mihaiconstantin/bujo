@@ -1,6 +1,6 @@
 # Changelog
 
-## [2.4.0] - 2022.07.05
+## [2.4.0] - 2022.07.07
 
 ### Added
 - Add `.github` workflow for building documentation website.
@@ -41,6 +41,7 @@
   [#12](https://github.com/mihaiconstantin/bujo/issues/12).
 
 ### Changed
+- Switched from `esbuild` to `webpack` for bundling extension source files.
 - Simplify `README.md` file to point to the new documentation. Closes
   [#12](https://github.com/mihaiconstantin/bujo/issues/12).
 - Refactor `Entry` class into multiple classes, each corresponding to a type of
