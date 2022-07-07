@@ -27,7 +27,7 @@ system.
 
 ### Syntax Highlighting
 
-At the syntax highlighting level, **BuJo** parses the text written in Markdown
+At the highlighting syntax level, **BuJo** parses the text written in Markdown
 files for specific patterns and allows arbitrary colors to be mapped to
 different parts of a **BuJo** entry. Out of the box, **BuJo** provides
 highlighting for the standard Bullet Journal entries proposed by [Carroll
