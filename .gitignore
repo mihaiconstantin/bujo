@@ -1,11 +1,10 @@
 node_modules
 *.vsix
-debug/
+debug
 out
 dist
-.vscode-test/
+.vscode-test
 .DS_Store
-assets/video
 .temp
 .cache
 **/temp_*
