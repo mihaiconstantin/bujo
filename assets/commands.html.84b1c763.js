@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-3a531718","path":"/reference/commands.html","title":"Commands","lang":"en-US","frontmatter":{"pageClass":"page-reference"},"excerpt":"","headers":[],"git":{"updatedTime":1657021396000,"contributors":[{"name":"mihaiconstantin","email":"mihai@mihaiconstantin.com","commits":1}]},"filePathRelative":"reference/commands.md"}');export{e as data};
