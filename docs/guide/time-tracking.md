@@ -85,7 +85,7 @@ keybindings:
 - `alt+shift+s` to run command `BuJo: Time Spent`
 
 ::: tip
-Check out the [Snippets Reference](/reference/scopes.md) for handy snippets that
-can be used to generate time tracking tables, add tasks from the clipboard, and
-more.
+Check out the [Snippets Reference](/reference/snippets.md) for handy snippets
+that can be used to generate time tracking tables, add tasks from the clipboard,
+and more.
 :::

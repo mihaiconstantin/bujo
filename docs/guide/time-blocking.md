@@ -15,7 +15,7 @@ time blocking table can be seen below:
 </div>
 
 ::: tip
-Check out the [Snippets Reference](/reference/scopes.md) for handy snippets that
-can be used to generate time blocking tables, add revisions, add chunks and
+Check out the [Snippets Reference](/reference/snippets.md) for handy snippets
+that can be used to generate time blocking tables, add revisions, add chunks and
 notes, and more.
 :::
