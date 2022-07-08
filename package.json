@@ -5,7 +5,7 @@
     "publisher": "mihaiconstantin",
     "icon": "assets/icon/bujo_circle_128.png",
     "private": true,
-    "version": "2.4.0",
+    "version": "2.4.1",
     "license": "MIT",
     "engines": {
         "vscode": "^1.65.0"
