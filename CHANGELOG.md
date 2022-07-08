@@ -1,7 +1,15 @@
 # Changelog
 
-## [2.4.0] - 2022.07.07
+## [2.4.1] - 2022.07.08
+### Changed
+- Update extension homepage from
+  [github.com/mihaiconstantin/bujo](https://github.com/mihaiconstantin/bujo) to
+  [bujo.mihaiconstantin.com](https://bujo.mihaiconstantin.com).
 
+### Fixed
+- Add correct links to snippets reference in the guide pages.
+
+## [2.4.0] - 2022.07.07
 ### Added
 - Add `.github` workflow for building documentation website.
 - Add extension documentation via `VuePress` at
